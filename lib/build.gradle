@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+
+apply from: '../base.gradle'
+apply from: '../push.gradle'
+
+dependencies {
+
+    // Room
+    api deps.room.runtime
+    api deps.room.rxjava2
+    kapt deps.room.compiler
+
+    // Kotlin
+    api deps.kotlin.stdlib
+    api deps.kotlin.coroutines
+
+    // Support
+    api deps.support.annotations
+    api deps.support.app_compat
+    api deps.constraint_layout
+
+    // Lifecycle
+    api deps.lifecycle.runtime
+    api deps.lifecycle.extensions
+    api deps.lifecycle.java8
+    api deps.lifecycle.viewmodel
+    api deps.lifecycle.viewmodel_ktx
+    api deps.lifecycle.livedata
+    api deps.lifecycle.reactivestreams
+    annotationProcessor deps.lifecycle.compiler
+
+}
