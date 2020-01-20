@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginBottom="10dp"
+	android:background="@android:color/white"
+	android:gravity="center_vertical"
+	android:orientation="vertical">
+	
+	<include layout="@layout/form_normal_title" />
+	
+	<TextView
+		android:id="@+id/item_form_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@android:color/white"
+		android:gravity="center_vertical"
+		android:minHeight="100dp"
+		android:padding="10dp"
+		android:textColor="#505050"
+		android:textSize="18sp"
+		tools:text="测试测试测试测试测试测试测试测试测试测试测试测试" />
+
+</LinearLayout>

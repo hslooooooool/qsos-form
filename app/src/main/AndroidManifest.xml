@@ -12,7 +12,7 @@
 		tools:replace="android:label,android:icon,android:theme">
 		
 		<activity
-			android:name="vip.qsos.form.MainActivity"
+			android:name=".MainActivity"
 			android:configChanges="orientation|keyboardHidden|screenSize">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />

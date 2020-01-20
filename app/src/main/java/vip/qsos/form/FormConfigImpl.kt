@@ -2,8 +2,10 @@ package vip.qsos.form
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import vip.qsos.form.base.BaseFormHolder
-import vip.qsos.form.config.FormConfig
+import vip.qsos.form_lib.base.BaseFormHolder
+import vip.qsos.form_lib.config.FormConfig
+import vip.qsos.form_lib.model.FormItemEntity
+import vip.qsos.form_n.hodler.*
 
 class FormConfigImpl : FormConfig {
 
@@ -19,19 +21,27 @@ class FormConfigImpl : FormConfig {
         val layoutId = getLayoutId(getValueType(viewType))
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return when (viewType) {
-            1 -> TextFormHolder(view)
-            2 -> TextFormHolder(view)
-            3 -> FileFormHolder(view)
-            else -> TextFormHolder(view)
+            0 -> FormItemTextHolder(view)
+            1 -> FormItemInputHolder(view)
+            2 -> FormItemCheckHolder(view)
+            3 -> FormItemTimeHolder(view)
+            4 -> FormItemUserHolder(view)
+            5 -> FormItemFileHolder(view)
+            6 -> FormItemLocationHolder(view)
+            else -> FormItemTextHolder(view)
         }
     }
 
     override fun getLayoutId(valueType: Int): Int {
         return when (getViewType(valueType)) {
-            1 -> R.layout.item_form_item_text
-            2 -> R.layout.item_form_item_text
-            3 -> R.layout.item_form_item_file
-            else -> R.layout.item_form_item_text
+            0 -> R.layout.form_item_text
+            1 -> R.layout.form_item_input
+            2 -> R.layout.form_item_check
+            3 -> R.layout.form_item_time
+            4 -> R.layout.form_item_user
+            5 -> R.layout.form_item_file
+            6 -> R.layout.form_item_location
+            else -> R.layout.form_item_text
         }
     }
 
