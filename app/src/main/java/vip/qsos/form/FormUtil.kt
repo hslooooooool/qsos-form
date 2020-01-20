@@ -14,7 +14,7 @@ object FormUtil {
     object Create {
         /**反馈表单*/
         fun feedbackForm(): FormEntity {
-            val form = FormEntity(title = "指令反馈", notice = "指令反馈表单", submitName = "提交反馈")
+            val form = FormEntity(title = "意见反馈", notice = "意见反馈", submitName = "提交")
             val formItemList = arrayListOf<FormItemEntity>()
             /**反馈解释*/
             val desc = FormItemEntity(title = "反馈说明", valueType = 0, editable = false)
