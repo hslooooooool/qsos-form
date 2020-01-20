@@ -1,16 +1,19 @@
 package vip.qsos.form_n.hodler
 
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.form_item_check.view.*
 import kotlinx.android.synthetic.main.form_normal_title.view.*
 import vip.qsos.form_lib.base.BaseFormHolder
+import vip.qsos.form_lib.callback.OnTListener
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_n.model.FormValueOfCheck
 import vip.qsos.form_n.utils.FormValueUtil
 
 /**
  * @author : 华清松
- * 表单文本列表项视图
+ * 表单列表项选项类型视图
  */
 class FormItemCheckHolder(itemView: View) : BaseFormHolder(itemView) {
 
@@ -19,8 +22,20 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder(itemView) {
         itemView.form_item_check.text = getText(data)
         itemView.form_item_check.hint = data.notice
 
-        itemView.form_item_title.setOnClickListener { }
-        itemView.form_item_check.setOnClickListener {}
+        itemView.form_item_title.setOnClickListener {
+            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_LONG).show()
+        }
+        if (data.editable) {
+            itemView.form_item_check.setOnClickListener {
+                showSingleCheck(data, object : OnTListener<String?> {
+                    override fun back(t: String?) {
+                        t?.let { itemView.form_item_check.text = it }
+                    }
+                })
+            }
+        } else {
+            itemView.form_item_check.setOnClickListener(null)
+        }
     }
 
     private fun getText(data: FormItemEntity): String {
@@ -57,5 +72,31 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder(itemView) {
             }
         }
         return text
+    }
+
+    private fun showSingleCheck(data: FormItemEntity, listener: OnTListener<String?>) {
+        val names = HashSet<String>()
+        for (v in data.formValues!!) {
+            val check = v.getRealValue<FormValueOfCheck>()
+            names.add(check!!.ckName!!)
+        }
+        val items = names.toTypedArray()
+        AlertDialog.Builder(itemView.context).run {
+            setTitle(data.title)
+            setItems(items) { dialog, which ->
+                var name: String? = null
+                data.formValues!!.forEachIndexed { index, entity ->
+                    val realValue = entity.getRealValue<FormValueOfCheck>()!!
+                    if (index == which) name = realValue.ckName
+                    realValue.ckChecked = index == which
+                    entity.value = realValue.toString()
+                }
+                dialog.dismiss()
+                listener.back(name)
+            }
+            create()
+        }.also {
+            it.show()
+        }
     }
 }

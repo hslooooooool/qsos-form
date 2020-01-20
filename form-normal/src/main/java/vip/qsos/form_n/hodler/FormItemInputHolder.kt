@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.form_item_input.view.*
 import kotlinx.android.synthetic.main.form_normal_title.view.*
 import kotlinx.coroutines.CoroutineScope
@@ -41,6 +42,9 @@ class FormItemInputHolder(itemView: View) : BaseFormHolder(itemView) {
             itemView.item_form_input.filters = arrayOf(InputFilter.LengthFilter(data.limitMax!!))
         }
 
+        itemView.form_item_title.setOnClickListener {
+            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_LONG).show()
+        }
         itemView.item_form_input.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(p0: Editable) {

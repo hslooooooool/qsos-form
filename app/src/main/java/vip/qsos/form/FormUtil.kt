@@ -24,20 +24,20 @@ object FormUtil {
             desc.formValues!!.add(descValue)
             formItemList.add(desc)
             /**反馈类型*/
-            val state = FormItemEntity(title = "反馈类型", notice = "请选择反馈类型",
+            val state = FormItemEntity(title = "反馈类型*", notice = "选择反馈类型,方便快速定位问题,必选",
                     valueType = 2, limitMin = 1, limitMax = 1, require = true)
             val stateValue1 = FormValueEntity(
-                    value = FormValueOfCheck("1", "产品问题", "YES", true).toString()
+                    value = FormValueOfCheck("1", "产品问题", "1", true).toString()
             )
             val stateValue2 = FormValueEntity(
-                    value = FormValueOfCheck("2", "BUG反馈", "NO", false).toString()
+                    value = FormValueOfCheck("2", "BUG反馈", "2", false).toString()
             )
             state.formValues!!.add(stateValue1)
             state.formValues!!.add(stateValue2)
             formItemList.add(state)
             /**反馈内容*/
-            val content = FormItemEntity(title = "反馈内容", notice = "请填写反馈意见",
-                    valueType = 1, limitMin = 10, limitMax = 200)
+            val content = FormItemEntity(title = "反馈内容*", notice = "请填写反馈意见",
+                    valueType = 1, limitMin = 10, limitMax = 200, require = true)
             val contentValue = FormValueEntity(
                     value = FormValueOfText().toString()
             )

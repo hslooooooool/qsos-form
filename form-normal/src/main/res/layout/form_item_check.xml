@@ -10,7 +10,7 @@
 	
 	<include layout="@layout/form_normal_title" />
 	
-	<TextView
+	<androidx.appcompat.widget.AppCompatTextView
 		android:id="@+id/form_item_check"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
