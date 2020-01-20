@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import vip.qsos.form_lib.base.BaseFormHolder
 import vip.qsos.form_lib.config.FormConfig
-import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_n.hodler.*
 
 class FormConfigImpl : FormConfig {
@@ -25,7 +24,6 @@ class FormConfigImpl : FormConfig {
             1 -> FormItemInputHolder(view)
             2 -> FormItemCheckHolder(view)
             3 -> FormItemTimeHolder(view)
-            4 -> FormItemUserHolder(view)
             5 -> FormItemFileHolder(view)
             6 -> FormItemLocationHolder(view)
             else -> FormItemTextHolder(view)
@@ -38,7 +36,6 @@ class FormConfigImpl : FormConfig {
             1 -> R.layout.form_item_input
             2 -> R.layout.form_item_check
             3 -> R.layout.form_item_time
-            4 -> R.layout.form_item_user
             5 -> R.layout.form_item_file
             6 -> R.layout.form_item_location
             else -> R.layout.form_item_text

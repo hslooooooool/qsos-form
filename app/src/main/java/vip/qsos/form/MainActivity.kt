@@ -37,6 +37,7 @@ class MainActivity(
         mForm = FormUtil.Create.feedbackForm()
         mList.addAll(mForm.formItems!!)
         mAdapter.notifyDataSetChanged()
+        form_title.text = mForm.title
         form_submit.text = mForm.submitName
     }
 }

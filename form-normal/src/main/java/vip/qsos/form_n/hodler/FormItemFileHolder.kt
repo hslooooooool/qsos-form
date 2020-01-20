@@ -39,7 +39,7 @@ class FormItemFileHolder(
         }
 
         if (itemView.rv_item_form_files.layoutManager == null) {
-            itemView.rv_item_form_files.layoutManager = GridLayoutManager(itemView.context, 3)
+            itemView.rv_item_form_files.layoutManager = GridLayoutManager(itemView.context, 4)
             itemView.rv_item_form_files.adapter = FormFileAdapter(data.formValues!!)
         } else {
             itemView.rv_item_form_files.adapter!!.notifyDataSetChanged()

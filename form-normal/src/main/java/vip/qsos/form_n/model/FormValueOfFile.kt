@@ -1,6 +1,7 @@
 package vip.qsos.form_n.model
 
 import android.text.TextUtils
+import com.google.gson.Gson
 import java.util.*
 
 /**
@@ -21,6 +22,10 @@ data class FormValueOfFile(
         var fileUrl: String? = null,
         var fileCover: String? = null
 ) {
+    override fun toString(): String {
+        return Gson().toJson(this)
+    }
+
     companion object {
         /**根据文件mime类型区分为以下几大类，用于表单附件缩略图展示*/
         fun getFileTypeByMime(fileType: String?): String {
@@ -30,9 +35,9 @@ data class FormValueOfFile(
             fileType!!
             fileType.toLowerCase(Locale.CHINA)
             return when {
-                fileType.endsWith("png") || fileType.endsWith("jpg") || fileType.endsWith("jpeg") -> "IMAGE"
-                fileType.endsWith("amr") || fileType.endsWith("wav") || fileType.endsWith("raw") || fileType.endsWith("mp3") -> "AUDIO"
-                fileType.endsWith("3gp") || fileType.endsWith("mp4") || fileType.endsWith("avi") -> "VIDEO"
+                fileType.endsWith("image") || fileType.endsWith("png") || fileType.endsWith("jpg") || fileType.endsWith("jpeg") -> "IMAGE"
+                fileType.endsWith("audio") || fileType.endsWith("amr") || fileType.endsWith("wav") || fileType.endsWith("raw") || fileType.endsWith("mp3") -> "AUDIO"
+                fileType.endsWith("video") || fileType.endsWith("3gp") || fileType.endsWith("mp4") || fileType.endsWith("avi") -> "VIDEO"
                 else -> "FILE"
             }
         }

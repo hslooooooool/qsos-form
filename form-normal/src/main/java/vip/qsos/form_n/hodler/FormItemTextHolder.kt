@@ -17,14 +17,13 @@ class FormItemTextHolder(itemView: View) : BaseFormHolder(itemView) {
     override fun setData(data: FormItemEntity, position: Int) {
         itemView.form_item_title.text = data.title
 
-        itemView.form_item_title.setOnClickListener {
-        }
-        itemView.item_form_text.setOnClickListener {
-        }
-
         FormValueUtil.getValue(data.formValue?.value, FormValueOfText::class.java)?.let {
             itemView.item_form_text.text = it.content
         }
+
+        itemView.form_item_title.setOnClickListener {}
+        itemView.item_form_text.setOnClickListener {}
+
 
     }
 

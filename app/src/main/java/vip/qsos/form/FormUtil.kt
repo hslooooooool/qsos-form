@@ -4,6 +4,7 @@ import vip.qsos.form_lib.model.FormEntity
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_lib.model.FormValueEntity
 import vip.qsos.form_n.model.FormValueOfCheck
+import vip.qsos.form_n.model.FormValueOfFile
 import vip.qsos.form_n.model.FormValueOfText
 
 /**表单转换帮助类*/
@@ -15,14 +16,21 @@ object FormUtil {
         fun feedbackForm(): FormEntity {
             val form = FormEntity(title = "指令反馈", notice = "指令反馈表单", submitName = "提交反馈")
             val formItemList = arrayListOf<FormItemEntity>()
-            /**反馈状态*/
-            val state = FormItemEntity(title = "反馈状态", notice = "请选择反馈状态",
-                    valueType = 2, limitMin = 1, limitMax = 1)
+            /**反馈解释*/
+            val desc = FormItemEntity(title = "反馈说明", valueType = 0, editable = false)
+            val descValue = FormValueEntity(
+                    value = FormValueOfText("填写反馈表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!").toString()
+            )
+            desc.formValues!!.add(descValue)
+            formItemList.add(desc)
+            /**反馈类型*/
+            val state = FormItemEntity(title = "反馈类型", notice = "请选择反馈类型",
+                    valueType = 2, limitMin = 1, limitMax = 1, require = true)
             val stateValue1 = FormValueEntity(
-                    value = FormValueOfCheck("1", "做得好", "YES", true).toString()
+                    value = FormValueOfCheck("1", "产品问题", "YES", true).toString()
             )
             val stateValue2 = FormValueEntity(
-                    value = FormValueOfCheck("2", "做得差", "NO", false).toString()
+                    value = FormValueOfCheck("2", "BUG反馈", "NO", false).toString()
             )
             state.formValues!!.add(stateValue1)
             state.formValues!!.add(stateValue2)
@@ -35,10 +43,16 @@ object FormUtil {
             )
             content.formValues!!.add(contentValue)
             formItemList.add(content)
-            /**反馈附件*/
-            val file = FormItemEntity(title = "反馈内容", notice = "请填写反馈意见",
-                    valueType = 5, limitMin = 1, limitMax = 3, limit = "IMAGE")
-            val fileValue = FormValueEntity()
+            /**附件上传*/
+            val file = FormItemEntity(title = "附件上传", notice = "上传问题截图有助于我们更加快速的定位问题",
+                    valueType = 5, limitMin = 0, limitMax = 9, limit = "FILE")
+            val fileValue = FormValueEntity(
+                    value = FormValueOfFile(fileName = "测试文件").toString()
+            )
+            file.formValues!!.add(fileValue)
+            file.formValues!!.add(fileValue)
+            file.formValues!!.add(fileValue)
+            file.formValues!!.add(fileValue)
             file.formValues!!.add(fileValue)
             formItemList.add(file)
 
