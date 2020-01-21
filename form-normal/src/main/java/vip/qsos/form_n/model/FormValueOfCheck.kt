@@ -1,7 +1,5 @@
 package vip.qsos.form_n.model
 
-import com.google.gson.Gson
-
 /**
  * @author : 华清松
  * 表单项值-选项实体类
@@ -15,8 +13,4 @@ data class FormValueOfCheck(
         var ckName: String? = null,
         var ckValue: String? = null,
         var ckChecked: Boolean = false
-) {
-    override fun toString(): String {
-        return Gson().toJson(this)
-    }
-}
+) : BaseFormValue<FormValueOfCheck>(FormValueOfCheck::class.java)

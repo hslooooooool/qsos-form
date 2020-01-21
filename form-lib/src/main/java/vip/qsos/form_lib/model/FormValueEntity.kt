@@ -1,6 +1,9 @@
 package vip.qsos.form_lib.model
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
+import androidx.room.PrimaryKey
 
 /**
  * @author : 华清松
@@ -20,29 +23,26 @@ import androidx.room.*
             Index(value = ["id"], unique = true)
         ]
 )
-data class FormValueEntity(
+class FormValueEntity<T : AbsFormValue<T>>(
         @PrimaryKey(autoGenerate = true)
         var id: Long? = null,
         var formItemId: Long? = null,
         var limit: String? = null,
         var editable: Boolean = true,
-        var position: Int = 1,
-        var value: String? = null
-) {
-    @Ignore
-    private var mValue: Any? = null
+        var position: Int = 1
+) : AbsFormValue<T>() {
 
-    fun setRealValue(value: Any) {
-        this.mValue = value
+    override fun getEntity(value: String): T? {
+        this.value = value
+        return obj
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T> getRealValue(): T? {
-        return try {
-            mValue as T?
-        } catch (e: Exception) {
-            null
-        }
+    override fun transValue(): String {
+        return this.value
+    }
+
+    override fun transValue(obj: T?): String {
+        return obj?.value ?: ""
     }
 
 }

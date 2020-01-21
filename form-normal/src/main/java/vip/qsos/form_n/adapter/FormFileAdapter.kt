@@ -10,25 +10,24 @@ import vip.qsos.form_lib.base.BaseHolder
 import vip.qsos.form_lib.model.FormValueEntity
 import vip.qsos.form_n.R
 import vip.qsos.form_n.model.FormValueOfFile
-import vip.qsos.form_n.utils.FormValueUtil
 
 /**
  * @author : 华清松
  * 文件列表容器
  */
 class FormFileAdapter(
-        var data: ArrayList<FormValueEntity>
-) : RecyclerView.Adapter<BaseHolder<FormValueEntity>>() {
+        var data: ArrayList<FormValueEntity<FormValueOfFile>>
+) : RecyclerView.Adapter<BaseHolder<FormValueEntity<FormValueOfFile>>>() {
 
     lateinit var mContext: Context
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormValueEntity> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormValueEntity<FormValueOfFile>> {
         mContext = parent.context
         val view = LayoutInflater.from(parent.context).inflate(R.layout.form_item_file_item, parent, false)
         return FormItemFileItemHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BaseHolder<FormValueEntity>, position: Int) {
+    override fun onBindViewHolder(holder: BaseHolder<FormValueEntity<FormValueOfFile>>, position: Int) {
         holder.setData(data[position], position)
     }
 
@@ -42,10 +41,10 @@ class FormFileAdapter(
  * @author : 华清松
  * 文件布局
  */
-class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity>(itemView) {
+class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormValueOfFile>>(itemView) {
 
-    override fun setData(data: FormValueEntity, position: Int) {
-        FormValueUtil.getValue(data.value, FormValueOfFile::class.java)?.let { file ->
+    override fun setData(data: FormValueEntity<FormValueOfFile>, position: Int) {
+        data.obj?.let { file ->
             itemView.tv_item_form_file_name.text = file.fileName
 
             itemView.iv_item_form_file_icon.setOnClickListener {

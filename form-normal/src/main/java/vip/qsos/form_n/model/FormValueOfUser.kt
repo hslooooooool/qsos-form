@@ -13,4 +13,4 @@ data class FormValueOfUser(
         var userName: String? = null,
         var userDesc: String? = null,
         var userAvatar: String? = null
-)
+) : BaseFormValue<FormValueOfUser>(FormValueOfUser::class.java)

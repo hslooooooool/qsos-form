@@ -14,25 +14,25 @@ import vip.qsos.form_lib.model.FormDatabase
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_lib.model.FormValueEntity
 import vip.qsos.form_n.model.FormValueOfText
-import vip.qsos.form_n.utils.FormValueUtil
 import vip.qsos.form_n.utils.db
 
 /**
  * @author : 华清松
  * 表单文本列表项视图
  */
-class FormItemInputHolder(itemView: View) : BaseFormHolder(itemView) {
+class FormItemInputHolder(itemView: View) : BaseFormHolder<FormValueOfText>(itemView) {
     private val mJob = Job()
 
-    override fun setData(data: FormItemEntity, position: Int) {
+    override fun setData(data: FormItemEntity<FormValueOfText>, position: Int) {
         itemView.form_item_title.text = data.title
-        var text = FormValueUtil.getValue(data.formValue?.value, FormValueOfText::class.java)
+        var text = data.formValue?.obj
         if (text == null) {
             text = FormValueOfText("")
-            data.formValue!!.value = text.toString()
-            data.formValues!!.add(FormValueEntity(
-                    formItemId = data.formId, editable = true, position = 1, value = text.toString()
-            ))
+            val value = FormValueEntity<FormValueOfText>(
+                    formItemId = data.formId, editable = true, position = 1
+            )
+            value.obj = text
+            data.formValue = value
         }
         itemView.item_form_input.setText(text.content)
 
@@ -52,7 +52,7 @@ class FormItemInputHolder(itemView: View) : BaseFormHolder(itemView) {
                 val content = itemView.item_form_input.text.toString()
                 if (text.content != content) {
                     text.content = content
-                    data.formValue!!.value = text.toString()
+                    data.formValue!!.obj = text
                     CoroutineScope(mJob).db<Long> {
                         db = { FormDatabase.INSTANCE!!.formValueDao.insert(data.formValue!!) }
                         onSuccess = {

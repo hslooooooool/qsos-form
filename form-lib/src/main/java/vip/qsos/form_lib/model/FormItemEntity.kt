@@ -28,7 +28,7 @@ import java.util.*
             Index(value = ["id"], unique = true)
         ]
 )
-data class FormItemEntity constructor(
+data class FormItemEntity<T : AbsFormValue<T>> constructor(
         @PrimaryKey(autoGenerate = true)
         var id: Long? = null,
         var formId: Long? = null,
@@ -46,7 +46,7 @@ data class FormItemEntity constructor(
 
     /**表单项值集合*/
     @Ignore
-    var formValues: ArrayList<FormValueEntity>? = arrayListOf()
+    var formValues: ArrayList<FormValueEntity<T>>? = arrayListOf()
         get() {
             if (field == null) {
                 field = arrayListOf()
@@ -63,7 +63,11 @@ data class FormItemEntity constructor(
         }
 
     /**表单项值第一个*/
-    val formValue: FormValueEntity?
+    var formValue: FormValueEntity<T>? = null
         get() = if (formValues.isNullOrEmpty()) null else formValues!![0]
+        set(value) {
+            field = value
+            value?.let { formValues!!.add(value) }
+        }
 
 }

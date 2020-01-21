@@ -16,9 +16,9 @@ import vip.qsos.form_n.model.FormValueOfFile
  */
 class FormItemFileHolder(
         itemView: View
-) : BaseFormHolder(itemView) {
+) : BaseFormHolder<FormValueOfFile>(itemView) {
 
-    override fun setData(data: FormItemEntity, position: Int) {
+    override fun setData(data: FormItemEntity<FormValueOfFile>, position: Int) {
         itemView.form_item_title.text = data.title
 
         data.limitTypeList?.forEach {
