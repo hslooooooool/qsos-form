@@ -29,6 +29,7 @@ class FormItemInputHolder(itemView: View) : BaseFormHolder(itemView) {
         var text = FormValueUtil.getValue(data.formValue?.value, FormValueOfText::class.java)
         if (text == null) {
             text = FormValueOfText("")
+            data.formValue!!.value = text.toString()
             data.formValues!!.add(FormValueEntity(
                     formItemId = data.formId, editable = true, position = 1, value = text.toString()
             ))
@@ -43,7 +44,7 @@ class FormItemInputHolder(itemView: View) : BaseFormHolder(itemView) {
         }
 
         itemView.form_item_title.setOnClickListener {
-            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_LONG).show()
+            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_SHORT).show()
         }
         itemView.item_form_input.addTextChangedListener(object : TextWatcher {
 
@@ -51,6 +52,7 @@ class FormItemInputHolder(itemView: View) : BaseFormHolder(itemView) {
                 val content = itemView.item_form_input.text.toString()
                 if (text.content != content) {
                     text.content = content
+                    data.formValue!!.value = text.toString()
                     CoroutineScope(mJob).db<Long> {
                         db = { FormDatabase.INSTANCE!!.formValueDao.insert(data.formValue!!) }
                         onSuccess = {
@@ -67,6 +69,7 @@ class FormItemInputHolder(itemView: View) : BaseFormHolder(itemView) {
         })
 
         itemView.form_item_title.setOnClickListener {
+            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_SHORT).show()
         }
     }
 }

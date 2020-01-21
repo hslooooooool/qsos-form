@@ -1,6 +1,7 @@
 package vip.qsos.form_n.hodler
 
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.form_item_text.view.*
 import kotlinx.android.synthetic.main.form_normal_title.view.*
 import vip.qsos.form_lib.base.BaseFormHolder
@@ -21,9 +22,9 @@ class FormItemTextHolder(itemView: View) : BaseFormHolder(itemView) {
             itemView.item_form_text.text = it.content
         }
 
-        itemView.form_item_title.setOnClickListener {}
-        itemView.item_form_text.setOnClickListener {}
-
+        itemView.form_item_title.setOnClickListener {
+            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_SHORT).show()
+        }
 
     }
 

@@ -14,29 +14,41 @@ object FormUtil {
     object Create {
         /**反馈表单*/
         fun feedbackForm(): FormEntity {
-            val form = FormEntity(title = "意见反馈", notice = "意见反馈", submitName = "提交")
+            val form = FormEntity(title = "表单案例", notice = "表单案例", submitName = "提交")
             val formItemList = arrayListOf<FormItemEntity>()
-            /**反馈解释*/
-            val desc = FormItemEntity(title = "反馈说明", valueType = 0, editable = false)
+            /**说明*/
+            val desc = FormItemEntity(title = "说明", notice = "说明", valueType = 0, editable = false)
             val descValue = FormValueEntity(
-                    value = FormValueOfText("填写反馈表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!").toString()
+                    value = FormValueOfText("填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!").toString()
             )
             desc.formValues!!.add(descValue)
             formItemList.add(desc)
-            /**反馈类型*/
-            val state = FormItemEntity(title = "反馈类型*", notice = "选择反馈类型,方便快速定位问题,必选",
+            /**用户*/
+            val state = FormItemEntity(title = "用户", notice = "选择用户,必选",
                     valueType = 2, limitMin = 1, limitMax = 1, require = true)
-            val stateValue1 = FormValueEntity(
-                    value = FormValueOfCheck("1", "产品问题", "1", true).toString()
-            )
-            val stateValue2 = FormValueEntity(
-                    value = FormValueOfCheck("2", "BUG反馈", "2", false).toString()
-            )
-            state.formValues!!.add(stateValue1)
-            state.formValues!!.add(stateValue2)
+            for (i in 1..2) {
+                val stateValue = FormValueEntity(
+                        position = i,
+                        value = FormValueOfCheck("$i", "用户$i", "$i").toString()
+                )
+                state.formValues!!.add(stateValue)
+                state.formValues!!.sortedBy { it.position }
+            }
             formItemList.add(state)
-            /**反馈内容*/
-            val content = FormItemEntity(title = "反馈内容*", notice = "请填写反馈意见",
+            /**类型*/
+            val type = FormItemEntity(title = "类型", notice = "选择类型,方便快速定位问题,必选",
+                    valueType = 2, limitMin = 1, limitMax = 3, require = true)
+            for (i in 1..20) {
+                val typeValue = FormValueEntity(
+                        position = i,
+                        value = FormValueOfCheck("$i", "类型$i", "$i", i == 4).toString()
+                )
+                type.formValues!!.add(typeValue)
+                type.formValues!!.sortedBy { it.position }
+            }
+            formItemList.add(type)
+            /**内容*/
+            val content = FormItemEntity(title = "内容", notice = "请填写内容",
                     valueType = 1, limitMin = 10, limitMax = 200, require = true)
             val contentValue = FormValueEntity(
                     value = FormValueOfText().toString()

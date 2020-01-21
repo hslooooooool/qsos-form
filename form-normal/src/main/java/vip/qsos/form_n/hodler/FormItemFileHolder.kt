@@ -1,6 +1,7 @@
 package vip.qsos.form_n.hodler
 
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.form_item_file.view.*
 import kotlinx.android.synthetic.main.form_normal_title.view.*
@@ -45,9 +46,10 @@ class FormItemFileHolder(
             itemView.rv_item_form_files.adapter!!.notifyDataSetChanged()
         }
 
-        // TODO
         itemView.form_item_title.setOnClickListener {
+            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_SHORT).show()
         }
+
         itemView.form_item_file_take_camera.setOnClickListener {
         }
         itemView.form_item_file_take_album.setOnClickListener {

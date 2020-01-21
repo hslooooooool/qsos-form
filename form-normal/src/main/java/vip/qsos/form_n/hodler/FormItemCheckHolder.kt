@@ -10,6 +10,8 @@ import vip.qsos.form_lib.callback.OnTListener
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_n.model.FormValueOfCheck
 import vip.qsos.form_n.utils.FormValueUtil
+import vip.qsos.form_n.widget.dialog.BottomDialogUtils
+import vip.qsos.form_n.widget.dialog.Operation
 
 /**
  * @author : 华清松
@@ -23,11 +25,11 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder(itemView) {
         itemView.form_item_check.hint = data.notice
 
         itemView.form_item_title.setOnClickListener {
-            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_LONG).show()
+            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_SHORT).show()
         }
         if (data.editable) {
             itemView.form_item_check.setOnClickListener {
-                showSingleCheck(data, object : OnTListener<String?> {
+                showCheck(data, object : OnTListener<String?> {
                     override fun back(t: String?) {
                         t?.let { itemView.form_item_check.text = it }
                     }
@@ -74,16 +76,28 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder(itemView) {
         return text
     }
 
+    private fun showCheck(data: FormItemEntity, listener: OnTListener<String?>) {
+        if (data.editable) {
+            if (data.limitMax == 1) {
+                showSingleCheck(data, listener)
+            } else {
+                showMultiCheck(data, listener)
+            }
+        }
+    }
+
     private fun showSingleCheck(data: FormItemEntity, listener: OnTListener<String?>) {
-        val names = HashSet<String>()
-        for (v in data.formValues!!) {
-            val check = v.getRealValue<FormValueOfCheck>()
+        val names = arrayListOf<String>()
+        var checkIndex = 0
+        data.formValues!!.forEachIndexed { index, formValueEntity ->
+            val check = formValueEntity.getRealValue<FormValueOfCheck>()
             names.add(check!!.ckName!!)
+            if (check.ckChecked) checkIndex = index
         }
         val items = names.toTypedArray()
         AlertDialog.Builder(itemView.context).run {
             setTitle(data.title)
-            setItems(items) { dialog, which ->
+            setSingleChoiceItems(items, checkIndex) { dialog, which ->
                 var name: String? = null
                 data.formValues!!.forEachIndexed { index, entity ->
                     val realValue = entity.getRealValue<FormValueOfCheck>()!!
@@ -99,4 +113,42 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder(itemView) {
             it.show()
         }
     }
+
+    private fun showMultiCheck(data: FormItemEntity, listener: OnTListener<String?>) {
+        val names = linkedMapOf<String, Int>()
+        val operations = arrayListOf<Operation>()
+        val limitMax = data.limitMax ?: 0
+        /**检查选项合法性*/
+        var checkValue = true
+        data.formValues!!.forEachIndexed { index, formValueEntity ->
+            val check = formValueEntity.getRealValue<FormValueOfCheck>()
+            if (check == null) {
+                checkValue = false
+            } else {
+                val name = check.ckName!!
+                names[name] = index
+                operations.add(Operation(key = name, check = check.ckChecked))
+            }
+        }
+        if (!checkValue) {
+            Toast.makeText(itemView.context, "表单数据不合法,无法交互", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        BottomDialogUtils.showMultiDialog(
+                itemView.context,
+                data.title, limitMax, operations,
+                object : OnTListener<List<Operation>> {
+                    override fun back(t: List<Operation>) {
+                        t.forEach {
+                            val value = data.formValues!![names[it.key!!]!!]
+                            val realValue = value.getRealValue<FormValueOfCheck>()!!
+                            realValue.ckChecked = it.isCheck
+                            value.value = realValue.toString()
+                        }
+                        listener.back(getText(data))
+                    }
+                })
+    }
+
 }

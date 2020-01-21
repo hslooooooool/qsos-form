@@ -39,12 +39,11 @@ class Operation {
         this.value = value
     }
 
-    constructor(iconId: Int, key: String, position: Int, check: Boolean, value: Any) {
-        this.iconId = iconId
+    constructor(iconId: Int? = null, position: Int? = null, key: String, check: Boolean) {
+        iconId?.let { this.iconId = iconId }
         this.key = key
         this.isCheck = check
-        this.position = position
-        this.value = value
+        position?.let { this.position = position }
     }
 
     companion object {

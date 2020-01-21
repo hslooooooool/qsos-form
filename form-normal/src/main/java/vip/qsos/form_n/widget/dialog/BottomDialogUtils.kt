@@ -18,42 +18,6 @@ import kotlin.math.abs
  */
 object BottomDialogUtils {
 
-    var imageOperation: MutableList<Operation> = ArrayList()
-    var fileOperation: MutableList<Operation> = ArrayList()
-    var headOperation: MutableList<Operation> = ArrayList()
-    var sexOperation: MutableList<Operation> = ArrayList()
-    var commonOperation: MutableList<Operation> = ArrayList()
-    var CommonPhrases: MutableList<Operation> = ArrayList()
-
-    init {
-        fileOperation.add(Operation(R.drawable.form_take_photo, "拍照", 0, false, "CAMERA"))
-        fileOperation.add(Operation(R.drawable.form_take_image, "图库", 1, false, "ALBUM"))
-        fileOperation.add(Operation(R.drawable.form_take_video, "录制视频", 2, false, "VIDEO"))
-        fileOperation.add(Operation(R.drawable.form_take_audio, "录制音频", 3, false, "AUDIO"))
-        fileOperation.add(Operation(R.drawable.form_take_file, "文件", 3, false, "FILE"))
-
-        headOperation.add(Operation(R.drawable.form_take_photo, "拍照", 0, false, "CAMERA"))
-        headOperation.add(Operation(R.drawable.form_take_image, "图库", 1, false, "ALBUM"))
-
-        imageOperation.add(Operation(R.drawable.form_take_photo, "拍照", 0, false, "CAMERA"))
-        imageOperation.add(Operation(R.drawable.form_take_image, "图库", 1, false, "ALBUM"))
-
-        sexOperation.add(Operation(R.drawable.form_dot_black, "男", 0, false, 1))
-        sexOperation.add(Operation(R.drawable.form_dot_black, "女", 1, false, 2))
-
-        commonOperation.add(Operation(R.drawable.form_dot_black, "性别不符", 0))
-        commonOperation.add(Operation(R.drawable.form_dot_black, "年龄不符", 0))
-        commonOperation.add(Operation(R.drawable.form_dot_black, "身体特征有差别", 0))
-        commonOperation.add(Operation(R.drawable.form_dot_black, "误判", 0))
-        commonOperation.add(Operation(R.drawable.form_dot_black, "其他", 0))
-
-        CommonPhrases.add(Operation(R.drawable.form_dot_black, "发现嫌疑人", 0))
-        CommonPhrases.add(Operation(R.drawable.form_dot_black, "执行抓捕", 0))
-        CommonPhrases.add(Operation(R.drawable.form_dot_black, "已抓到嫌疑人", 0))
-        CommonPhrases.add(Operation(R.drawable.form_dot_black, "抓捕行动结束", 0))
-
-    }
-
     /**
      * 具体时间选择
      *
@@ -133,7 +97,12 @@ object BottomDialogUtils {
     }
 
     /**底部弹窗多选*/
-    fun setBottomSelectListView(context: Context, title: String?, operations: List<Operation>, onTListener: OnTListener<List<Operation>>?) {
+    fun showMultiDialog(
+            context: Context,
+            title: String?, limitMax: Int,
+            operations: List<Operation>,
+            onTListener: OnTListener<List<Operation>>?
+    ) {
         val bottomDialog = BottomDialog()
         bottomDialog.setFragmentManager((context as AppCompatActivity).supportFragmentManager)
         bottomDialog.setLayoutRes(R.layout.form_quote_selete)
@@ -144,8 +113,11 @@ object BottomDialogUtils {
                 val tvTitle = dialog.findViewById<TextView>(R.id.tv_select_title)// 标题
                 val tvCancel = dialog.findViewById<TextView>(R.id.tv_select_cancel) // 取消按钮
                 val tvSure = dialog.findViewById<TextView>(R.id.tv_select_sure) // 确认按钮
-
-                val adapter = ConditionChoseAdapter(context, operations)
+                var checkedNum = 0
+                operations.forEach {
+                    if (it.isCheck) checkedNum++
+                }
+                val adapter = ConditionChoseAdapter(context, operations, checkedNum, limitMax)
                 screen.layoutManager = LinearLayoutManager(context)
                 screen.adapter = adapter
                 tvTitle.text = "$title"
@@ -161,7 +133,6 @@ object BottomDialogUtils {
                     }
                 }
             }
-
         })
         bottomDialog.show()
     }
