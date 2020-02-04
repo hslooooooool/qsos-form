@@ -7,8 +7,10 @@ package vip.qsos.form_lib.model
  * @param editable 是否可编辑
  * @param position 顺序
  */
-data class FormValueEntity<T : FormValueType> constructor(
+data class FormValueEntity<T : AbsValue> constructor(
         var limit: String? = null,
         var editable: Boolean = true,
-        var position: Int = 1
-) : AbsFormValue<T>()
+        var position: Int = 1,
+        /**真实值对象*/
+        var value: T? = null
+)

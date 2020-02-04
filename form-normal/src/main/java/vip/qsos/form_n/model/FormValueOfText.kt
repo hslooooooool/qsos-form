@@ -1,6 +1,6 @@
 package vip.qsos.form_n.model
 
-import vip.qsos.form_lib.model.FormValueType
+import vip.qsos.form_lib.model.AbsValue
 
 /**
  * @author : 华清松
@@ -9,4 +9,4 @@ import vip.qsos.form_lib.model.FormValueType
  */
 data class FormValueOfText(
         var content: String? = ""
-) : FormValueType()
+) : AbsValue()

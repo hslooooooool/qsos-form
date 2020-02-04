@@ -9,7 +9,7 @@ import vip.qsos.form_n.model.FormValueOfFile
 
 /**
  * @author : 华清松
- * 文件表单项
+ * 文件类型视图
  */
 class FormItemFileHolder(
         itemView: View

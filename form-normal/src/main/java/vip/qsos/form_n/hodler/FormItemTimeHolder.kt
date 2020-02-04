@@ -5,10 +5,13 @@ import kotlinx.android.synthetic.main.form_item_time.view.*
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_n.model.FormValueOfTime
 import vip.qsos.form_n.utils.DateUtils
+import vip.qsos.form_n.widget.dialog.BottomDialogUtils
+import vip.qsos.form_n.widget.dialog.OnDateListener
+import java.util.*
 
 /**
  * @author : 华清松
- * 表单时间列表项视图
+ * 时间类型视图
  */
 class FormItemTimeHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfTime>, FormValueOfTime>(itemView) {
 
@@ -16,7 +19,28 @@ class FormItemTimeHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVal
         itemView.item_form_time.hint = data.notice
         itemView.item_form_time.text = getTime(data)
 
-        itemView.item_form_time.setOnClickListener {}
+        if (data.editable) {
+            data.formValue?.value?.let { time ->
+                itemView.item_form_time.setOnClickListener {
+                    BottomDialogUtils.selectDate(
+                            context = itemView.context,
+                            limitMin = if (time.timeLimitMin != null) Date(time.timeLimitMin!!) else null,
+                            limitMax = if (time.timeLimitMax != null) Date(time.timeLimitMax!!) else null,
+                            selected = Date(time.timeStart),
+                            showDayTime = true,
+                            showSpecificTime = true,
+                            onDateListener = object : OnDateListener {
+                                override fun setDate(type: Int?, date: Date?) {
+                                    date?.let {
+                                        data.formValue!!.value!!.timeStart = date.time
+                                        itemView.item_form_time.text = getTime(data)
+                                    }
+                                }
+                            }
+                    )
+                }
+            }
+        }
     }
 
     private fun getTime(data: FormItemEntity<FormValueOfTime>): String {

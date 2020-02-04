@@ -13,7 +13,7 @@ import vip.qsos.form_n.widget.dialog.Operation
 
 /**
  * @author : 华清松
- * 表单列表项选项类型视图
+ * 选项类型视图
  */
 class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfCheck>, FormValueOfCheck>(itemView) {
 
@@ -34,6 +34,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVa
         }
     }
 
+    /**获取所选项展示*/
     private fun getText(data: FormItemEntity<FormValueOfCheck>): String {
         var text = ""
         when {
@@ -64,6 +65,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVa
         return text
     }
 
+    /**选择弹窗*/
     private fun showCheck(data: FormItemEntity<FormValueOfCheck>, listener: OnTListener<String?>) {
         if (data.editable) {
             /**检查选项合法性*/
@@ -86,6 +88,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVa
         }
     }
 
+    /**单选弹窗*/
     private fun showSingleCheck(data: FormItemEntity<FormValueOfCheck>, listener: OnTListener<String?>) {
         val names = arrayListOf<String>()
         var checkIndex = 0
@@ -115,6 +118,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVa
         }
     }
 
+    /**多选弹窗*/
     private fun showMultiCheck(data: FormItemEntity<FormValueOfCheck>, listener: OnTListener<String?>) {
         val names = linkedMapOf<String, Int>()
         val operations = arrayListOf<Operation>()

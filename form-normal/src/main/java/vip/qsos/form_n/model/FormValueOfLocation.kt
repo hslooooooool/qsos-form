@@ -1,6 +1,6 @@
 package vip.qsos.form_n.model
 
-import vip.qsos.form_lib.model.FormValueType
+import vip.qsos.form_lib.model.AbsValue
 
 /**
  * @author : 华清松
@@ -13,4 +13,4 @@ data class FormValueOfLocation(
         var locName: String? = null,
         var locX: Double? = null,
         var locY: Double? = null
-) : FormValueType()
+) : AbsValue()

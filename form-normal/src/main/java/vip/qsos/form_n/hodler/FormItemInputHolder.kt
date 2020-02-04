@@ -11,7 +11,7 @@ import vip.qsos.form_n.model.FormValueOfText
 
 /**
  * @author : 华清松
- * 表单文本列表项视图
+ * 输入文本类型视图
  */
 class FormItemInputHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfText>, FormValueOfText>(itemView) {
 

@@ -5,13 +5,13 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.form_normal_title.view.*
 import vip.qsos.form_lib.base.AbsFormHolder
 import vip.qsos.form_lib.model.FormItemEntity
-import vip.qsos.form_lib.model.FormValueType
+import vip.qsos.form_lib.model.AbsValue
 
 /**
  * @author : 华清松
  * 表单列表项基础布局
  */
-abstract class BaseFormHolder<I : FormItemEntity<T>, T : FormValueType>(itemView: View)
+abstract class BaseFormHolder<I : FormItemEntity<T>, T : AbsValue>(itemView: View)
     : AbsFormHolder<I, T>(itemView) {
 
     override fun setData(data: I, position: Int) {

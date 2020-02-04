@@ -26,7 +26,7 @@ class CustomDatePicker(
         private val sdf: SimpleDateFormat,
         startDate: String,
         endDate: String,
-        resultHandler: OnDateListener?
+        resultHandler: OnDateListener
 ) {
 
     private var selectState = false
@@ -48,7 +48,7 @@ class CustomDatePicker(
     private var spanDay: Boolean = false
     private var spanHour: Boolean = false
     private var spanMin: Boolean = false
-    val isStartTime = true
+    private val isStartTime = true
 
     private var handler: OnDateListener? = null
     private var context: Context? = null

@@ -7,7 +7,7 @@ import vip.qsos.form_n.model.FormValueOfLocation
 
 /**
  * @author : 华清松
- * 表单位置列表项视图
+ * 位置类型视图
  */
 class FormItemLocationHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfLocation>, FormValueOfLocation>(itemView) {
 

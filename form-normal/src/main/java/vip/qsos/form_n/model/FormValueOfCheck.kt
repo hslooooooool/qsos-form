@@ -1,6 +1,6 @@
 package vip.qsos.form_n.model
 
-import vip.qsos.form_lib.model.FormValueType
+import vip.qsos.form_lib.model.AbsValue
 
 /**
  * @author : 华清松
@@ -15,4 +15,4 @@ data class FormValueOfCheck(
         var ckName: String? = null,
         var ckValue: String? = null,
         var ckChecked: Boolean = false
-) : FormValueType()
+) : AbsValue()
