@@ -103,7 +103,7 @@ object FormUtil {
             val limitTime = 5L * 365 * 60 * 24 * 1000 * 60
             val time1 = FormItemEntity<FormValueOfTime>(title = "时间举例1", notice = "时间举例,必选",
                     valueType = 3, require = true)
-            val timeValue1 = FormValueEntity<FormValueOfTime>(position = 1, limit = "yyyy-MM-dd hh:mm")
+            val timeValue1 = FormValueEntity<FormValueOfTime>(position = 1, limit = "yyyy-MM-dd HH:mm")
             timeValue1.value = FormValueOfTime(nowTime, null,
                     nowTime - limitTime,
                     nowTime + limitTime)
@@ -114,7 +114,7 @@ object FormUtil {
             /**时间举例*/
             val time2 = FormItemEntity<FormValueOfTime>(title = "时间举例2", notice = "时间举例,非必选",
                     valueType = 3, editable = false)
-            val timeValue2 = FormValueEntity<FormValueOfTime>(position = 1, limit = "yyyy-MM-dd hh:mm")
+            val timeValue2 = FormValueEntity<FormValueOfTime>(position = 1, limit = "yyyy-MM-dd HH:mm")
             timeValue2.value = FormValueOfTime(nowTime, null,
                     nowTime - limitTime,
                     nowTime + limitTime)
