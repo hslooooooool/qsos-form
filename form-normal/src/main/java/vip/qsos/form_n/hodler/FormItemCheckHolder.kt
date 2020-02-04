@@ -5,8 +5,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.form_item_check.view.*
-import kotlinx.android.synthetic.main.form_normal_title.view.*
-import vip.qsos.form_lib.base.BaseFormHolder
 import vip.qsos.form_lib.callback.OnTListener
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_n.model.FormValueOfCheck
@@ -17,16 +15,12 @@ import vip.qsos.form_n.widget.dialog.Operation
  * @author : 华清松
  * 表单列表项选项类型视图
  */
-class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormValueOfCheck>(itemView) {
+class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfCheck>, FormValueOfCheck>(itemView) {
 
-    override fun setData(data: FormItemEntity<FormValueOfCheck>, position: Int) {
-        itemView.form_item_title.text = data.title
+    override fun setData(position: Int, data: FormItemEntity<FormValueOfCheck>) {
         itemView.form_item_check.text = getText(data)
         itemView.form_item_check.hint = data.notice
 
-        itemView.form_item_title.setOnClickListener {
-            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_SHORT).show()
-        }
         if (data.editable) {
             itemView.form_item_check.setOnClickListener {
                 showCheck(data, object : OnTListener<String?> {
@@ -44,11 +38,11 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormValueOfCheck>(ite
         var text = ""
         when {
             data.formValues!!.size == 1 -> {
-                text = data.formValue!!.obj?.ckName ?: ""
+                text = data.formValue!!.value?.ckName ?: ""
             }
             data.formValues!!.isNotEmpty() && data.limitMax == 1 -> {
                 for (v in data.formValues!!) {
-                    val check = v.obj
+                    val check = v.value
                     var checked = false
                     if (check?.ckChecked == true) {
                         text = check.ckName ?: ""
@@ -59,7 +53,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormValueOfCheck>(ite
             }
             data.formValues!!.isNotEmpty() -> {
                 for (v in data.formValues!!) {
-                    val check = v.obj
+                    val check = v.value
                     if (check?.ckChecked == true) {
                         text += check.ckName + ";"
                     }
@@ -75,7 +69,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormValueOfCheck>(ite
             /**检查选项合法性*/
             var checkValue = true
             data.formValues!!.forEach {
-                val check = it.obj
+                val check = it.value
                 if (check?.ckName == null || TextUtils.isEmpty(check.ckName)) {
                     checkValue = false
                 }
@@ -96,7 +90,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormValueOfCheck>(ite
         val names = arrayListOf<String>()
         var checkIndex = 0
         data.formValues!!.forEachIndexed { index, formValueEntity ->
-            val check = formValueEntity.obj!!
+            val check = formValueEntity.value!!
             names.add(check.ckName!!)
             if (check.ckChecked) checkIndex = index
         }
@@ -107,10 +101,10 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormValueOfCheck>(ite
             setSingleChoiceItems(items, checkIndex) { dialog, which ->
                 var name: String? = null
                 data.formValues!!.forEachIndexed { index, entity ->
-                    val realValue = entity.obj!!
+                    val realValue = entity.value!!
                     if (index == which) name = realValue.ckName
                     realValue.ckChecked = index == which
-                    entity.value = realValue.toString()
+                    entity.value = realValue
                 }
                 dialog.dismiss()
                 listener.back(name)
@@ -126,7 +120,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormValueOfCheck>(ite
         val operations = arrayListOf<Operation>()
         val limitMax = data.limitMax ?: 0
         data.formValues!!.forEachIndexed { index, formValueEntity ->
-            val check = formValueEntity.obj!!
+            val check = formValueEntity.value!!
             val name = check.ckName!!
             names[name] = index
             operations.add(Operation(key = name, check = check.ckChecked))
@@ -139,7 +133,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormValueOfCheck>(ite
                     override fun back(t: List<Operation>) {
                         t.forEach {
                             val value = data.formValues!![names[it.key!!]!!]
-                            value.obj!!.ckChecked = it.isCheck
+                            value.value!!.ckChecked = it.isCheck
                         }
                         listener.back(getText(data))
                     }

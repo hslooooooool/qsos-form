@@ -1,5 +1,7 @@
 package vip.qsos.form_n.model
 
+import vip.qsos.form_lib.model.BaseFormValue
+
 /**
  * @author : 华清松
  * 表单项值-人员实体类
@@ -13,4 +15,6 @@ data class FormValueOfUser(
         var userName: String? = null,
         var userDesc: String? = null,
         var userAvatar: String? = null
-) : BaseFormValue<FormValueOfUser>(FormValueOfUser::class.java)
+) : BaseFormValue<FormValueOfUser>() {
+    override val type: Int = 7
+}

@@ -44,7 +44,7 @@ class FormFileAdapter(
 class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormValueOfFile>>(itemView) {
 
     override fun setData(data: FormValueEntity<FormValueOfFile>, position: Int) {
-        data.obj?.let { file ->
+        data.value?.let { file ->
             itemView.tv_item_form_file_name.text = file.fileName
 
             itemView.iv_item_form_file_icon.setOnClickListener {

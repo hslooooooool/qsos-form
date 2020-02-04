@@ -1,5 +1,7 @@
 package vip.qsos.form_n.model
 
+import vip.qsos.form_lib.model.BaseFormValue
+
 /**
  * @author : 华清松
  * 表单项值-文本实体类
@@ -7,4 +9,6 @@ package vip.qsos.form_n.model
  */
 data class FormValueOfText(
         var content: String? = ""
-) : BaseFormValue<FormValueOfText>(FormValueOfText::class.java)
+) : BaseFormValue<FormValueOfText>(){
+    override val type: Int = 1
+}

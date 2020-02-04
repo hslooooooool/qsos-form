@@ -2,8 +2,6 @@ package vip.qsos.form_n.hodler
 
 import android.view.View
 import kotlinx.android.synthetic.main.form_item_time.view.*
-import kotlinx.android.synthetic.main.form_normal_title.view.*
-import vip.qsos.form_lib.base.BaseFormHolder
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_n.model.FormValueOfTime
 import vip.qsos.form_n.utils.DateUtils
@@ -12,14 +10,12 @@ import vip.qsos.form_n.utils.DateUtils
  * @author : 华清松
  * 表单时间列表项视图
  */
-class FormItemTimeHolder(itemView: View) : BaseFormHolder<FormValueOfTime>(itemView) {
+class FormItemTimeHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfTime>, FormValueOfTime>(itemView) {
 
-    override fun setData(data: FormItemEntity<FormValueOfTime>, position: Int) {
-        itemView.form_item_title.text = data.title
+    override fun setData(position: Int, data: FormItemEntity<FormValueOfTime>) {
         itemView.item_form_time.hint = data.notice
         itemView.item_form_time.text = getTime(data)
 
-        itemView.form_item_title.setOnClickListener {}
         itemView.item_form_time.setOnClickListener {}
     }
 
@@ -27,15 +23,15 @@ class FormItemTimeHolder(itemView: View) : BaseFormHolder<FormValueOfTime>(itemV
         var time = ""
         if (data.formValues != null) {
             if (data.formValues!!.size == 1) {
-                data.formValue?.obj?.let {
+                data.formValue?.value?.let {
                     if (it.timeStart > 0L) {
                         time = DateUtils.format(millis = it.timeStart, pattern = data.formValue?.limit)
                     }
                 }
 
             } else if (data.formValues!!.size == 2) {
-                val time1 = data.formValues!![0].obj
-                val time2 = data.formValues!![1].obj
+                val time1 = data.formValues!![0].value
+                val time2 = data.formValues!![1].value
                 if (time1!!.timeStart > 0L && time2!!.timeStart > 0L) {
                     time = DateUtils.format(millis = time1.timeStart, pattern = data.formValues!![0].limit) +
                             "\t至\t" +

@@ -1,7 +1,5 @@
 package vip.qsos.form_lib.model
 
-import androidx.room.*
-import androidx.room.ForeignKey.CASCADE
 import java.util.*
 
 /**
@@ -20,16 +18,7 @@ import java.util.*
  * @param limitMax 值的最大数量
  * @param limit 值限制。选用户的时候，为角色;选时间的时候,为时间格式;多个条件" ;"分割，不传不限制
  */
-@Entity(tableName = "formItem",
-        foreignKeys = [
-            ForeignKey(entity = FormEntity::class, parentColumns = ["id"], childColumns = ["formId"], onDelete = CASCADE)
-        ],
-        indices = [
-            Index(value = ["id"], unique = true)
-        ]
-)
-data class FormItemEntity<T : AbsFormValue<T>> constructor(
-        @PrimaryKey(autoGenerate = true)
+data class FormItemEntity<T : FormValueType> constructor(
         var id: Long? = null,
         var formId: Long? = null,
         var title: String = "",
@@ -45,7 +34,6 @@ data class FormItemEntity<T : AbsFormValue<T>> constructor(
 ) {
 
     /**表单项值集合*/
-    @Ignore
     var formValues: ArrayList<FormValueEntity<T>>? = arrayListOf()
         get() {
             if (field == null) {
@@ -55,7 +43,6 @@ data class FormItemEntity<T : AbsFormValue<T>> constructor(
         }
 
     /**表单项类型限制集合*/
-    @Ignore
     var limitTypeList: List<String>? = null
         get() {
             if (field != null) return field
@@ -67,7 +54,7 @@ data class FormItemEntity<T : AbsFormValue<T>> constructor(
         get() = if (formValues.isNullOrEmpty()) null else formValues!![0]
         set(value) {
             field = value
-            value?.let { formValues!!.add(value) }
+            value?.let { formValues!!.add(0, value) }
         }
 
 }

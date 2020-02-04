@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.main_activity.*
 import vip.qsos.form_lib.base.BaseActivity
 import vip.qsos.form_lib.base.FormAdapter
 import vip.qsos.form_lib.config.FormHelper
-import vip.qsos.form_lib.model.FormDatabase
 import vip.qsos.form_lib.model.FormEntity
 import vip.qsos.form_lib.model.FormItemEntity
 
@@ -25,12 +24,11 @@ class MainActivity(
 ) : BaseActivity() {
 
     private lateinit var mAdapter: FormAdapter
-    private val mList: ArrayList<FormItemEntity> = arrayListOf()
+    private val mList: ArrayList<FormItemEntity<*>> = arrayListOf()
     private lateinit var mForm: FormEntity
 
     override fun initData(savedInstanceState: Bundle?) {
         FormHelper.init(FormConfigImpl())
-        FormDatabase.create(this)
     }
 
     override fun initView() {

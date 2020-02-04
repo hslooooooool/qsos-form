@@ -11,17 +11,17 @@ import vip.qsos.form_lib.model.FormItemEntity
  * 表单列表项容器
  */
 class FormAdapter constructor(
-        var data: ArrayList<FormItemEntity>
-) : RecyclerView.Adapter<BaseHolder<FormItemEntity>>() {
+        var data: ArrayList<FormItemEntity<*>>
+) : RecyclerView.Adapter<AbsFormHolder<FormItemEntity<*>, *>>() {
 
     lateinit var mContext: Context
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormItemEntity> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbsFormHolder<FormItemEntity<*>, *> {
         mContext = parent.context
-        return FormHelper.getHolder(parent, viewType)
+        return FormHelper.getHolder(parent, viewType) as AbsFormHolder<FormItemEntity<*>, *>
     }
 
-    override fun onBindViewHolder(holder: BaseHolder<FormItemEntity>, position: Int) {
+    override fun onBindViewHolder(holder: AbsFormHolder<FormItemEntity<*>, *>, position: Int) {
         holder.setData(data[position], position)
     }
 

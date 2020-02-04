@@ -1,6 +1,7 @@
 package vip.qsos.form_n.model
 
 import android.text.TextUtils
+import vip.qsos.form_lib.model.BaseFormValue
 import java.util.*
 
 /**
@@ -20,7 +21,8 @@ data class FormValueOfFile(
         var filePath: String? = null,
         var fileUrl: String? = null,
         var fileCover: String? = null
-) : BaseFormValue<FormValueOfFile>(FormValueOfFile::class.java) {
+) : BaseFormValue<FormValueOfFile>() {
+    override val type: Int = 4
 
     companion object {
         /**根据文件mime类型区分为以下几大类，用于表单附件缩略图展示*/

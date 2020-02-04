@@ -1,5 +1,7 @@
 package vip.qsos.form_n.model
 
+import vip.qsos.form_lib.model.BaseFormValue
+
 /**
  * @author : 华清松
  * 表单项值-选项实体类
@@ -13,4 +15,6 @@ data class FormValueOfCheck(
         var ckName: String? = null,
         var ckValue: String? = null,
         var ckChecked: Boolean = false
-) : BaseFormValue<FormValueOfCheck>(FormValueOfCheck::class.java)
+) : BaseFormValue<FormValueOfCheck>() {
+    override val type: Int = 3
+}

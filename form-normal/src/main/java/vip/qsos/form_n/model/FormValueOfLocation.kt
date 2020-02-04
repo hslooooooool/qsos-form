@@ -1,5 +1,7 @@
 package vip.qsos.form_n.model
 
+import vip.qsos.form_lib.model.BaseFormValue
+
 /**
  * @author : 华清松
  * 表单项值-位置实体类
@@ -11,4 +13,6 @@ data class FormValueOfLocation(
         var locName: String? = null,
         var locX: Double? = null,
         var locY: Double? = null
-) : BaseFormValue<FormValueOfLocation>(FormValueOfLocation::class.java)
+) : BaseFormValue<FormValueOfLocation>(){
+    override val type: Int = 6
+}

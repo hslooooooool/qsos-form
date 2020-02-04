@@ -1,11 +1,8 @@
 package vip.qsos.form_n.hodler
 
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.form_item_file.view.*
-import kotlinx.android.synthetic.main.form_normal_title.view.*
-import vip.qsos.form_lib.base.BaseFormHolder
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_n.adapter.FormFileAdapter
 import vip.qsos.form_n.model.FormValueOfFile
@@ -16,11 +13,9 @@ import vip.qsos.form_n.model.FormValueOfFile
  */
 class FormItemFileHolder(
         itemView: View
-) : BaseFormHolder<FormValueOfFile>(itemView) {
+) : BaseFormHolder<FormItemEntity<FormValueOfFile>, FormValueOfFile>(itemView) {
 
-    override fun setData(data: FormItemEntity<FormValueOfFile>, position: Int) {
-        itemView.form_item_title.text = data.title
-
+    override fun setData(position: Int, data: FormItemEntity<FormValueOfFile>) {
         data.limitTypeList?.forEach {
             when (FormValueOfFile.getFileTypeByMime(it)) {
                 "IMAGE" -> {
@@ -46,10 +41,6 @@ class FormItemFileHolder(
             itemView.rv_item_form_files.adapter!!.notifyDataSetChanged()
         }
 
-        itemView.form_item_title.setOnClickListener {
-            Toast.makeText(itemView.context, data.notice, Toast.LENGTH_SHORT).show()
-        }
-
         itemView.form_item_file_take_camera.setOnClickListener {
         }
         itemView.form_item_file_take_album.setOnClickListener {
@@ -62,5 +53,4 @@ class FormItemFileHolder(
         }
 
     }
-
 }

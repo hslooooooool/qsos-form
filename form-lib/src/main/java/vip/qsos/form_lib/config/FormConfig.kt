@@ -2,7 +2,7 @@ package vip.qsos.form_lib.config
 
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import vip.qsos.form_lib.base.BaseFormHolder
+import vip.qsos.form_lib.base.AbsFormHolder
 
 /**
  * @author : 华清松
@@ -26,7 +26,7 @@ interface FormConfig {
      * @param parent ViewGroup
      * @param viewType viewType
      * @return Any extends BaseHolder*/
-    fun getHolder(parent: ViewGroup, viewType: Int): BaseFormHolder
+    fun getHolder(parent: ViewGroup, viewType: Int): AbsFormHolder<*, *>
 
     /**获取列表项布局文件
      * @param valueType 表单值类型

@@ -1,10 +1,5 @@
 package vip.qsos.form_lib.model
 
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.Index
-import androidx.room.PrimaryKey
-
 /**
  * @author : 华清松
  * 表单实体类
@@ -16,9 +11,7 @@ import androidx.room.PrimaryKey
  * @param sceneType 表单场景类型
  * @param editable 表单是否可编辑
  */
-@Entity(tableName = "form", indices = [Index(value = ["id"], unique = true)])
 data class FormEntity(
-        @PrimaryKey(autoGenerate = true)
         var id: Long? = null,
         var title: String? = null,
         var notice: String? = null,
@@ -29,8 +22,7 @@ data class FormEntity(
 ) {
 
     /**表单列表项*/
-    @Ignore
-    var formItems: List<FormItemEntity>? = arrayListOf()
+    var formItems: List<FormItemEntity<*>>? = arrayListOf()
         get() {
             if (field == null) {
                 field = arrayListOf()
@@ -39,7 +31,7 @@ data class FormEntity(
         }
 
     companion object {
-        fun create(form: FormEntity, formItems: List<FormItemEntity>): FormEntity {
+        fun create(form: FormEntity, formItems: List<FormItemEntity<*>>): FormEntity {
             form.formItems = formItems
             return form
         }

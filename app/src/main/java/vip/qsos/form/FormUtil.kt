@@ -19,7 +19,7 @@ object FormUtil {
             /**说明*/
             val desc = FormItemEntity<FormValueOfText>(title = "说明", notice = "说明", valueType = 0, editable = false)
             val descValue = FormValueEntity<FormValueOfText>().also {
-                it.obj = FormValueOfText("填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!")
+                it.value = FormValueOfText("填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!")
             }
             desc.formValues!!.add(descValue)
             formItemList.add(desc)
@@ -28,7 +28,7 @@ object FormUtil {
                     valueType = 2, limitMin = 1, limitMax = 1, require = true)
             for (i in 1..2) {
                 val stateValue = FormValueEntity<FormValueOfCheck>(position = i)
-                stateValue.obj = FormValueOfCheck("$i", "用户$i", "$i")
+                stateValue.value = FormValueOfCheck("$i", "用户$i", "$i")
                 state.formValues!!.add(stateValue)
                 state.formValues!!.sortedBy { it.position }
             }
@@ -38,7 +38,7 @@ object FormUtil {
                     valueType = 2, limitMin = 1, limitMax = 3, require = true)
             for (i in 1..20) {
                 val typeValue = FormValueEntity<FormValueOfCheck>(position = i)
-                typeValue.value = FormValueOfCheck("$i", "类型$i", "$i", i == 4).toString()
+                typeValue.value = FormValueOfCheck("$i", "类型$i", "$i", i == 4)
                 type.formValues!!.add(typeValue)
                 type.formValues!!.sortedBy { it.position }
             }
@@ -47,7 +47,7 @@ object FormUtil {
             val content = FormItemEntity<FormValueOfText>(title = "内容", notice = "请填写内容",
                     valueType = 1, limitMin = 10, limitMax = 200, require = true)
             val contentValue = FormValueEntity<FormValueOfText>()
-            contentValue.value = FormValueOfText().transValue()
+            contentValue.value = FormValueOfText()
             content.formValues!!.add(contentValue)
             formItemList.add(content)
             /**附件上传*/
@@ -55,7 +55,7 @@ object FormUtil {
                     valueType = 5, limitMin = 0, limitMax = 9, limit = "FILE")
             for (i in 1..5) {
                 val fileValue = FormValueEntity<FormValueOfFile>()
-                fileValue.value = FormValueOfFile(fileName = "测试文件$i").toString()
+                fileValue.value = FormValueOfFile(fileName = "测试文件$i")
                 file.formValues!!.add(fileValue)
             }
             formItemList.add(file)
