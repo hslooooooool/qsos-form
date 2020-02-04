@@ -7,4 +7,4 @@ abstract class AbsFormValue<T : FormValueType> {
 
 }
 
-interface FormValueType
+abstract class FormValueType

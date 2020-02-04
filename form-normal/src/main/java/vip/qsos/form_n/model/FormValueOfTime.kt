@@ -1,6 +1,6 @@
 package vip.qsos.form_n.model
 
-import vip.qsos.form_lib.model.BaseFormValue
+import vip.qsos.form_lib.model.FormValueType
 
 /**
  * @author : 华清松
@@ -15,4 +15,4 @@ data class FormValueOfTime(
         var timeEnd: Long? = null,
         var timeLimitMin: Long? = null,
         var timeLimitMax: Long? = null
-) : BaseFormValue<FormValueOfTime>()
+) : FormValueType()
