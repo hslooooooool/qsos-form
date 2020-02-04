@@ -3,16 +3,17 @@ package vip.qsos.form
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.main_activity.*
 import vip.qsos.form_lib.base.BaseActivity
 import vip.qsos.form_lib.base.FormAdapter
-import vip.qsos.form_lib.config.FormHelper
 import vip.qsos.form_lib.model.FormEntity
-import vip.qsos.form_lib.model.FormItemEntity
 
 
 /**
@@ -24,25 +25,26 @@ class MainActivity(
 ) : BaseActivity() {
 
     private lateinit var mAdapter: FormAdapter
-    private val mList: ArrayList<FormItemEntity<*>> = arrayListOf()
-    private lateinit var mForm: FormEntity
+    private var mForm: MutableLiveData<FormEntity> = MutableLiveData()
 
     override fun initData(savedInstanceState: Bundle?) {
-        FormHelper.init(FormConfigImpl())
+        mForm.value = FormUtil.Create.feedbackForm()
+        mAdapter = FormAdapter(mForm.value!!.formItems!!)
     }
 
     override fun initView() {
-        mAdapter = FormAdapter(mList)
         form_list.layoutManager = LinearLayoutManager(this)
         form_list.adapter = mAdapter
+        form_title.text = mForm.value!!.title
+        mAdapter.notifyDataSetChanged()
+
+        form_submit.setOnClickListener {
+            Log.d("表单内容", Gson().toJson(mForm.value))
+        }
     }
 
     override fun getData() {
-        mForm = FormUtil.Create.feedbackForm()
-        mList.addAll(mForm.formItems!!)
-        mAdapter.notifyDataSetChanged()
-        form_title.text = mForm.title
-        form_submit.text = mForm.submitName
+
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {

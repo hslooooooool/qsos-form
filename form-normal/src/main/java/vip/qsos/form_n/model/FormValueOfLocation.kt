@@ -13,6 +13,4 @@ data class FormValueOfLocation(
         var locName: String? = null,
         var locX: Double? = null,
         var locY: Double? = null
-) : BaseFormValue<FormValueOfLocation>(){
-    override val type: Int = 6
-}
+) : BaseFormValue<FormValueOfLocation>()

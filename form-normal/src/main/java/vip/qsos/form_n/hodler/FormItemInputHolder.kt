@@ -20,7 +20,7 @@ class FormItemInputHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVa
         if (text == null) {
             text = FormValueOfText("")
             val value = FormValueEntity<FormValueOfText>(
-                    formItemId = data.formId, editable = true, position = 1
+                    editable = true, position = 1
             )
             value.value = text
             data.formValue = value

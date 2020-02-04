@@ -7,6 +7,4 @@ abstract class AbsFormValue<T : FormValueType> {
 
 }
 
-interface FormValueType {
-    val type: Int
-}
+interface FormValueType

@@ -7,7 +7,7 @@ import vip.qsos.form_lib.config.FormConfig
 import vip.qsos.form_n.hodler.*
 
 class FormConfigImpl : FormConfig {
-
+    
     override fun getViewType(valueType: Int): Int {
         return valueType
     }

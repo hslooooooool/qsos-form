@@ -22,7 +22,6 @@ data class FormValueOfFile(
         var fileUrl: String? = null,
         var fileCover: String? = null
 ) : BaseFormValue<FormValueOfFile>() {
-    override val type: Int = 4
 
     companion object {
         /**根据文件mime类型区分为以下几大类，用于表单附件缩略图展示*/

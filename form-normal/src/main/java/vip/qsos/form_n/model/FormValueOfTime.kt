@@ -15,6 +15,4 @@ data class FormValueOfTime(
         var timeEnd: Long? = null,
         var timeLimitMin: Long? = null,
         var timeLimitMax: Long? = null
-) : BaseFormValue<FormValueOfTime>() {
-    override val type: Int = 5
-}
+) : BaseFormValue<FormValueOfTime>()

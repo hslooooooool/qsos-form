@@ -15,6 +15,4 @@ data class FormValueOfCheck(
         var ckName: String? = null,
         var ckValue: String? = null,
         var ckChecked: Boolean = false
-) : BaseFormValue<FormValueOfCheck>() {
-    override val type: Int = 3
-}
+) : BaseFormValue<FormValueOfCheck>()

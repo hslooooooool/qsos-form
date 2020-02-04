@@ -5,8 +5,6 @@ import java.util.*
 /**
  * @author : 华清松
  * 表单项实体类
- * @param id 表单ID，自增
- * @param formId 外键-表单id
  * @param title 表单名称
  * @param notice 表单提示内容
  * @param valueType 表单项值类型，0：文本展示；1：输入；2：选项；3：时间；4：人员；5：文件；6：位置
@@ -19,8 +17,6 @@ import java.util.*
  * @param limit 值限制。选用户的时候，为角色;选时间的时候,为时间格式;多个条件" ;"分割，不传不限制
  */
 data class FormItemEntity<T : FormValueType> constructor(
-        var id: Long? = null,
-        var formId: Long? = null,
         var title: String = "",
         var notice: String? = null,
         var valueType: Int = 0,

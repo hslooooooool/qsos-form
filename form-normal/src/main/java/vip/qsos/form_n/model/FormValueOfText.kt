@@ -9,6 +9,4 @@ import vip.qsos.form_lib.model.BaseFormValue
  */
 data class FormValueOfText(
         var content: String? = ""
-) : BaseFormValue<FormValueOfText>(){
-    override val type: Int = 1
-}
+) : BaseFormValue<FormValueOfText>()

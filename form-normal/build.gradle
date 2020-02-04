@@ -7,11 +7,6 @@ dependencies {
 
     api project(":form-lib")
 
-    // Room
-    api deps.room.runtime
-    api deps.room.rxjava2
-    kapt deps.room.compiler
-
     // Kotlin
     api deps.kotlin.stdlib
     api deps.kotlin.coroutines

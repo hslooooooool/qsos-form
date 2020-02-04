@@ -11,7 +11,7 @@ import vip.qsos.form_lib.model.FormItemEntity
  * 表单列表项容器
  */
 class FormAdapter constructor(
-        var data: ArrayList<FormItemEntity<*>>
+        var data: List<FormItemEntity<*>>
 ) : RecyclerView.Adapter<AbsFormHolder<FormItemEntity<*>, *>>() {
 
     lateinit var mContext: Context
