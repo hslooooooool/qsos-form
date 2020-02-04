@@ -2,12 +2,11 @@ package vip.qsos.form
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import vip.qsos.form_n.hodler.BaseFormHolder
 import vip.qsos.form_lib.config.FormConfig
 import vip.qsos.form_n.hodler.*
 
 class FormConfigImpl : FormConfig {
-    
+
     override fun getViewType(valueType: Int): Int {
         return valueType
     }

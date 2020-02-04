@@ -123,12 +123,12 @@ work.runtime_ktx = "androidx.work:work-runtime-ktx:2.1.0-alpha01"
 deps.work = work
 
 def navigation = [:]
-navigation.runtime = "androidx.navigation:navigation-runtime:2.1.0-alpha01"
-navigation.runtime_ktx = "androidx.navigation:navigation-runtime-ktx:2.1.0-alpha01"
-navigation.fragment = "androidx.navigation:navigation-fragment:2.1.0-alpha01"
-navigation.fragment_ktx = "androidx.navigation:navigation-fragment-ktx:2.1.0-alpha01"
-navigation.ui = "androidx.navigation:navigation-ui:2.1.0-alpha01"
-navigation.ui_ktx = "androidx.navigation:navigation-ui-ktx:2.1.0-alpha01"
+navigation.runtime = "androidx.navigation:navigation-runtime:2.2.0"
+navigation.runtime_ktx = "androidx.navigation:navigation-runtime-ktx:2.2.0"
+navigation.fragment = "androidx.navigation:navigation-fragment:2.2.0"
+navigation.fragment_ktx = "androidx.navigation:navigation-fragment-ktx:2.2.0"
+navigation.ui = "androidx.navigation:navigation-ui:2.2.0"
+navigation.ui_ktx = "androidx.navigation:navigation-ui-ktx:2.2.0"
 navigation.safe_args_plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0-alpha01"
 deps.navigation = navigation
 
