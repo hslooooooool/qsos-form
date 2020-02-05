@@ -16,14 +16,14 @@ import kotlin.math.abs
  * @author 华清松
  * 底部自定义弹窗
  */
-object BottomDialogUtils {
+object BottomDialogHelper {
 
     /**
      * 具体时间选择
      *
      * @param context
-     * @param showSpecificTime 是否显示时分
      * @param showDayTime      是否显示日
+     * @param showSpecificTime 是否显示时分
      * @param limitMin 最小可选时间
      * @param limitMax 最大可选时间
      * @param selected 默认选择的时间
@@ -32,7 +32,8 @@ object BottomDialogUtils {
     fun selectDate(
             context: Context,
             limitMin: Date? = null, limitMax: Date? = null, selected: Date? = null,
-            showDayTime: Boolean = true, showSpecificTime: Boolean = true,
+            showDayTime: Boolean = true,
+            showSpecificTime: Boolean = true,
             onDateListener: OnDateListener
     ) {
         var selectDate = selected
@@ -75,7 +76,7 @@ object BottomDialogUtils {
         bottomDialog.setLayoutRes(R.layout.form_operation_rv)
         bottomDialog.setDimAmount(0.6f)
         bottomDialog.setViewListener(object : BottomDialog.ViewListener {
-            override fun bindView(dialog: BaseBottomDialog) {
+            override fun bindView(dialog: AbsBottomDialog) {
                 val operationRv = dialog.findViewById<FormMaxHeightRecyclerView>(R.id.operation_rv)
                 val operationClose = dialog.findViewById<TextView>(R.id.operation_close)
                 operationRv.layoutManager = LinearLayoutManager(context)
@@ -117,7 +118,7 @@ object BottomDialogUtils {
         bottomDialog.setLayoutRes(R.layout.form_quote_selete)
         bottomDialog.setDimAmount(0.6f)
         bottomDialog.setViewListener(object : BottomDialog.ViewListener {
-            override fun bindView(dialog: BaseBottomDialog) {
+            override fun bindView(dialog: AbsBottomDialog) {
                 val screen = dialog.findViewById<RecyclerView>(R.id.rv_select) // 可选列表
                 val tvTitle = dialog.findViewById<TextView>(R.id.tv_select_title)// 标题
                 val tvCancel = dialog.findViewById<TextView>(R.id.tv_select_cancel) // 取消按钮

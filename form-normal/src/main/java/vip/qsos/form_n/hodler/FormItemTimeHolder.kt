@@ -5,7 +5,7 @@ import kotlinx.android.synthetic.main.form_item_time.view.*
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_n.model.FormValueOfTime
 import vip.qsos.form_n.utils.DateUtils
-import vip.qsos.form_n.widget.dialog.BottomDialogUtils
+import vip.qsos.form_n.widget.dialog.BottomDialogHelper
 import vip.qsos.form_n.widget.dialog.OnDateListener
 import java.util.*
 
@@ -22,7 +22,7 @@ class FormItemTimeHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVal
         if (data.editable) {
             data.formValue?.value?.let { time ->
                 itemView.item_form_time.setOnClickListener {
-                    BottomDialogUtils.selectDate(
+                    BottomDialogHelper.selectDate(
                             context = itemView.context,
                             limitMin = if (time.timeLimitMin != null) Date(time.timeLimitMin!!) else null,
                             limitMax = if (time.timeLimitMax != null) Date(time.timeLimitMax!!) else null,

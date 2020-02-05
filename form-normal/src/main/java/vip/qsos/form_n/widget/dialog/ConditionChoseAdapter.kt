@@ -11,17 +11,20 @@ import vip.qsos.form_n.R
 
 /**
  * @author 华清松
- * @doc 类说明：多选列表容器
+ * 多选列表容器
+ *
+ * @param data 可选列表
+ * @param checkedNum 已选数量
  * @param limitMax 最多可选限制
  */
 class ConditionChoseAdapter constructor(
-        mContext: Context,
+        context: Context,
         val data: List<Operation>,
         private var checkedNum: Int,
         private val limitMax: Int
 ) : RecyclerView.Adapter<ConditionChoseAdapter.ViewHolder>() {
 
-    private val inflate: LayoutInflater = LayoutInflater.from(mContext)
+    private val inflate: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(inflate.inflate(R.layout.form_item_chose_multiple, parent, false))

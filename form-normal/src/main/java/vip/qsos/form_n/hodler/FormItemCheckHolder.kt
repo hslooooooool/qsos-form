@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.form_item_check.view.*
 import vip.qsos.form_lib.callback.OnTListener
 import vip.qsos.form_lib.model.FormItemEntity
 import vip.qsos.form_n.model.FormValueOfCheck
-import vip.qsos.form_n.widget.dialog.BottomDialogUtils
+import vip.qsos.form_n.widget.dialog.BottomDialogHelper
 import vip.qsos.form_n.widget.dialog.Operation
 
 /**
@@ -130,7 +130,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVa
             operations.add(Operation(key = name, check = check.ckChecked))
         }
 
-        BottomDialogUtils.showMultiDialog(
+        BottomDialogHelper.showMultiDialog(
                 itemView.context,
                 data.title, limitMax, operations,
                 object : OnTListener<List<Operation>> {

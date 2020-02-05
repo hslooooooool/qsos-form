@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager
  * @time 2017/4/2 0002
  * @doc 描述：自定义底部弹窗
  */
-class BottomDialog : BaseBottomDialog() {
+class BottomDialog : AbsBottomDialog() {
 
     private var mFragmentManager: FragmentManager? = null
 
@@ -37,7 +37,7 @@ class BottomDialog : BaseBottomDialog() {
         super.onSaveInstanceState(outState)
     }
 
-    override fun bindView(dialog: BaseBottomDialog) {
+    override fun bindView(dialog: AbsBottomDialog) {
         if (mViewListener != null) {
             mViewListener!!.bindView(dialog)
         }
@@ -58,11 +58,9 @@ class BottomDialog : BaseBottomDialog() {
         return this
     }
 
-
     fun setFillHeight(isFillHeight: Boolean) {
         this.isFillParent = isFillHeight
     }
-
 
     fun setCancelOutside(cancel: Boolean): BottomDialog {
         this.cancelOutside = cancel
@@ -85,26 +83,19 @@ class BottomDialog : BaseBottomDialog() {
     }
 
     interface ViewListener {
-        fun bindView(dialog: BaseBottomDialog)
+        fun bindView(dialog: AbsBottomDialog)
     }
 
-    fun show(): BaseBottomDialog {
+    fun show(): AbsBottomDialog {
         show(mFragmentManager!!)
         return this
     }
 
     companion object {
-
         private const val KEY_LAYOUT_RES = "bottom_layout_res"
         private const val KEY_HEIGHT = "bottom_height"
         private const val KEY_DIM = "bottom_dim"
         private const val KEY_CANCEL_OUTSIDE = "bottom_cancel_outside"
-
-        fun create(manager: FragmentManager): BottomDialog {
-            val dialog = BottomDialog()
-            dialog.setFragmentManager(manager)
-            return dialog
-        }
     }
 
 
