@@ -1,5 +1,7 @@
 package vip.qsos.form_n.model
 
+import vip.qsos.form_lib.model.AbsValue
+
 /**
  * @author : 华清松
  * 表单项值-时间实体类
@@ -13,4 +15,4 @@ data class FormValueOfTime(
         var timeEnd: Long? = null,
         var timeLimitMin: Long? = null,
         var timeLimitMax: Long? = null
-)
+) : AbsValue()

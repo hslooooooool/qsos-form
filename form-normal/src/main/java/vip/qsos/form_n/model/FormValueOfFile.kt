@@ -1,7 +1,7 @@
 package vip.qsos.form_n.model
 
 import android.text.TextUtils
-import com.google.gson.Gson
+import vip.qsos.form_lib.model.AbsValue
 import java.util.*
 
 /**
@@ -21,10 +21,7 @@ data class FormValueOfFile(
         var filePath: String? = null,
         var fileUrl: String? = null,
         var fileCover: String? = null
-) {
-    override fun toString(): String {
-        return Gson().toJson(this)
-    }
+) : AbsValue() {
 
     companion object {
         /**根据文件mime类型区分为以下几大类，用于表单附件缩略图展示*/

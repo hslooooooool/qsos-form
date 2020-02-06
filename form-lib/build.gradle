@@ -27,6 +27,8 @@ dependencies {
     api deps.lifecycle.viewmodel_ktx
     api deps.lifecycle.livedata
     api deps.lifecycle.reactivestreams
+    api 'androidx.navigation:navigation-fragment:2.2.0'
+    api 'androidx.navigation:navigation-fragment-ktx:2.2.0'
     annotationProcessor deps.lifecycle.compiler
 
 }

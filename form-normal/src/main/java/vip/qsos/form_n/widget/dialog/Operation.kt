@@ -51,7 +51,7 @@ class Operation {
         fun createOperation(vararg createOperations: Operation): List<Operation> {
             val operations = ArrayList<Operation>()
             if (createOperations.isNotEmpty()) {
-                operations.addAll(Arrays.asList(*createOperations))
+                operations.addAll(listOf(*createOperations))
             }
             return operations
         }

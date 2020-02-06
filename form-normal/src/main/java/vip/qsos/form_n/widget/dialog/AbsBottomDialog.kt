@@ -11,7 +11,7 @@ import vip.qsos.form_n.R
  * @author : 华清松
  * 自定义底部弹窗
  */
-abstract class BaseBottomDialog : DialogFragment() {
+abstract class AbsBottomDialog : DialogFragment() {
 
     var mParentView: View? = null
     open var layoutRes: Int = 0
@@ -40,7 +40,7 @@ abstract class BaseBottomDialog : DialogFragment() {
         return mParentView
     }
 
-    abstract fun bindView(dialog: BaseBottomDialog)
+    abstract fun bindView(dialog: AbsBottomDialog)
 
 
     override fun onStart() {
@@ -69,7 +69,7 @@ abstract class BaseBottomDialog : DialogFragment() {
     }
 
     companion object {
-        private const val TAG = "AbsBottomDialog"
+        private const val TAG = "BottomDialog"
 
         private const val DEFAULT_DIM = 0.2f
     }

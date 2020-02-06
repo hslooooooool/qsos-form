@@ -2,7 +2,6 @@ package vip.qsos.form
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import vip.qsos.form_lib.base.BaseFormHolder
 import vip.qsos.form_lib.config.FormConfig
 import vip.qsos.form_n.hodler.*
 
@@ -16,7 +15,7 @@ class FormConfigImpl : FormConfig {
         return viewType
     }
 
-    override fun getHolder(parent: ViewGroup, viewType: Int): BaseFormHolder {
+    override fun getHolder(parent: ViewGroup, viewType: Int): BaseFormHolder<*, *> {
         val layoutId = getLayoutId(getValueType(viewType))
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return when (viewType) {
@@ -30,6 +29,7 @@ class FormConfigImpl : FormConfig {
         }
     }
 
+    /** valueType = FormItemEntity.valueType */
     override fun getLayoutId(valueType: Int): Int {
         return when (getViewType(valueType)) {
             0 -> R.layout.form_item_text

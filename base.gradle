@@ -7,7 +7,6 @@ apply plugin: 'kotlin-kapt'
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.name)
-        arg("room.schemaLocation", "$projectDir/schemas".toString())
     }
 }
 
@@ -86,8 +85,6 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    // Room数据库
-    kapt deps.room.compiler
     // LifeCycle
     kapt deps.lifecycle.compiler
 }
@@ -98,7 +95,7 @@ repositories {
 
 // 获取编译时间
 static def apkTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyy-MM-dd hh:mm:ss", TimeZone.getTimeZone("UTC"))
 }
 
 ext.time = apkTime()

@@ -13,6 +13,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import java.util.*
+import kotlin.math.abs
 
 /**
  * @author 华清松
@@ -45,7 +46,7 @@ class DatePickerView(context: Context, attrs: AttributeSet) : View(context, attr
     @SuppressLint("HandlerLeak")
     private val updateHandler = object : Handler() {
         override fun handleMessage(msg: Message) {
-            if (Math.abs(mMoveLen) < SPEED) {
+            if (abs(mMoveLen) < SPEED) {
                 mMoveLen = 0f
                 if (mTask != null) {
                     mTask!!.cancel()
@@ -82,9 +83,9 @@ class DatePickerView(context: Context, attrs: AttributeSet) : View(context, attr
         }
     }
 
-    fun setData(datas: MutableList<String>) {
-        mDataList = datas
-        mCurrentSelected = datas.size / 4
+    fun setData(list: MutableList<String>) {
+        mDataList = list
+        mCurrentSelected = list.size / 4
         invalidate()
     }
 

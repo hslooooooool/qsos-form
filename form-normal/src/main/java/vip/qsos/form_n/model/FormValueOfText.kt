@@ -1,6 +1,6 @@
 package vip.qsos.form_n.model
 
-import com.google.gson.Gson
+import vip.qsos.form_lib.model.AbsValue
 
 /**
  * @author : 华清松
@@ -9,8 +9,4 @@ import com.google.gson.Gson
  */
 data class FormValueOfText(
         var content: String? = ""
-) {
-    override fun toString(): String {
-        return Gson().toJson(this)
-    }
-}
+) : AbsValue()

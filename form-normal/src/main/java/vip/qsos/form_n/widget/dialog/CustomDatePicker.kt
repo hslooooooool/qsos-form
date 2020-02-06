@@ -26,7 +26,7 @@ class CustomDatePicker(
         private val sdf: SimpleDateFormat,
         startDate: String,
         endDate: String,
-        resultHandler: OnDateListener?
+        resultHandler: OnDateListener
 ) {
 
     private var selectState = false
@@ -48,7 +48,7 @@ class CustomDatePicker(
     private var spanDay: Boolean = false
     private var spanHour: Boolean = false
     private var spanMin: Boolean = false
-    val isStartTime = true
+    private var isStartTime = true
 
     private var handler: OnDateListener? = null
     private var context: Context? = null
@@ -367,17 +367,14 @@ class CustomDatePicker(
 
     private fun monthChange() {
         month!!.clear()
-        val selectedYear = selectedCalender!!.get(Calendar.YEAR)
-        if (selectedYear == startYear) {
-            for (i in startMonth..MAX_MONTH) {
+        when (selectedCalender!!.get(Calendar.YEAR)) {
+            startYear -> for (i in startMonth..MAX_MONTH) {
                 month!!.add(formatTimeUnit(i))
             }
-        } else if (selectedYear == endYear) {
-            for (i in 1..endMonth) {
+            endYear -> for (i in 1..endMonth) {
                 month!!.add(formatTimeUnit(i))
             }
-        } else {
-            for (i in 1..MAX_MONTH) {
+            else -> for (i in 1..MAX_MONTH) {
                 month!!.add(formatTimeUnit(i))
             }
         }
@@ -574,7 +571,7 @@ class CustomDatePicker(
     /**
      * 设置日期控件默认选中的时间
      */
-    fun setSelectedTime(time: String) {
+    private fun setSelectedTime(time: String) {
         if (canAccess) {
             val str = time.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             val dateStr = str[0].split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
@@ -589,16 +586,14 @@ class CustomDatePicker(
                     month!!.add(formatTimeUnit(i))
                 }
             } else {
-                if (selectedYear == startYear) {
-                    for (i in startMonth..MAX_MONTH) {
+                when (selectedYear) {
+                    startYear -> for (i in startMonth..MAX_MONTH) {
                         month!!.add(formatTimeUnit(i))
                     }
-                } else if (selectedYear == endYear) {
-                    for (i in 1..endMonth) {
+                    endYear -> for (i in 1..endMonth) {
                         month!!.add(formatTimeUnit(i))
                     }
-                } else {
-                    for (i in 1..MAX_MONTH) {
+                    else -> for (i in 1..MAX_MONTH) {
                         month!!.add(formatTimeUnit(i))
                     }
                 }
@@ -705,11 +700,10 @@ class CustomDatePicker(
     }
 
     companion object {
-
-        private val MAX_MINUTE = 59
-        private val MAX_HOUR = 23
-        private val MIN_MINUTE = 0
-        private val MIN_HOUR = 0
-        private val MAX_MONTH = 12
+        private const val MAX_MINUTE = 59
+        private const val MAX_HOUR = 23
+        private const val MIN_MINUTE = 0
+        private const val MIN_HOUR = 0
+        private const val MAX_MONTH = 12
     }
 }

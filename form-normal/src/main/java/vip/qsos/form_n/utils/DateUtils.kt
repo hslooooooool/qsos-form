@@ -35,11 +35,12 @@ object DateUtils {
             return ""
         }
         val mFormat: SimpleDateFormat = when {
+            pattern != null -> SimpleDateFormat(pattern, Locale.CHINA)
             timeType != null -> {
                 SimpleDateFormat(timeType.type, Locale.CHINA)
             }
             else -> {
-                SimpleDateFormat(pattern, Locale.CHINA)
+                SimpleDateFormat(TimeType.YMDHMS.type, Locale.CHINA)
             }
         }
         val mDate = when {
