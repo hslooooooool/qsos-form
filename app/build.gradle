@@ -39,5 +39,5 @@ static def apkTime() {
 
 // 获取软件名称
 static def apkName() {
-    return "QSOS-ABCL-LIB"
+    return "QSOS-FORM"
 }
