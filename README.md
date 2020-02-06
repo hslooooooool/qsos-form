@@ -7,7 +7,7 @@
 ```groovy
 dependencies {
         implementation 'com.github.hslooooooool:qsos-form:[lib-version]'
-	}
+}
 ```
 
 ## 设计图
