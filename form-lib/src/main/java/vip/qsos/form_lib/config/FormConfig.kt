@@ -11,7 +11,8 @@ import vip.qsos.form_lib.base.AbsFormHolder
 interface FormConfig {
 
     /**获取ViewType
-     * @param valueType 表单值类型
+     * @param valueType 表单值类型->FormItemEntity.valueType
+     * @see vip.qsos.form_lib.model.FormItemEntity.valueType
      * @return viewType
      * */
     fun getViewType(valueType: Int): Int

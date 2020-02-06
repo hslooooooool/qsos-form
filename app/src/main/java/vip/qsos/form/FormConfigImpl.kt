@@ -29,6 +29,7 @@ class FormConfigImpl : FormConfig {
         }
     }
 
+    /** valueType = FormItemEntity.valueType */
     override fun getLayoutId(valueType: Int): Int {
         return when (getViewType(valueType)) {
             0 -> R.layout.form_item_text
