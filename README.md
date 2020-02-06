@@ -1,12 +1,17 @@
 # 表单组件说明文档
 
-当前版本 `lib-version` [![lib-version](https://www.jitpack.io/v/hslooooooool/qsos-form.svg)](https://www.jitpack.io/#hslooooooool/qsos-form)
+当前版本 `lib-version`
+ 
+[![lib-version](https://www.jitpack.io/v/hslooooooool/qsos-form.svg)](https://www.jitpack.io/#hslooooooool/qsos-form)
 
 引用:
 
 ```groovy
 dependencies {
-        implementation 'com.github.hslooooooool:qsos-form:[lib-version]'
+        // 基础版本，自行实现时选择
+        implementation 'com.github.hslooooooool.qsos-form:form-lib:[lib-version]'
+        // 普通版本，简单表单时可选
+        implementation 'com.github.hslooooooool.qsos-form:form-normal:[lib-version]'
 }
 ```
 
