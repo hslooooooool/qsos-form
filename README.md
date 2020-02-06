@@ -85,6 +85,7 @@ dependencies {
 大致步骤如下：
 
 - 定义真实值对象
+
 表单项值的真实属性在这里进行定义。
 
 ```kotlin
@@ -104,6 +105,7 @@ data class FormValueOfText(
 ```
 
 - 定义列表项视图
+
 对表单项的具体操作在这里自行实现。
 
 ```kotlin
