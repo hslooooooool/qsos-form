@@ -1,3 +1,4 @@
-include ':app', ':form-normal'
+include ':app'
 
 include ':form-lib'
+include ':form-normal'

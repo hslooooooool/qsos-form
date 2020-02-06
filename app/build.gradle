@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    api project(':form-normal')
+    implementation project(':form-normal')
 }
 
 // 获取编译时间
