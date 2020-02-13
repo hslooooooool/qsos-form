@@ -5,30 +5,24 @@ apply from: '../push.gradle'
 
 dependencies {
 
-    // Room
-    api deps.room.runtime
-    api deps.room.rxjava2
-    kapt deps.room.compiler
+    api 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3'
 
-    // Kotlin
-    api deps.kotlin.stdlib
-    api deps.kotlin.coroutines
+    api 'androidx.core:core-ktx:1.2.0'
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.annotation:annotation:1.1.0'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
 
-    // Support
-    api deps.support.annotations
-    api deps.support.app_compat
-    api deps.constraint_layout
+    api "androidx.lifecycle:lifecycle-runtime:2.2.0"
+    api 'androidx.lifecycle:lifecycle-livedata:2.2.0'
+    api 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    api "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    api "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    api 'androidx.lifecycle:lifecycle-reactivestreams:2.2.0'
 
-    // Lifecycle
-    api deps.lifecycle.runtime
-    api deps.lifecycle.extensions
-    api deps.lifecycle.java8
-    api deps.lifecycle.viewmodel
-    api deps.lifecycle.viewmodel_ktx
-    api deps.lifecycle.livedata
-    api deps.lifecycle.reactivestreams
-    api 'androidx.navigation:navigation-fragment:2.2.0'
-    api 'androidx.navigation:navigation-fragment-ktx:2.2.0'
-    annotationProcessor deps.lifecycle.compiler
+    api 'androidx.navigation:navigation-fragment:2.2.1'
+    api 'androidx.navigation:navigation-fragment-ktx:2.2.1'
 
 }

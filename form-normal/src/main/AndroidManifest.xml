@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="vip.qsos.form_n" />
+<manifest package="vip.qsos.form.normal" />

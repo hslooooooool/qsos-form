@@ -110,9 +110,9 @@ deps.android_gradle_plugin = "com.android.tools.build:gradle:3.4.0"
 deps.robolectric = "org.robolectric:robolectric:4.2"
 
 def build_versions = [:]
-build_versions.SDK_MIN = 17
-build_versions.SDK_TARGET = 28
-build_versions.SDK_COMPILE = 28
+build_versions.SDK_MIN = 21
+build_versions.SDK_TARGET = 29
+build_versions.SDK_COMPILE = 29
 ext.build_versions = build_versions
 
 def work = [:]
@@ -141,7 +141,6 @@ deps.gradle_bintray_plugin = "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8
 deps.rxpermissions = "com.github.tbruyelle:rxpermissions:0.10.2"
 deps.zip_luban = "top.zibin:Luban:1.1.3"
 
-deps.gson = "com.google.code.gson:gson:2.8.5"
 deps.multidex = 'androidx.multidex:multidex:2.0.1'
 
 deps.smartrefresh = 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'

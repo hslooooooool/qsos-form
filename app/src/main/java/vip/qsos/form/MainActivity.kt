@@ -3,16 +3,14 @@ package vip.qsos.form
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.main_activity.*
-import vip.qsos.form_lib.base.BaseActivity
-import vip.qsos.form_lib.base.FormAdapter
+import vip.qsos.form.lib.base.BaseActivity
+import vip.qsos.form.lib.base.FormAdapter
 
 /**
  * @author : 华清松
@@ -39,7 +37,7 @@ class MainActivity(
         mAdapter.notifyDataSetChanged()
 
         form_submit.setOnClickListener {
-            Log.d("表单内容", Gson().toJson(mModel.mForm.value))
+            // TODO 校验
         }
     }
 

@@ -1,12 +1,12 @@
 package vip.qsos.form
 
-import vip.qsos.form_lib.model.FormEntity
-import vip.qsos.form_lib.model.FormItemEntity
-import vip.qsos.form_lib.model.FormValueEntity
-import vip.qsos.form_n.model.FormValueOfCheck
-import vip.qsos.form_n.model.FormValueOfFile
-import vip.qsos.form_n.model.FormValueOfText
-import vip.qsos.form_n.model.FormValueOfTime
+import vip.qsos.form.lib.model.FormEntity
+import vip.qsos.form.lib.model.FormItemEntity
+import vip.qsos.form.lib.model.FormValueEntity
+import vip.qsos.form.normal.model.FormValueOfCheck
+import vip.qsos.form.normal.model.FormValueOfFile
+import vip.qsos.form.normal.model.FormValueOfText
+import vip.qsos.form.normal.model.FormValueOfTime
 
 /**表单帮助类*/
 object FormUtil {

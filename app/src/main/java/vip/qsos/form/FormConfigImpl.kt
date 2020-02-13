@@ -2,9 +2,14 @@ package vip.qsos.form
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import vip.qsos.form_lib.config.FormConfig
-import vip.qsos.form_n.hodler.*
+import vip.qsos.form.lib.config.FormConfig
+import vip.qsos.form.normal.hodler.*
 
+/**
+ * @author : 华清松
+ *
+ * 表单配置
+ */
 class FormConfigImpl : FormConfig {
 
     override fun getViewType(valueType: Int): Int {

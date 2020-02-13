@@ -1,5 +1,5 @@
 <resources>
-	<string name="app">QSOS-FORM</string>
-	<string name="app_welcome">技术让生活更简单</string>
-	<string name="form_submit">提交</string>
+    <string name="app">QSOS-FORM</string>
+    <string name="app_welcome">技术让生活更简单</string>
+    <string name="form_submit">提交</string>
 </resources>

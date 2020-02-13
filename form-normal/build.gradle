@@ -7,25 +7,7 @@ dependencies {
 
     api project(":form-lib")
 
-    // Kotlin
-    api deps.kotlin.stdlib
-    api deps.kotlin.coroutines
+    api 'com.github.hslooooooool:qsos-select:1.0'
+    api 'com.github.hslooooooool:qsos-timepicker:1.0'
 
-    // Support
-    api deps.support.annotations
-    api deps.support.app_compat
-    api deps.constraint_layout
-
-    // Lifecycle
-    api deps.lifecycle.runtime
-    api deps.lifecycle.extensions
-    api deps.lifecycle.java8
-    api deps.lifecycle.viewmodel
-    api deps.lifecycle.viewmodel_ktx
-    api deps.lifecycle.livedata
-    api deps.lifecycle.reactivestreams
-    annotationProcessor deps.lifecycle.compiler
-
-    // Gson
-    api deps.gson
 }

@@ -95,9 +95,9 @@ dependencies {
 
 ```kotlin
 
-package vip.qsos.form_n.model
+package vip.qsos.form_n.normal.model
 
-import vip.qsos.form_lib.model.AbsValue
+import vip.qsos.form_lib.lib.model.AbsValue
 
 /**
  * @author : 华清松
@@ -115,7 +115,7 @@ data class FormValueOfText(
 
 ```kotlin
 
-package vip.qsos.form_n.hodler
+package vip.qsos.form_n.normal.hodler
 
 class FormItemTextHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfText>, FormValueOfText>(itemView) {
 
@@ -133,7 +133,7 @@ class FormItemTextHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVal
 
 package vip.qsos.form
 
-import vip.qsos.form_lib.config.FormConfig
+import vip.qsos.form_lib.lib.config.FormConfig
 
 class FormConfigImpl : FormConfig {
 

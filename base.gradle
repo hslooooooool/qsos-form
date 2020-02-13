@@ -4,31 +4,18 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.name)
-    }
-}
-
-kotlin {
-    experimental {
-        // 开启kotlin协程
-        coroutines 'enable'
-    }
-}
-
 android {
-    compileSdkVersion build_versions.SDK_COMPILE
+    compileSdkVersion 29
 
     androidExtensions {
         experimental = true
     }
 
     defaultConfig {
-        minSdkVersion build_versions.SDK_MIN
-        targetSdkVersion build_versions.SDK_TARGET
-        versionCode 2
-        versionName "1.0.1"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
         // 增加对svg图像的支持
         vectorDrawables.useSupportLibrary = true
 
@@ -41,7 +28,6 @@ android {
     }
 
     sourceSets {
-        // 数据库概要、记录存放位置
         androidTest.assets.srcDirs += files("$projectDir/schemas")
 
         main {
@@ -85,8 +71,6 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    // LifeCycle
-    kapt deps.lifecycle.compiler
 }
 
 repositories {
