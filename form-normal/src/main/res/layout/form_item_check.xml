@@ -2,11 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
     android:background="@android:color/white"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    tools:ignore="RtlSymmetry">
+    android:orientation="horizontal">
 
     <include layout="@layout/form_normal_title" />
 
@@ -14,7 +12,7 @@
         android:id="@+id/form_item_check"
         style="@style/FormItemValueNameStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         tools:hint="请选择" />
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_activity.*
 import vip.qsos.form.lib.base.BaseActivity
@@ -39,6 +40,10 @@ class MainActivity(
         form_submit.setOnClickListener {
             // TODO 校验
         }
+
+        mModel.mForm.observe(this, Observer {
+            // 数据变化监听，设置View
+        })
     }
 
     override fun getData() {

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    android:gravity="center_vertical"
     android:orientation="horizontal">
 
     <include layout="@layout/form_normal_title" />
@@ -13,8 +12,7 @@
         android:id="@+id/item_form_time"
         style="@style/FormItemValueNameStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="50dp"
+        android:layout_height="50dp"
         tools:hint="请设置时间" />
 
 </LinearLayout>

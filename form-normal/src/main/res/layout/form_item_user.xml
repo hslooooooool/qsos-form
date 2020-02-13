@@ -1,37 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical">
-	
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="50dp"
-		android:background="@android:color/white"
-		android:orientation="horizontal">
-		
-		<include layout="@layout/form_normal_title" />
-		
-		<TextView
-			android:id="@+id/item_form_users_size"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:drawableEnd="@drawable/form_drawable_right"
-			android:ellipsize="end"
-			android:gravity="center_vertical|end"
-			android:maxLines="1"
-			android:textSize="14sp" />
-	
-	</LinearLayout>
-	
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/item_form_users_rv"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="@android:color/white"
-		android:minHeight="100dp"
-		android:padding="10sp"
-		tools:listitem="@layout/form_item_user_item" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <include layout="@layout/form_normal_title" />
+
+        <TextView
+            android:id="@+id/item_form_users_size"
+            style="@style/FormItemValueNameStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_item_form_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:minHeight="100dp"
+        android:nestedScrollingEnabled="false"
+        android:scrollbars="none"
+        tools:listitem="@layout/form_item_file_item" />
 
 </LinearLayout>

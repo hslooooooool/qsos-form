@@ -17,14 +17,20 @@ class FormItemFileHolder(
 ) : BaseFormHolder<FormItemEntity<FormValueOfFile>, FormValueOfFile>(itemView) {
 
     override fun setData(position: Int, data: FormItemEntity<FormValueOfFile>) {
+        itemView.form_item_file_take_camera.visibility = View.GONE
+        itemView.form_item_file_take_album.visibility = View.GONE
+        itemView.form_item_file_take_video.visibility = View.GONE
+        itemView.form_item_file_take_audio.visibility = View.GONE
+        itemView.form_item_file_take_file.visibility = View.GONE
+
         data.limitTypeList?.forEach {
             when (FormValueOfFile.getFileTypeByMime(it)) {
-                "IMAGE" -> {
+                FormValueOfFile.Type.IMAGE -> {
                     itemView.form_item_file_take_camera.visibility = View.VISIBLE
                     itemView.form_item_file_take_album.visibility = View.VISIBLE
                 }
-                "VIDEO" -> itemView.form_item_file_take_video.visibility = View.VISIBLE
-                "AUDIO" -> itemView.form_item_file_take_audio.visibility = View.VISIBLE
+                FormValueOfFile.Type.VIDEO -> itemView.form_item_file_take_video.visibility = View.VISIBLE
+                FormValueOfFile.Type.AUDIO -> itemView.form_item_file_take_audio.visibility = View.VISIBLE
                 else -> {
                     itemView.form_item_file_take_camera.visibility = View.VISIBLE
                     itemView.form_item_file_take_album.visibility = View.VISIBLE
@@ -35,12 +41,8 @@ class FormItemFileHolder(
             }
         }
 
-        if (itemView.rv_item_form_files.layoutManager == null) {
-            itemView.rv_item_form_files.layoutManager = GridLayoutManager(itemView.context, 4)
-            itemView.rv_item_form_files.adapter = FormFileAdapter(data.formValues!!)
-        } else {
-            itemView.rv_item_form_files.adapter!!.notifyDataSetChanged()
-        }
+        itemView.rv_item_form_files.layoutManager = GridLayoutManager(itemView.context, 4)
+        itemView.rv_item_form_files.adapter = FormFileAdapter(data.formValues!!)
 
         itemView.form_item_file_take_camera.setOnClickListener {
         }

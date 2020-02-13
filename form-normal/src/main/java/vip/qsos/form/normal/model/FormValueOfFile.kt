@@ -1,6 +1,5 @@
 package vip.qsos.form.normal.model
 
-import android.text.TextUtils
 import vip.qsos.form.lib.model.AbsValue
 import java.util.*
 
@@ -16,27 +15,23 @@ import java.util.*
  * @param fileCover 文件封面地址，如http://qsos.vip/file/logo.png或/0/data/app1/logo.png
  * */
 data class FormValueOfFile(
-        var fileId: String? = "",
-        var fileName: String? = null,
-        var fileType: String? = null,
+        var fileId: String? = null,
+        var fileName: String = "",
+        var fileType: Type = Type.FILE,
         var filePath: String? = null,
-        var fileUrl: String? = null,
-        var fileCover: String? = null
+        var fileUrl: String? = filePath,
+        var fileCover: String? = filePath ?: fileUrl
 ) : AbsValue() {
 
+    enum class Type { IMAGE, VIDEO, AUDIO, FILE }
+
     companion object {
-        /**根据文件mime类型区分为以下几大类，用于表单附件缩略图展示*/
-        fun getFileTypeByMime(fileType: String?): String {
-            if (TextUtils.isEmpty(fileType)) {
-                return "FILE"
-            }
-            fileType!!
-            fileType.toLowerCase(Locale.CHINA)
-            return when {
-                fileType.endsWith("image") || fileType.endsWith("png") || fileType.endsWith("jpg") || fileType.endsWith("jpeg") -> "IMAGE"
-                fileType.endsWith("audio") || fileType.endsWith("amr") || fileType.endsWith("wav") || fileType.endsWith("raw") || fileType.endsWith("mp3") -> "AUDIO"
-                fileType.endsWith("video") || fileType.endsWith("3gp") || fileType.endsWith("mp4") || fileType.endsWith("avi") -> "VIDEO"
-                else -> "FILE"
+        fun getFileTypeByMime(fileType: String?): Type {
+            return when (fileType?.toUpperCase(Locale.ENGLISH)) {
+                Type.IMAGE.name -> Type.IMAGE
+                Type.VIDEO.name -> Type.VIDEO
+                Type.AUDIO.name -> Type.AUDIO
+                else -> Type.FILE
             }
         }
     }

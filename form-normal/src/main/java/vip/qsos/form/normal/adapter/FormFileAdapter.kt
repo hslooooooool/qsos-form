@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.form_item_file_item.view.*
 import vip.qsos.form.lib.base.BaseHolder
 import vip.qsos.form.lib.model.FormValueEntity
 import vip.qsos.form.normal.R
 import vip.qsos.form.normal.model.FormValueOfFile
+import vip.qsos.form.normal.utils.GlideApp
 
 /**
  * @author : 华清松
@@ -47,11 +49,16 @@ class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormVa
     override fun setData(data: FormValueEntity<FormValueOfFile>, position: Int) {
         data.value?.let { file ->
             itemView.tv_item_form_file_name.text = file.fileName
+            GlideApp.with(itemView.context)
+                    .load(file.fileCover)
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .skipMemoryCache(false)
+                    .into(itemView.iv_item_form_file_icon)
 
-            itemView.iv_item_form_file_icon.setOnClickListener {
-            }
-            itemView.iv_item_form_file_delete.setOnClickListener {
-            }
+            itemView.iv_item_form_file_delete.visibility = if (data.editable) View.VISIBLE else View.GONE
+
+            itemView.iv_item_form_file_icon.setOnClickListener {}
+            itemView.iv_item_form_file_delete.setOnClickListener {}
         }
     }
 }

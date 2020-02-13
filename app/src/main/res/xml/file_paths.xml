@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!--path see android.os.Environment-->
+    <!--图片-->
+    <external-path
+        name="image"
+        path="Android/data/qsos-cache/files/image/" />
+    <!--音视频-->
+    <external-path
+        name="media"
+        path="Android/data/qsos-cache/files/media/" />
+    <!--下载文件-->
+    <external-path
+        name="download"
+        path="Android/data/qsos-cache/files/download/" />
+    <!--其它文件-->
+    <external-path
+        name="other"
+        path="Android/data/qsos-cache/files/other/" />
+</paths>
