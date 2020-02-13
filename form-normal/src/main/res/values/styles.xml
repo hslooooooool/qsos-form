@@ -2,16 +2,25 @@
 
     <!--主体按钮样式-->
     <style name="FormMainButtonStyle">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
         <item name="android:layout_height">55dp</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:background">@drawable/form_selector_button</item>
-        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:background">@drawable/form_selector_button</item>
     </style>
 
+    <style name="FormItemValueNameStyle">
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:gravity">center_vertical|end</item>
+        <item name="android:textColor">@drawable/form_selector_text</item>
+        <item name="android:drawableEnd">@drawable/form_drawable_right</item>
+    </style>
 </resources>

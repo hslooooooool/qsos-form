@@ -21,24 +21,23 @@ class FormItemTimeHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVal
         itemView.item_form_time.hint = data.notice
         itemView.item_form_time.text = getTime(data)
 
-        if (data.editable) {
-            data.formValue?.value?.let { time ->
-                itemView.item_form_time.setOnClickListener {
-                    TimePickHelper.picker(
-                            context = itemView.context, timeType = CustomDatePicker.Type.YMDHM,
-                            selected = Date(time.timeStart),
-                            limitMin = if (time.timeLimitMin != null) Date(time.timeLimitMin!!) else null,
-                            limitMax = if (time.timeLimitMax != null) Date(time.timeLimitMax!!) else null,
-                            onDateListener = object : OnDateListener {
-                                override fun setDate(date: Date?) {
-                                    date?.let {
-                                        data.formValue!!.value!!.timeStart = date.time
-                                        itemView.item_form_time.text = getTime(data)
-                                    }
+        itemView.item_form_time.isEnabled = data.editable
+        data.formValue?.value?.let { time ->
+            itemView.item_form_time.setOnClickListener {
+                TimePickHelper.picker(
+                        context = itemView.context, timeType = CustomDatePicker.Type.YMDHM,
+                        selected = Date(time.timeStart),
+                        limitMin = if (time.timeLimitMin != null) Date(time.timeLimitMin!!) else null,
+                        limitMax = if (time.timeLimitMax != null) Date(time.timeLimitMax!!) else null,
+                        onDateListener = object : OnDateListener {
+                            override fun setDate(date: Date?) {
+                                date?.let {
+                                    data.formValue!!.value!!.timeStart = date.time
+                                    itemView.item_form_time.text = getTime(data)
                                 }
                             }
-                    )
-                }
+                        }
+                )
             }
         }
     }

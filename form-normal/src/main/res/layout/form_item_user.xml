@@ -3,12 +3,11 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:layout_marginBottom="10dp"
 	android:orientation="vertical">
 	
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="60dp"
+		android:layout_height="50dp"
 		android:background="@android:color/white"
 		android:orientation="horizontal">
 		
@@ -22,7 +21,7 @@
 			android:ellipsize="end"
 			android:gravity="center_vertical|end"
 			android:maxLines="1"
-			android:textSize="18sp" />
+			android:textSize="14sp" />
 	
 	</LinearLayout>
 	
@@ -30,11 +29,9 @@
 		android:id="@+id/item_form_users_rv"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="10dp"
 		android:background="@android:color/white"
 		android:minHeight="100dp"
-		android:padding="12sp"
-		tools:ignore="UnusedAttribute"
+		android:padding="10sp"
 		tools:listitem="@layout/form_item_user_item" />
 
 </LinearLayout>

@@ -22,7 +22,7 @@ class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVa
     override fun setData(position: Int, data: FormItemEntity<FormValueOfCheck>) {
         itemView.form_item_check.text = getText(data)
         itemView.form_item_check.hint = data.notice
-        itemView.form_item_check.isClickable = data.editable
+        itemView.form_item_check.isEnabled = data.editable
 
         itemView.form_item_check.setOnClickListener {
             showCheck(data, object : OnTListener<String?> {
