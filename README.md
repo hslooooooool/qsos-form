@@ -167,5 +167,10 @@ class FormConfigImpl : FormConfig {
 }
 ```
 
+使用配置，可在`Application`的`OnCreate`方法中调用，也可用时配置
+```kotlin
+    FormHelper.init(FormConfigImpl())
+```
+
 ## 后话
 以此为基础，设计并搭建相关领域的各类表单项集合，此后可根据业务领域和需要选取符合其需要的表单项集合进行使用。
