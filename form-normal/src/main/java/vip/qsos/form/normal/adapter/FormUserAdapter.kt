@@ -1,6 +1,5 @@
 package vip.qsos.form.normal.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,13 +18,12 @@ import vip.qsos.form.normal.utils.GlideApp
  * 用户列表容器
  */
 class FormUserAdapter(
-        var data: ArrayList<FormValueEntity<FormValueOfUser>>
+        var data: ArrayList<FormValueEntity<FormValueOfUser>>,
+        private var mOnItemListener: FormItemUserItemHolder.OnItemListener,
+        private var mOnDeleteListener: FormItemUserItemHolder.OnDeleteListener
 ) : RecyclerView.Adapter<BaseHolder<FormValueEntity<FormValueOfUser>>>() {
 
-    private lateinit var mContext: Context
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormValueEntity<FormValueOfUser>> {
-        mContext = parent.context
         val view = LayoutInflater.from(parent.context).inflate(R.layout.form_item_user_item, parent, false)
         return FormItemUserItemHolder(view)
     }
@@ -33,10 +31,15 @@ class FormUserAdapter(
     override fun onBindViewHolder(holder: BaseHolder<FormValueEntity<FormValueOfUser>>, position: Int) {
         holder as FormItemUserItemHolder
         holder.setData(data[position], position)
-        holder.setDeleteListener(object : FormItemUserItemHolder.DeleteListener {
+        holder.setDeleteListener(object : FormItemUserItemHolder.OnDeleteListener {
             override fun delete(position: Int) {
                 data.remove(data[position])
-                notifyDataSetChanged()
+                mOnDeleteListener.delete(position)
+            }
+        })
+        holder.setOnItemListener(object : FormItemUserItemHolder.OnItemListener {
+            override fun item(position: Int, data: FormValueEntity<FormValueOfUser>) {
+                mOnItemListener.item(position, data)
             }
         })
     }
@@ -53,14 +56,23 @@ class FormUserAdapter(
  */
 class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormValueOfUser>>(itemView) {
 
-    interface DeleteListener {
+    interface OnDeleteListener {
         fun delete(position: Int)
     }
 
-    private var mDeleteListener: DeleteListener? = null
+    interface OnItemListener {
+        fun item(position: Int, data: FormValueEntity<FormValueOfUser>)
+    }
 
-    fun setDeleteListener(listener: DeleteListener) {
-        this.mDeleteListener = listener
+    private var mOnItemListener: OnItemListener? = null
+    private var mOnDeleteListener: OnDeleteListener? = null
+
+    fun setOnItemListener(listener: OnItemListener) {
+        this.mOnItemListener = listener
+    }
+
+    fun setDeleteListener(listenerOn: OnDeleteListener) {
+        this.mOnDeleteListener = listenerOn
     }
 
     override fun setData(data: FormValueEntity<FormValueOfUser>, position: Int) {
@@ -75,9 +87,10 @@ class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormVa
             itemView.iv_item_form_user_delete.visibility = if (data.editable) View.VISIBLE else View.GONE
 
             itemView.iv_item_form_user_icon.setOnClickListener {
+                mOnItemListener?.item(position, data)
             }
             itemView.iv_item_form_user_delete.setOnClickListener {
-                mDeleteListener?.delete(position)
+                mOnDeleteListener?.delete(position)
             }
         }
     }

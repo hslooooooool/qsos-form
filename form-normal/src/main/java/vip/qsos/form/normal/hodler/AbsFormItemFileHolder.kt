@@ -4,17 +4,26 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.form_item_file.view.*
 import vip.qsos.form.lib.model.FormItemEntity
+import vip.qsos.form.lib.model.FormValueEntity
 import vip.qsos.form.normal.adapter.FormFileAdapter
+import vip.qsos.form.normal.adapter.FormItemFileItemHolder
 import vip.qsos.form.normal.model.FormValueOfFile
+import vip.qsos.lib.select.OnSelectListener
 
 /**
  * @author : 华清松
  *
  * 文件类型视图
  */
-class FormItemFileHolder(
+abstract class AbsFormItemFileHolder(
         itemView: View
 ) : BaseFormHolder<FormItemEntity<FormValueOfFile>, FormValueOfFile>(itemView) {
+
+    /**点击文件添加后方法调用*/
+    abstract fun takeFile(type: FormValueOfFile.Type, data: FormItemEntity<FormValueOfFile>, listener: OnSelectListener<Boolean>)
+
+    /**点击文件封面后方法调用*/
+    abstract fun clickFile(position: Int, data: FormValueEntity<FormValueOfFile>)
 
     override fun setData(position: Int, data: FormItemEntity<FormValueOfFile>) {
         itemView.form_item_file_take_camera.visibility = View.GONE
@@ -42,17 +51,54 @@ class FormItemFileHolder(
         }
 
         itemView.rv_item_form_files.layoutManager = GridLayoutManager(itemView.context, 4)
-        itemView.rv_item_form_files.adapter = FormFileAdapter(data.formValues!!)
+        itemView.rv_item_form_files.adapter = FormFileAdapter(
+                data.formValues!!,
+                object : FormItemFileItemHolder.OnItemListener {
+                    override fun item(position: Int, data: FormValueEntity<FormValueOfFile>) {
+                        clickFile(position, data)
+                    }
+                },
+                object : FormItemFileItemHolder.OnDeleteListener {
+                    override fun delete(position: Int) {
+                        itemView.rv_item_form_files.adapter?.notifyDataSetChanged()
+                    }
+                }
+        )
 
+        val size = data.formValues!!.size
+        val limitMax = data.limitMax ?: 0
+        val canAdd = limitMax == 0 || size < limitMax
+        val listener = object : OnSelectListener<Boolean> {
+            override fun select(d: Boolean) {
+                if (d) {
+                    itemView.rv_item_form_files.adapter?.notifyDataSetChanged()
+                }
+            }
+        }
         itemView.form_item_file_take_camera.setOnClickListener {
+            if (canAdd) {
+                takeFile(FormValueOfFile.Type.IMAGE, data, listener)
+            }
         }
         itemView.form_item_file_take_album.setOnClickListener {
+            if (canAdd) {
+                takeFile(FormValueOfFile.Type.ALBUM, data, listener)
+            }
         }
         itemView.form_item_file_take_video.setOnClickListener {
+            if (canAdd) {
+                takeFile(FormValueOfFile.Type.VIDEO, data, listener)
+            }
         }
         itemView.form_item_file_take_audio.setOnClickListener {
+            if (canAdd) {
+                takeFile(FormValueOfFile.Type.AUDIO, data, listener)
+            }
         }
         itemView.form_item_file_take_file.setOnClickListener {
+            if (canAdd) {
+                takeFile(FormValueOfFile.Type.FILE, data, listener)
+            }
         }
 
     }

@@ -2,6 +2,7 @@ package vip.qsos.form
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import vip.qsos.form.holder.FormItemFileHolder
 import vip.qsos.form.holder.FormItemUserHolder
 import vip.qsos.form.lib.config.FormConfig
 import vip.qsos.form.normal.hodler.*
