@@ -35,7 +35,12 @@ data class FormItemEntity<T : AbsValue> constructor(
         get() = if (formValues.isNullOrEmpty()) null else formValues!![0]
         set(value) {
             field = value
-            value?.let { formValues!!.add(0, value) }
+            value?.let {
+                if (formValues!!.size > 0) {
+                    formValues!!.removeAt(0)
+                }
+                formValues!!.add(0, value)
+            }
         }
 
     /**表单项值集合*/

@@ -12,8 +12,8 @@ import vip.qsos.form.normal.model.FormValueOfText
  */
 class FormItemTextHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfText>, FormValueOfText>(itemView) {
 
-    override fun setData(position: Int, data: FormItemEntity<FormValueOfText>) {
-        data.formValue?.value?.let {
+    override fun setData(position: Int, formItem: FormItemEntity<FormValueOfText>) {
+        formItem.formValue?.value?.let {
             itemView.item_form_text.text = it.content
         }
     }

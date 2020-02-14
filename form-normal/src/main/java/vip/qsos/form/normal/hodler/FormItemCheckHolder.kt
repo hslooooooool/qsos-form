@@ -19,13 +19,13 @@ import vip.qsos.lib.select.SelectHelper
  */
 class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfCheck>, FormValueOfCheck>(itemView) {
 
-    override fun setData(position: Int, data: FormItemEntity<FormValueOfCheck>) {
-        itemView.form_item_check.text = getText(data)
-        itemView.form_item_check.hint = data.notice
-        itemView.form_item_check.isEnabled = data.editable
+    override fun setData(position: Int, formItem: FormItemEntity<FormValueOfCheck>) {
+        itemView.form_item_check.text = getText(formItem)
+        itemView.form_item_check.hint = formItem.notice
+        itemView.form_item_check.isEnabled = formItem.editable
 
         itemView.form_item_check.setOnClickListener {
-            showCheck(data, object : OnTListener<String?> {
+            showCheck(formItem, object : OnTListener<String?> {
                 override fun back(t: String?) {
                     t?.let { itemView.form_item_check.text = it }
                 }

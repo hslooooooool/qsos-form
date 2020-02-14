@@ -12,6 +12,6 @@ import vip.qsos.form.lib.model.AbsValue
 abstract class AbsFormHolder<I : FormItemEntity<T>, T : AbsValue>(itemView: View)
     : BaseHolder<I>(itemView) {
 
-    abstract fun setData(position: Int, data: I)
+    abstract fun setData(position: Int, formItem: I)
 
 }

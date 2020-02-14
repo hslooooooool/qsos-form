@@ -16,23 +16,23 @@ import vip.qsos.form.normal.model.FormValueOfText
  */
 class FormItemInputHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfText>, FormValueOfText>(itemView) {
 
-    override fun setData(position: Int, data: FormItemEntity<FormValueOfText>) {
-        var text = data.formValue?.value
+    override fun setData(position: Int, formItem: FormItemEntity<FormValueOfText>) {
+        var text = formItem.formValue?.value
         if (text == null) {
             text = FormValueOfText("")
             val value = FormValueEntity<FormValueOfText>(
                     editable = true, position = 1
             )
             value.value = text
-            data.formValue = value
+            formItem.formValue = value
         }
         itemView.item_form_input.setText(text.content)
 
-        itemView.item_form_input.isEnabled = data.editable
-        itemView.item_form_input.hint = data.notice ?: "点击输入"
+        itemView.item_form_input.isEnabled = formItem.editable
+        itemView.item_form_input.hint = formItem.notice ?: "点击输入"
 
-        if (data.limitMax != null && data.limitMax!! > 0) {
-            itemView.item_form_input.filters = arrayOf(InputFilter.LengthFilter(data.limitMax!!))
+        if (formItem.limitMax != null && formItem.limitMax!! > 0) {
+            itemView.item_form_input.filters = arrayOf(InputFilter.LengthFilter(formItem.limitMax!!))
         }
 
         itemView.item_form_input.addTextChangedListener(object : TextWatcher {
@@ -41,7 +41,7 @@ class FormItemInputHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVa
                 val content = itemView.item_form_input.text.toString()
                 if (text.content != content) {
                     text.content = content
-                    data.formValue!!.value = text
+                    formItem.formValue!!.value = text
                 }
             }
 

@@ -25,14 +25,14 @@ abstract class AbsFormItemFileHolder(
     /**点击文件封面后方法调用*/
     abstract fun clickFile(position: Int, data: FormValueEntity<FormValueOfFile>)
 
-    override fun setData(position: Int, data: FormItemEntity<FormValueOfFile>) {
+    override fun setData(position: Int, formItem: FormItemEntity<FormValueOfFile>) {
         itemView.form_item_file_take_camera.visibility = View.GONE
         itemView.form_item_file_take_album.visibility = View.GONE
         itemView.form_item_file_take_video.visibility = View.GONE
         itemView.form_item_file_take_audio.visibility = View.GONE
         itemView.form_item_file_take_file.visibility = View.GONE
 
-        data.limitTypeList?.forEach {
+        formItem.limitTypeList?.forEach {
             when (FormValueOfFile.getFileTypeByMime(it)) {
                 FormValueOfFile.Type.IMAGE -> {
                     itemView.form_item_file_take_camera.visibility = View.VISIBLE
@@ -52,7 +52,7 @@ abstract class AbsFormItemFileHolder(
 
         itemView.rv_item_form_files.layoutManager = GridLayoutManager(itemView.context, 4)
         itemView.rv_item_form_files.adapter = FormFileAdapter(
-                data.formValues!!,
+                formItem.formValues!!,
                 object : FormItemFileItemHolder.OnItemListener {
                     override fun item(position: Int, data: FormValueEntity<FormValueOfFile>) {
                         clickFile(position, data)
@@ -65,39 +65,39 @@ abstract class AbsFormItemFileHolder(
                 }
         )
 
-        val size = data.formValues!!.size
-        val limitMax = data.limitMax ?: 0
+        val size = formItem.formValues!!.size
+        val limitMax = formItem.limitMax ?: 0
         val canAdd = limitMax == 0 || size < limitMax
         val listener = object : OnSelectListener<Boolean> {
-            override fun select(d: Boolean) {
-                if (d) {
+            override fun select(data: Boolean) {
+                if (data) {
                     itemView.rv_item_form_files.adapter?.notifyDataSetChanged()
                 }
             }
         }
         itemView.form_item_file_take_camera.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.IMAGE, data, listener)
+                takeFile(FormValueOfFile.Type.IMAGE, formItem, listener)
             }
         }
         itemView.form_item_file_take_album.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.ALBUM, data, listener)
+                takeFile(FormValueOfFile.Type.ALBUM, formItem, listener)
             }
         }
         itemView.form_item_file_take_video.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.VIDEO, data, listener)
+                takeFile(FormValueOfFile.Type.VIDEO, formItem, listener)
             }
         }
         itemView.form_item_file_take_audio.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.AUDIO, data, listener)
+                takeFile(FormValueOfFile.Type.AUDIO, formItem, listener)
             }
         }
         itemView.form_item_file_take_file.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.FILE, data, listener)
+                takeFile(FormValueOfFile.Type.FILE, formItem, listener)
             }
         }
 

@@ -17,12 +17,12 @@ import java.util.*
  */
 class FormItemTimeHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfTime>, FormValueOfTime>(itemView) {
 
-    override fun setData(position: Int, data: FormItemEntity<FormValueOfTime>) {
-        itemView.item_form_time.hint = data.notice
-        itemView.item_form_time.text = getTime(data)
+    override fun setData(position: Int, formItem: FormItemEntity<FormValueOfTime>) {
+        itemView.item_form_time.hint = formItem.notice
+        itemView.item_form_time.text = getTime(formItem)
 
-        itemView.item_form_time.isEnabled = data.editable
-        data.formValue?.value?.let { time ->
+        itemView.item_form_time.isEnabled = formItem.editable
+        formItem.formValue?.value?.let { time ->
             itemView.item_form_time.setOnClickListener {
                 TimePickHelper.picker(
                         context = itemView.context, timeType = CustomDatePicker.Type.YMDHM,
@@ -32,8 +32,8 @@ class FormItemTimeHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVal
                         onDateListener = object : OnDateListener {
                             override fun setDate(date: Date?) {
                                 date?.let {
-                                    data.formValue!!.value!!.timeStart = date.time
-                                    itemView.item_form_time.text = getTime(data)
+                                    formItem.formValue!!.value!!.timeStart = date.time
+                                    itemView.item_form_time.text = getTime(formItem)
                                 }
                             }
                         }

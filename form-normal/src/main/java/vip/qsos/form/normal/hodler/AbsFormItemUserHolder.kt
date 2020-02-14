@@ -27,11 +27,11 @@ abstract class AbsFormItemUserHolder(
     abstract fun clickUser(position: Int, data: FormValueEntity<FormValueOfUser>)
 
     @SuppressLint("SetTextI18n")
-    override fun setData(position: Int, data: FormItemEntity<FormValueOfUser>) {
+    override fun setData(position: Int, formItem: FormItemEntity<FormValueOfUser>) {
 
         itemView.rv_item_form_users.layoutManager = GridLayoutManager(itemView.context, 5)
         itemView.rv_item_form_users.adapter = FormUserAdapter(
-                data.formValues!!,
+                formItem.formValues!!,
                 object : FormItemUserItemHolder.OnItemListener {
                     override fun item(position: Int, data: FormValueEntity<FormValueOfUser>) {
                         clickUser(position, data)
@@ -40,19 +40,19 @@ abstract class AbsFormItemUserHolder(
                 object : FormItemUserItemHolder.OnDeleteListener {
                     override fun delete(position: Int) {
                         itemView.rv_item_form_users.adapter?.notifyDataSetChanged()
-                        itemView.item_form_users_size.text = "${data.formValues!!.size}人"
+                        itemView.item_form_users_size.text = "${formItem.formValues!!.size}人"
                     }
                 }
         )
 
-        itemView.item_form_users_size.text = "${data.formValues!!.size}人"
+        itemView.item_form_users_size.text = "${formItem.formValues!!.size}人"
 
         itemView.item_form_users_size.setOnClickListener {
-            selectUser(data, object : OnSelectListener<Boolean> {
-                override fun select(d: Boolean) {
-                    if (d) {
+            selectUser(formItem, object : OnSelectListener<Boolean> {
+                override fun select(data: Boolean) {
+                    if (data) {
                         itemView.rv_item_form_users.adapter?.notifyDataSetChanged()
-                        itemView.item_form_users_size.text = "${data.formValues!!.size}人"
+                        itemView.item_form_users_size.text = "${formItem.formValues!!.size}人"
                     }
                 }
             })

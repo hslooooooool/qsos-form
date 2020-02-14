@@ -73,6 +73,11 @@ object FormUtil {
             }
             formItemList.add(state2)
 
+            /**位置举例*/
+            val location = FormItemEntity<FormValueOfLocation>(title = "位置举例", notice = "位置举例,必选",
+                    valueType = 6, limitMin = 1, limitMax = 1, require = true)
+            formItemList.add(location)
+
             /**多选举例*/
             val type1 = FormItemEntity<FormValueOfCheck>(title = "多选举例1", notice = "多选举例,必选",
                     valueType = 2, limitMin = 1, limitMax = 3, require = true)
