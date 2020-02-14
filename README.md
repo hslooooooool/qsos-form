@@ -174,3 +174,97 @@ class FormConfigImpl : FormConfig {
 
 ## 后话
 以此为基础，设计并搭建相关领域的各类表单项集合，此后可根据业务领域和需要选取符合其需要的表单项集合进行使用。
+
+如果使用 `form-normal`，在用到人员列表和文件列表时需要进行相关配置方可使用：
+
+- 人员列表举例
+
+新建`FormItemUserHolder` 继承 `AbsFormItemUserHolder`
+```kotlin
+class FormItemUserHolder(
+        itemView: View
+) : AbsFormItemUserHolder(itemView) {
+
+    override fun selectUser(data: FormItemEntity<FormValueOfUser>, listener: OnSelectListener<Boolean>) {
+       // 用户选择实现
+    }
+
+    override fun clickUser(position: Int, data: FormValueEntity<FormValueOfUser>) {
+       // 用户点击实现
+    }
+
+}
+```
+- 附件列表举例
+
+新建`FormItemFileHolder` 继承 `AbsFormItemFileHolder`
+```kotlin
+class FormItemFileHolder(
+        itemView: View
+) : AbsFormItemFileHolder(itemView) {
+
+    override fun takeFile(type: FormValueOfFile.Type, data: FormItemEntity<FormValueOfFile>, listener: OnSelectListener<Boolean>) {
+        // 附件选择实现
+        val size = data.formValues!!.size
+        val limitMax = data.limitMax ?: 0
+        val activity = itemView.context as AppCompatActivity
+        val value = FormValueEntity<FormValueOfFile>()
+        if (limitMax > 0 && size < limitMax) {
+            when (type) {
+                FormValueOfFile.Type.IMAGE -> {
+                    FilePicker.with(activity.supportFragmentManager).takeImage(Sources.DEVICE, listener = object : OnTListener<Uri> {
+                        override fun back(t: Uri) {
+                            value.value = FormValueOfFile(fileUrl = t.toString())
+                            data.formValues!!.add(value)
+                            listener.select(true)
+                        }
+                    })
+                }
+                FormValueOfFile.Type.ALBUM -> {
+                    FilePicker.with(activity.supportFragmentManager).takeImage(Sources.ONE, listener = object : OnTListener<Uri> {
+                        override fun back(t: Uri) {
+                            value.value = FormValueOfFile(fileUrl = t.toString())
+                            data.formValues!!.add(value)
+                            listener.select(true)
+                        }
+                    })
+                }
+                FormValueOfFile.Type.AUDIO -> {
+                    FilePicker.with(activity.supportFragmentManager).takeAudio(listener = object : OnTListener<Uri> {
+                        override fun back(t: Uri) {
+                            value.value = FormValueOfFile(fileUrl = t.toString())
+                            data.formValues!!.add(value)
+                            listener.select(true)
+                        }
+                    })
+                }
+                FormValueOfFile.Type.VIDEO -> {
+                    FilePicker.with(activity.supportFragmentManager).takeVideo(listener = object : OnTListener<Uri> {
+                        override fun back(t: Uri) {
+                            value.value = FormValueOfFile(fileUrl = t.toString())
+                            data.formValues!!.add(value)
+                            listener.select(true)
+                        }
+                    })
+                }
+                FormValueOfFile.Type.FILE -> {
+                    FilePicker.with(activity.supportFragmentManager).takeFile(listener = object : OnTListener<Uri> {
+                        override fun back(t: Uri) {
+                            value.value = FormValueOfFile(fileUrl = t.toString())
+                            data.formValues!!.add(value)
+                            listener.select(true)
+                        }
+                    })
+                }
+            }
+        } else {
+            listener.select(false)
+        }
+    }
+
+    override fun clickFile(position: Int, data: FormValueEntity<FormValueOfFile>) {
+        // 附件点击实现
+    }
+
+}
+```
