@@ -16,6 +16,7 @@ abstract class AbsFormItemLocationHolder(itemView: View) : BaseFormHolder<FormIt
     abstract fun selectLocation(position: Int, data: FormItemEntity<FormValueOfLocation>, listener: OnSelectListener<Boolean>)
 
     override fun setData(position: Int, formItem: FormItemEntity<FormValueOfLocation>) {
+        itemView.item_form_location.hint = formItem.notice
         formItem.formValue?.value?.let {
             itemView.item_form_location.text = it.locName
         }
