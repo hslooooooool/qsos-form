@@ -30,6 +30,8 @@ android {
 
 dependencies {
     implementation project(':form-normal')
+
+    implementation 'com.github.hslooooooool:qsos-filepicker:1.0'
 }
 
 // 获取编译时间

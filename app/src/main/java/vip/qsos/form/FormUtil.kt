@@ -127,28 +127,26 @@ object FormUtil {
             /**附件上传*/
             val file = FormItemEntity<FormValueOfFile>(title = "附件举例1", notice = "全是图片",
                     valueType = 5, limitMin = 0, limitMax = 9, limit = "IMAGE")
-            for (i in 1..3) {
-                val fileValue = FormValueEntity<FormValueOfFile>()
-                fileValue.value = FormValueOfFile(fileName = "测试图片$i", fileUrl = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
-                file.formValues!!.add(fileValue)
-            }
+            val fileValue = FormValueEntity<FormValueOfFile>()
+            fileValue.value = FormValueOfFile(fileName = "测试图片", fileUrl = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
+            file.formValues!!.add(fileValue)
             formItemList.add(file)
 
             /**附件上传*/
             val file2 = FormItemEntity<FormValueOfFile>(title = "附件举例2", notice = "所有文件",
                     valueType = 5, limitMin = 0, limitMax = 9, limit = "FILE")
-            for (i in 1..6) {
-                val fileValue = FormValueEntity<FormValueOfFile>()
-                fileValue.editable = i != 1
-                fileValue.value = FormValueOfFile(fileName = "测试文件$i")
-                file2.formValues!!.add(fileValue)
+            for (i in 1..2) {
+                val file2Value = FormValueEntity<FormValueOfFile>()
+                file2Value.editable = i != 1
+                file2Value.value = FormValueOfFile(fileName = "测试文件$i")
+                file2.formValues!!.add(file2Value)
             }
             formItemList.add(file2)
 
             /**人员举例*/
             val user = FormItemEntity<FormValueOfUser>(title = "人员举例1", notice = "管理员，至少一人",
                     valueType = 4, limitMin = 1, limit = "ADMIN")
-            for (i in 1..3) {
+            for (i in 1..2) {
                 val userValue = FormValueEntity<FormValueOfUser>()
                 userValue.value = FormValueOfUser(userName = "管理人员$i", userAvatar = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
                 user.formValues!!.add(userValue)
@@ -157,7 +155,7 @@ object FormUtil {
 
             /**人员举例*/
             val user2 = FormItemEntity<FormValueOfUser>(title = "人员举例2", notice = "抄送人员，必须抄送给抄送人1", valueType = 4)
-            for (i in 1..6) {
+            for (i in 1..3) {
                 val value = FormValueEntity<FormValueOfUser>()
                 value.editable = i != 1
                 value.value = FormValueOfUser(userName = "抄送人员$i", userAvatar = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
