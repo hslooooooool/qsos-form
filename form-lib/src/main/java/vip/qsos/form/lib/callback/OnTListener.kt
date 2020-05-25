@@ -1,9 +1,7 @@
 package vip.qsos.form.lib.callback
 
-/**
+/**泛型回调
  * @author : 华清松
- *
- * 泛型回调
  */
 interface OnTListener<T> {
 

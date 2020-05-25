@@ -17,7 +17,7 @@ import vip.qsos.lib.select.OnSelectListener
  */
 abstract class AbsFormItemFileHolder(
         itemView: View
-) : BaseFormHolder<FormItemEntity<FormValueOfFile>, FormValueOfFile>(itemView) {
+) : AbsFormHolder<FormItemEntity<FormValueOfFile>, FormValueOfFile>(itemView) {
 
     /**点击文件添加后方法调用*/
     abstract fun takeFile(type: FormValueOfFile.Type, data: FormItemEntity<FormValueOfFile>, listener: OnSelectListener<Boolean>)
@@ -25,14 +25,15 @@ abstract class AbsFormItemFileHolder(
     /**点击文件封面后方法调用*/
     abstract fun clickFile(position: Int, data: FormValueEntity<FormValueOfFile>)
 
-    override fun setData(position: Int, formItem: FormItemEntity<FormValueOfFile>) {
+    override fun setData(position: Int, data: FormItemEntity<FormValueOfFile>) {
+        super.setData(position, data)
         itemView.form_item_file_take_camera.visibility = View.GONE
         itemView.form_item_file_take_album.visibility = View.GONE
         itemView.form_item_file_take_video.visibility = View.GONE
         itemView.form_item_file_take_audio.visibility = View.GONE
         itemView.form_item_file_take_file.visibility = View.GONE
 
-        formItem.limitTypeList?.forEach {
+        data.limitTypeList?.forEach {
             when (FormValueOfFile.getFileTypeByMime(it)) {
                 FormValueOfFile.Type.IMAGE -> {
                     itemView.form_item_file_take_camera.visibility = View.VISIBLE
@@ -52,7 +53,7 @@ abstract class AbsFormItemFileHolder(
 
         itemView.rv_item_form_files.layoutManager = GridLayoutManager(itemView.context, 4)
         itemView.rv_item_form_files.adapter = FormFileAdapter(
-                formItem.formValues!!,
+                data.formValues!!,
                 object : FormItemFileItemHolder.OnItemListener {
                     override fun item(position: Int, data: FormValueEntity<FormValueOfFile>) {
                         clickFile(position, data)
@@ -65,8 +66,8 @@ abstract class AbsFormItemFileHolder(
                 }
         )
 
-        val size = formItem.formValues!!.size
-        val limitMax = formItem.limitMax ?: 0
+        val size = data.formValues!!.size
+        val limitMax = data.limitMax ?: 0
         val canAdd = limitMax == 0 || size < limitMax
         val listener = object : OnSelectListener<Boolean> {
             override fun select(data: Boolean) {
@@ -77,27 +78,27 @@ abstract class AbsFormItemFileHolder(
         }
         itemView.form_item_file_take_camera.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.IMAGE, formItem, listener)
+                takeFile(FormValueOfFile.Type.IMAGE, data, listener)
             }
         }
         itemView.form_item_file_take_album.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.ALBUM, formItem, listener)
+                takeFile(FormValueOfFile.Type.ALBUM, data, listener)
             }
         }
         itemView.form_item_file_take_video.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.VIDEO, formItem, listener)
+                takeFile(FormValueOfFile.Type.VIDEO, data, listener)
             }
         }
         itemView.form_item_file_take_audio.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.AUDIO, formItem, listener)
+                takeFile(FormValueOfFile.Type.AUDIO, data, listener)
             }
         }
         itemView.form_item_file_take_file.setOnClickListener {
             if (canAdd) {
-                takeFile(FormValueOfFile.Type.FILE, formItem, listener)
+                takeFile(FormValueOfFile.Type.FILE, data, listener)
             }
         }
 

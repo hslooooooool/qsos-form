@@ -1,9 +1,7 @@
 package vip.qsos.form.lib.model
 
-/**
+/**表单实体类
  * @author : 华清松
- *
- * 表单实体类
  * @param title 表单名称
  * @param notice 表单提示内容
  * @param submitter 表单提交者

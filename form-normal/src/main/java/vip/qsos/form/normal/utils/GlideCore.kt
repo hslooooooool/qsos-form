@@ -8,10 +8,8 @@ import com.bumptech.glide.load.engine.cache.ExternalPreferredCacheDiskCacheFacto
 import com.bumptech.glide.load.engine.cache.LruResourceCache
 import com.bumptech.glide.module.AppGlideModule
 
-/**
+/**Glide 配置
  * @author : 华清松
- *
- * Glide 配置
  */
 @GlideModule
 class GlideCore : AppGlideModule() {

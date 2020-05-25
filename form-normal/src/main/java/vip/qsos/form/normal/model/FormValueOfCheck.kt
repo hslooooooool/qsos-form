@@ -2,10 +2,8 @@ package vip.qsos.form.normal.model
 
 import vip.qsos.form.lib.model.AbsValue
 
-/**
+/**表单项值-选项实体类
  * @author : 华清松
- *
- * 表单项值-选项实体类
  * @param ckId 选项ID
  * @param ckName 选项名称
  * @param ckValue 选项值

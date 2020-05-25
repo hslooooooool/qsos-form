@@ -9,30 +9,27 @@ import vip.qsos.form.lib.model.FormItemEntity
 import vip.qsos.form.lib.model.FormValueEntity
 import vip.qsos.form.normal.model.FormValueOfText
 
-/**
+/**输入文本类型视图
  * @author : 华清松
- *
- * 输入文本类型视图
  */
-class FormItemInputHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfText>, FormValueOfText>(itemView) {
+class FormItemInputHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValueOfText>, FormValueOfText>(itemView) {
 
-    override fun setData(position: Int, formItem: FormItemEntity<FormValueOfText>) {
-        var text = formItem.formValue?.value
+    override fun setData(position: Int, data: FormItemEntity<FormValueOfText>) {
+        var text = data.formValue?.value
         if (text == null) {
             text = FormValueOfText("")
-            val value = FormValueEntity<FormValueOfText>(
-                    editable = true, position = 1
+            val value = FormValueEntity(
+                    editable = true, position = 1, value = text
             )
-            value.value = text
-            formItem.formValue = value
+            data.formValue = value
         }
         itemView.item_form_input.setText(text.content)
 
-        itemView.item_form_input.isEnabled = formItem.editable
-        itemView.item_form_input.hint = formItem.notice ?: "点击输入"
+        itemView.item_form_input.isEnabled = data.editable
+        itemView.item_form_input.hint = data.notice ?: "点击输入"
 
-        if (formItem.limitMax != null && formItem.limitMax!! > 0) {
-            itemView.item_form_input.filters = arrayOf(InputFilter.LengthFilter(formItem.limitMax!!))
+        if (data.limitMax > 0) {
+            itemView.item_form_input.filters = arrayOf(InputFilter.LengthFilter(data.limitMax))
         }
 
         itemView.item_form_input.addTextChangedListener(object : TextWatcher {
@@ -41,7 +38,7 @@ class FormItemInputHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormVa
                 val content = itemView.item_form_input.text.toString()
                 if (text.content != content) {
                     text.content = content
-                    formItem.formValue!!.value = text
+                    data.formValue!!.value = text
                 }
             }
 

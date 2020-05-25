@@ -12,10 +12,8 @@ import vip.qsos.form.normal.R
 import vip.qsos.form.normal.model.FormValueOfUser
 import vip.qsos.form.normal.utils.GlideApp
 
-/**
+/**用户列表容器
  * @author : 华清松
- *
- * 用户列表容器
  */
 class FormUserAdapter(
         var data: ArrayList<FormValueEntity<FormValueOfUser>>,
@@ -30,7 +28,7 @@ class FormUserAdapter(
 
     override fun onBindViewHolder(holder: BaseHolder<FormValueEntity<FormValueOfUser>>, position: Int) {
         holder as FormItemUserItemHolder
-        holder.setData(data[position], position)
+        holder.setData(position, data[position])
         holder.setDeleteListener(object : FormItemUserItemHolder.OnDeleteListener {
             override fun delete(position: Int) {
                 data.remove(data[position])
@@ -75,7 +73,7 @@ class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormVa
         this.mOnDeleteListener = listenerOn
     }
 
-    override fun setData(data: FormValueEntity<FormValueOfUser>, position: Int) {
+    override fun setData(position: Int, data: FormValueEntity<FormValueOfUser>) {
         data.value?.let { user ->
             itemView.tv_item_form_user_name.text = user.userName
             GlideApp.with(itemView.context)

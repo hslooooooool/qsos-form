@@ -2,10 +2,8 @@ package vip.qsos.form.lib.model
 
 import java.util.*
 
-/**
+/**表单项实体类
  * @author : 华清松
- *
- * 表单项实体类
  * @param title 表单项名称
  * @param notice 表单项提示内容
  * @param valueType 表单项值类型，如：0：文本展示；1：输入；2：选项；3：时间；4：人员；5：文件；6：位置
@@ -25,8 +23,8 @@ data class FormItemEntity<T : AbsValue> constructor(
         var editable: Boolean = true,
         var visible: Boolean = true,
         var require: Boolean = false,
-        var limitMin: Int? = 0,
-        var limitMax: Int? = 0,
+        var limitMin: Int = 0,
+        var limitMax: Int = 0,
         var limit: String? = ""
 ) {
 

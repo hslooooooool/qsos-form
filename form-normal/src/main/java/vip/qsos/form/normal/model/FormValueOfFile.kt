@@ -3,10 +3,8 @@ package vip.qsos.form.normal.model
 import vip.qsos.form.lib.model.AbsValue
 import java.util.*
 
-/**
+/**表单项值-文件实体类
  * @author : 华清松
- *
- * 表单项值-文件实体类
  * @param fileId 文件ID
  * @param fileName 文件名称
  * @param fileType 文件类型 IMAGE, VIDEO, AUDIO, FILE

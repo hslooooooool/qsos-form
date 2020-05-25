@@ -5,27 +5,25 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.form_item_check.view.*
-import vip.qsos.form.normal.model.FormValueOfCheck
 import vip.qsos.form.lib.callback.OnTListener
 import vip.qsos.form.lib.model.FormItemEntity
+import vip.qsos.form.normal.model.FormValueOfCheck
 import vip.qsos.lib.select.OnSelectListener
 import vip.qsos.lib.select.Operation
 import vip.qsos.lib.select.SelectHelper
 
-/**
+/**选项类型视图
  * @author : 华清松
- *
- * 选项类型视图
  */
-class FormItemCheckHolder(itemView: View) : BaseFormHolder<FormItemEntity<FormValueOfCheck>, FormValueOfCheck>(itemView) {
+class FormItemCheckHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValueOfCheck>, FormValueOfCheck>(itemView) {
 
-    override fun setData(position: Int, formItem: FormItemEntity<FormValueOfCheck>) {
-        itemView.form_item_check.text = getText(formItem)
-        itemView.form_item_check.hint = formItem.notice
-        itemView.form_item_check.isEnabled = formItem.editable
+    override fun setData(position: Int, data: FormItemEntity<FormValueOfCheck>) {
+        itemView.form_item_check.text = getText(data)
+        itemView.form_item_check.hint = data.notice
+        itemView.form_item_check.isEnabled = data.editable
 
         itemView.form_item_check.setOnClickListener {
-            showCheck(formItem, object : OnTListener<String?> {
+            showCheck(data, object : OnTListener<String?> {
                 override fun back(t: String?) {
                     t?.let { itemView.form_item_check.text = it }
                 }

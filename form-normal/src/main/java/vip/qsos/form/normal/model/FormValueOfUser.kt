@@ -2,10 +2,8 @@ package vip.qsos.form.normal.model
 
 import vip.qsos.form.lib.model.AbsValue
 
-/**
+/**表单项值-人员实体类
  * @author : 华清松
- *
- * 表单项值-人员实体类
  * @param userId 用户ID
  * @param userName 用户名称
  * @param userDesc 用户描述，推荐为手机号

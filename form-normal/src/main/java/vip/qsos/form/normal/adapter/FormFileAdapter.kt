@@ -12,10 +12,8 @@ import vip.qsos.form.normal.R
 import vip.qsos.form.normal.model.FormValueOfFile
 import vip.qsos.form.normal.utils.GlideApp
 
-/**
+/**文件列表容器
  * @author : 华清松
- *
- * 文件列表容器
  */
 class FormFileAdapter(
         var data: ArrayList<FormValueEntity<FormValueOfFile>>,
@@ -30,7 +28,7 @@ class FormFileAdapter(
 
     override fun onBindViewHolder(holder: BaseHolder<FormValueEntity<FormValueOfFile>>, position: Int) {
         holder as FormItemFileItemHolder
-        holder.setData(data[position], position)
+        holder.setData(position, data[position])
         holder.setDeleteListener(object : FormItemFileItemHolder.OnDeleteListener {
             override fun delete(position: Int) {
                 data.remove(data[position])
@@ -50,9 +48,8 @@ class FormFileAdapter(
 
 }
 
-/**
+/**文件布局
  * @author : 华清松
- * 文件布局
  */
 class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormValueOfFile>>(itemView) {
 
@@ -75,7 +72,7 @@ class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormVa
         this.mOnDeleteListener = listenerOn
     }
 
-    override fun setData(data: FormValueEntity<FormValueOfFile>, position: Int) {
+    override fun setData(position: Int, data: FormValueEntity<FormValueOfFile>) {
         data.value?.let { file ->
             itemView.tv_item_form_file_name.text = file.fileName
             GlideApp.with(itemView.context)

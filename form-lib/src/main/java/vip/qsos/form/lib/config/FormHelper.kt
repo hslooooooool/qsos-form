@@ -1,8 +1,11 @@
 package vip.qsos.form.lib.config
 
 import android.view.ViewGroup
-import vip.qsos.form.lib.base.AbsFormHolder
+import vip.qsos.form.lib.base.BaseFormHolder
 
+/**表单帮助类
+ * @author : 华清松
+ */
 object FormHelper : FormConfig {
 
     private var formConfig: FormConfig? = null
@@ -26,7 +29,7 @@ object FormHelper : FormConfig {
         return helper().getValueType(viewType)
     }
 
-    override fun getHolder(parent: ViewGroup, viewType: Int): AbsFormHolder<*, *> {
+    override fun getHolder(parent: ViewGroup, viewType: Int): BaseFormHolder<*, *> {
         return helper().getHolder(parent, viewType)
     }
 

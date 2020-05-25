@@ -8,10 +8,8 @@ import vip.qsos.form.holder.FormItemUserHolder
 import vip.qsos.form.lib.config.FormConfig
 import vip.qsos.form.normal.hodler.*
 
-/**
+/**表单配置
  * @author : 华清松
- *
- * 表单配置
  */
 class FormConfigImpl : FormConfig {
 
@@ -23,7 +21,7 @@ class FormConfigImpl : FormConfig {
         return viewType
     }
 
-    override fun getHolder(parent: ViewGroup, viewType: Int): BaseFormHolder<*, *> {
+    override fun getHolder(parent: ViewGroup, viewType: Int): AbsFormHolder<*, *> {
         val layoutId = getLayoutId(getValueType(viewType))
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return when (viewType) {

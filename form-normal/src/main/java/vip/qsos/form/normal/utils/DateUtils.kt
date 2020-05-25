@@ -5,9 +5,8 @@ import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
+/**时间格式转换 工具类
  * @author : 华清松
- * 时间格式转换 工具类
  */
 @SuppressLint("SimpleDateFormat")
 object DateUtils {
