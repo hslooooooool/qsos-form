@@ -17,12 +17,6 @@ data class FormEntity(
 ) {
 
     /**表单列表项*/
-    var formItems: List<FormItemEntity<*>>? = arrayListOf()
-        get() {
-            if (field == null) {
-                field = arrayListOf()
-            }
-            return field
-        }
+    var formItems: List<FormItemEntity<*>> = arrayListOf()
 
 }

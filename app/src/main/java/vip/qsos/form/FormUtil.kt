@@ -22,7 +22,7 @@ object FormUtil {
                     value = FormValueOfText("填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!")
             )
             descValue1.editable = false
-            desc1.formValues!!.add(descValue1)
+            desc1.formValues.add(descValue1)
             formItemList.add(desc1)
 
             /**说明*/
@@ -32,14 +32,14 @@ object FormUtil {
                     value = FormValueOfText("填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!")
             )
             descValue2.editable = false
-            desc2.formValues!!.add(descValue2)
+            desc2.formValues.add(descValue2)
             formItemList.add(desc2)
 
             /**内容*/
             val content1 = FormItemEntity<FormValueOfText>(title = "内容举例1", notice = "请填写内容，必填",
-                    valueType = 1, limitMin = 10, limitMax = 100, require = true)
+                    valueType = 1, limitMin = 5, limitMax = 100, require = true)
             val contentValue1 = FormValueEntity(value = FormValueOfText())
-            content1.formValues!!.add(contentValue1)
+            content1.formValues.add(contentValue1)
             formItemList.add(content1)
 
             /**内容*/
@@ -55,8 +55,8 @@ object FormUtil {
                         position = i,
                         value = FormValueOfCheck("$i", "选项$i", "$i")
                 )
-                state1.formValues!!.add(stateValue)
-                state1.formValues!!.sortedBy { it.position }
+                state1.formValues.add(stateValue)
+                state1.formValues.sortedBy { it.position }
             }
             formItemList.add(state1)
 
@@ -68,8 +68,8 @@ object FormUtil {
                         position = i,
                         value = FormValueOfCheck("$i", "选项$i", "$i")
                 )
-                state2.formValues!!.add(stateValue)
-                state2.formValues!!.sortedBy { it.position }
+                state2.formValues.add(stateValue)
+                state2.formValues.sortedBy { it.position }
             }
             formItemList.add(state2)
 
@@ -84,10 +84,10 @@ object FormUtil {
             for (i in 1..7) {
                 val typeValue = FormValueEntity(
                         position = i,
-                        value = FormValueOfCheck("$i", "选项$i", "$i", i == 1)
+                        value = FormValueOfCheck("$i", "选项$i", "$i")
                 )
-                type1.formValues!!.add(typeValue)
-                type1.formValues!!.sortedBy { it.position }
+                type1.formValues.add(typeValue)
+                type1.formValues.sortedBy { it.position }
             }
             formItemList.add(type1)
 
@@ -95,12 +95,12 @@ object FormUtil {
             val type2 = FormItemEntity<FormValueOfCheck>(title = "多选举例2", notice = "多选举例,非必选",
                     valueType = 2, limitMin = 0, limitMax = 0, require = false)
             for (i in 1..5) {
-                val typeValue = FormValueEntity<FormValueOfCheck>(
+                val typeValue = FormValueEntity(
                         position = i,
                         value = FormValueOfCheck("$i", "选项$i", "$i", false)
                 )
-                type2.formValues!!.add(typeValue)
-                type2.formValues!!.sortedBy { it.position }
+                type2.formValues.add(typeValue)
+                type2.formValues.sortedBy { it.position }
             }
             formItemList.add(type2)
 
@@ -112,8 +112,8 @@ object FormUtil {
             val timeValue1 = FormValueEntity(
                     position = 1, limit = "yyyy-MM-dd HH:mm",
                     value = FormValueOfTime(nowTime, nowTime - limitTime, nowTime + limitTime))
-            time1.formValues!!.add(timeValue1)
-            time1.formValues!!.sortedBy { it.position }
+            time1.formValues.add(timeValue1)
+            time1.formValues.sortedBy { it.position }
             formItemList.add(time1)
 
             /**时间举例*/
@@ -123,8 +123,8 @@ object FormUtil {
                     position = 1, limit = "yyyy-MM-dd HH:mm",
                     value = FormValueOfTime(nowTime, nowTime - limitTime, nowTime + limitTime)
             )
-            time2.formValues!!.add(timeValue2)
-            time2.formValues!!.sortedBy { it.position }
+            time2.formValues.add(timeValue2)
+            time2.formValues.sortedBy { it.position }
             formItemList.add(time2)
 
             /**附件上传*/
@@ -133,7 +133,7 @@ object FormUtil {
             val fileValue = FormValueEntity(
                     value = FormValueOfFile(fileName = "测试图片", fileUrl = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
             )
-            file.formValues!!.add(fileValue)
+            file.formValues.add(fileValue)
             formItemList.add(file)
 
             /**附件上传*/
@@ -141,21 +141,21 @@ object FormUtil {
                     valueType = 5, limitMin = 0, limitMax = 9, limit = "FILE")
             for (i in 1..2) {
                 val file2Value = FormValueEntity(
-                        value = FormValueOfFile(fileName = "测试文件$i")
+                        value = FormValueOfFile(fileName = "测试文件$i", fileUrl = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
                 )
                 file2Value.editable = i != 1
-                file2.formValues!!.add(file2Value)
+                file2.formValues.add(file2Value)
             }
             formItemList.add(file2)
 
             /**人员举例*/
             val user = FormItemEntity<FormValueOfUser>(title = "人员举例1", notice = "管理员，至少一人",
-                    valueType = 4, limitMin = 1, limit = "ADMIN")
+                    valueType = 4, limitMin = 1, limit = "ADMIN", require = true)
             for (i in 1..2) {
                 val userValue = FormValueEntity(
                         value = FormValueOfUser(userName = "管理人员$i", userAvatar = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
                 )
-                user.formValues!!.add(userValue)
+                user.formValues.add(userValue)
             }
             formItemList.add(user)
 
@@ -166,7 +166,7 @@ object FormUtil {
                         value = FormValueOfUser(userName = "抄送人员$i", userAvatar = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
                 )
                 value.editable = i != 1
-                user2.formValues!!.add(value)
+                user2.formValues.add(value)
             }
             formItemList.add(user2)
 

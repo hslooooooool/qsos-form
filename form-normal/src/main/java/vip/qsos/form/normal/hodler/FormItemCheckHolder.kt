@@ -18,6 +18,7 @@ import vip.qsos.lib.select.SelectHelper
 class FormItemCheckHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValueOfCheck>, FormValueOfCheck>(itemView) {
 
     override fun setData(position: Int, data: FormItemEntity<FormValueOfCheck>) {
+        super.setData(position, data)
         itemView.form_item_check.text = getText(data)
         itemView.form_item_check.hint = data.notice
         itemView.form_item_check.isEnabled = data.editable
@@ -36,13 +37,13 @@ class FormItemCheckHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormVal
         var text = ""
         when {
             data.formValues!!.size == 1 -> {
-                text = data.formValue!!.value?.ckName ?: ""
+                text = data.formValue!!.value.ckName
             }
             data.formValues!!.isNotEmpty() && data.limitMax == 1 -> {
                 for (v in data.formValues!!) {
                     val check = v.value
                     var checked = false
-                    if (check?.ckChecked == true) {
+                    if (check.ckChecked) {
                         text = check.ckName
                         checked = true
                     }
@@ -52,7 +53,7 @@ class FormItemCheckHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormVal
             data.formValues!!.isNotEmpty() -> {
                 for (v in data.formValues!!) {
                     val check = v.value
-                    if (check?.ckChecked == true) {
+                    if (check.ckChecked) {
                         text += check.ckName + ";"
                     }
                 }
@@ -69,7 +70,7 @@ class FormItemCheckHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormVal
             var checkValue = true
             data.formValues!!.forEach {
                 val check = it.value
-                if (check?.ckName == null || TextUtils.isEmpty(check.ckName)) {
+                if (TextUtils.isEmpty(check.ckName)) {
                     checkValue = false
                 }
             }
@@ -89,7 +90,7 @@ class FormItemCheckHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormVal
     private fun showSingleCheck(formItemEntity: FormItemEntity<FormValueOfCheck>, listener: OnTListener<String?>) {
         val mOperations = arrayListOf<Operation>()
         formItemEntity.formValues!!.forEach {
-            mOperations.add(Operation(it.value!!.ckName, it.value!!.ckValue, it.value!!.ckChecked, it.editable))
+            mOperations.add(Operation(it.value.ckName, it.value.ckValue, it.value.ckChecked, it.editable))
         }
         SelectHelper.selectOfSingle(
                 activity = itemView.context as AppCompatActivity,
@@ -98,8 +99,8 @@ class FormItemCheckHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormVal
                     override fun select(data: Operation) {
                         var name: String? = null
                         formItemEntity.formValues!!.forEach { entity ->
-                            val realValue = entity.value!!
-                            realValue.ckChecked = entity.value!!.ckName == data.key
+                            val realValue = entity.value
+                            realValue.ckChecked = entity.value.ckName == data.key
                             if (realValue.ckChecked) name = realValue.ckName
                             entity.value = realValue
                         }
@@ -112,7 +113,7 @@ class FormItemCheckHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormVal
     private fun showMultiCheck(formItemEntity: FormItemEntity<FormValueOfCheck>, listener: OnTListener<String?>) {
         val mOperations = arrayListOf<Operation>()
         formItemEntity.formValues!!.forEach {
-            mOperations.add(Operation(it.value!!.ckName, it.value!!.ckValue, it.value!!.ckChecked, it.editable))
+            mOperations.add(Operation(it.value.ckName, it.value.ckValue, it.value.ckChecked, it.editable))
         }
 
         SelectHelper.selectOfMultiple(
@@ -124,7 +125,7 @@ class FormItemCheckHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormVal
                     override fun select(data: List<Operation>) {
                         data.forEach { o ->
                             formItemEntity.formValues!!.find {
-                                it.value!!.ckName == o.key
+                                it.value.ckName == o.key
                             }.also {
                                 it?.value!!.ckChecked = o.checked
                             }

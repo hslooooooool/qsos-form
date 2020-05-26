@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp">
-
-    <ImageView
-        android:id="@+id/iv_item_form_file_icon"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:background="@android:color/darker_gray"
-        android:scaleType="fitXY"
-        app:layout_constraintDimensionRatio="H,1:1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/iv_item_form_file_delete"
-        android:layout_width="20dp"
-        android:layout_height="0dp"
-        android:layout_alignParentEnd="true"
-        android:padding="2dp"
-        app:layout_constraintDimensionRatio="W,1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/form_close_gray" />
-
-    <TextView
-        android:id="@+id/tv_item_form_file_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:textColor="#47535F"
-        android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/iv_item_form_file_icon"
-        tools:text="@string/app_name" />
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:padding="10dp">
+	
+	<ImageView
+		android:id="@+id/iv_item_form_file_icon"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_margin="10dp"
+		android:background="@android:color/darker_gray"
+		android:scaleType="fitCenter"
+		app:layout_constraintDimensionRatio="H,1:1"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+	
+	<ImageView
+		android:id="@+id/iv_item_form_file_delete"
+		android:layout_width="20dp"
+		android:layout_height="0dp"
+		android:layout_alignParentEnd="true"
+		android:padding="2dp"
+		app:layout_constraintDimensionRatio="W,1:1"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:srcCompat="@drawable/form_close_gray" />
+	
+	<TextView
+		android:id="@+id/tv_item_form_file_name"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:ellipsize="end"
+		android:gravity="center"
+		android:maxLines="1"
+		android:textColor="#47535F"
+		android:textSize="12sp"
+		app:layout_constraintTop_toBottomOf="@id/iv_item_form_file_icon"
+		tools:text="@string/app_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

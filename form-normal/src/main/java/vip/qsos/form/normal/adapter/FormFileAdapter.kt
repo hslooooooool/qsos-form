@@ -73,7 +73,7 @@ class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormVa
     }
 
     override fun setData(position: Int, data: FormValueEntity<FormValueOfFile>) {
-        data.value?.let { file ->
+        data.value.let { file ->
             itemView.tv_item_form_file_name.text = file.fileName
             GlideApp.with(itemView.context)
                     .load(file.fileCover)

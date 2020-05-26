@@ -51,9 +51,9 @@ abstract class AbsFormItemFileHolder(
             }
         }
 
-        itemView.rv_item_form_files.layoutManager = GridLayoutManager(itemView.context, 4)
+        itemView.rv_item_form_files.layoutManager = GridLayoutManager(itemView.context, 5)
         itemView.rv_item_form_files.adapter = FormFileAdapter(
-                data.formValues!!,
+                data.formValues,
                 object : FormItemFileItemHolder.OnItemListener {
                     override fun item(position: Int, data: FormValueEntity<FormValueOfFile>) {
                         clickFile(position, data)
@@ -66,8 +66,8 @@ abstract class AbsFormItemFileHolder(
                 }
         )
 
-        val size = data.formValues!!.size
-        val limitMax = data.limitMax ?: 0
+        val size = data.formValues.size
+        val limitMax = data.limitMax
         val canAdd = limitMax == 0 || size < limitMax
         val listener = object : OnSelectListener<Boolean> {
             override fun select(data: Boolean) {

@@ -30,25 +30,19 @@ data class FormItemEntity<T : AbsValue> constructor(
 
     /**表单项值第一个*/
     var formValue: FormValueEntity<T>? = null
-        get() = if (formValues.isNullOrEmpty()) null else formValues!![0]
+        get() = if (formValues.isEmpty()) null else formValues[0]
         set(value) {
             field = value
             value?.let {
-                if (formValues!!.size > 0) {
-                    formValues!!.removeAt(0)
+                if (formValues.isNotEmpty()) {
+                    formValues.removeAt(0)
                 }
-                formValues!!.add(0, value)
+                formValues.add(0, value)
             }
         }
 
     /**表单项值集合*/
-    var formValues: ArrayList<FormValueEntity<T>>? = arrayListOf()
-        get() {
-            if (field == null) {
-                field = arrayListOf()
-            }
-            return field
-        }
+    var formValues: ArrayList<FormValueEntity<T>> = arrayListOf()
 
     /**表单项类型限制集合*/
     var limitTypeList: List<String>? = null

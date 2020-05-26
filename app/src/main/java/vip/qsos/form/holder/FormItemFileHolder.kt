@@ -21,8 +21,8 @@ class FormItemFileHolder(
 ) : AbsFormItemFileHolder(itemView) {
 
     override fun takeFile(type: FormValueOfFile.Type, data: FormItemEntity<FormValueOfFile>, listener: OnSelectListener<Boolean>) {
-        val size = data.formValues!!.size
-        val limitMax = data.limitMax ?: 0
+        val size = data.formValues.size
+        val limitMax = data.limitMax
         val activity = itemView.context as AppCompatActivity
         val value = FormValueEntity(
                 value = FormValueOfFile(fileName = "", fileUrl = "")
@@ -34,7 +34,8 @@ class FormItemFileHolder(
                         override fun back(t: Uri) {
                             value.value.fileName = t.path ?: ""
                             value.value.fileUrl = t.toString()
-                            data.formValues!!.add(value)
+                            value.value.fileCover = t.toString()
+                            data.formValues.add(value)
                             listener.select(true)
                         }
                     })
@@ -44,7 +45,8 @@ class FormItemFileHolder(
                         override fun back(t: Uri) {
                             value.value.fileName = t.path ?: ""
                             value.value.fileUrl = t.toString()
-                            data.formValues!!.add(value)
+                            value.value.fileCover = t.toString()
+                            data.formValues.add(value)
                             listener.select(true)
                         }
                     })
@@ -54,7 +56,7 @@ class FormItemFileHolder(
                         override fun back(t: Uri) {
                             value.value.fileName = t.path ?: ""
                             value.value.fileUrl = t.toString()
-                            data.formValues!!.add(value)
+                            data.formValues.add(value)
                             listener.select(true)
                         }
                     })
@@ -64,7 +66,8 @@ class FormItemFileHolder(
                         override fun back(t: Uri) {
                             value.value.fileName = t.path ?: ""
                             value.value.fileUrl = t.toString()
-                            data.formValues!!.add(value)
+                            value.value.fileCover = t.toString()
+                            data.formValues.add(value)
                             listener.select(true)
                         }
                     })
@@ -74,7 +77,7 @@ class FormItemFileHolder(
                         override fun back(t: Uri) {
                             value.value.fileName = t.path ?: ""
                             value.value.fileUrl = t.toString()
-                            data.formValues!!.add(value)
+                            data.formValues.add(value)
                             listener.select(true)
                         }
                     })

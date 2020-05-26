@@ -15,6 +15,7 @@ import vip.qsos.form.normal.model.FormValueOfText
 class FormItemInputHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValueOfText>, FormValueOfText>(itemView) {
 
     override fun setData(position: Int, data: FormItemEntity<FormValueOfText>) {
+        super.setData(position, data)
         var text = data.formValue?.value
         if (text == null) {
             text = FormValueOfText("")

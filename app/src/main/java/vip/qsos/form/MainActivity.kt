@@ -36,24 +36,26 @@ class MainActivity : AppCompatActivity() {
         if (mModel.mForm.value == null) {
             mModel.mForm.value = FormUtil.Create.feedbackForm()
         }
-        mAdapter = FormAdapter(mModel.mForm.value!!.formItems!!)
+        mAdapter = FormAdapter(mModel.mForm.value!!.formItems)
     }
 
     private fun initView() {
         form_list.layoutManager = LinearLayoutManager(this)
         form_list.adapter = mAdapter
         form_title.text = mModel.mForm.value!!.title
-        mAdapter.notifyDataSetChanged()
 
         form_submit.setOnClickListener {
             val verify = FormVerifyUtils.verify(mModel.mForm.value!!)
-            if (!verify.pass) {
+            val itemName = mModel.mForm.value!!.formItems[verify.info.itemIndex].title
+            if (verify.pass) {
                 Toast.makeText(this, verify.msg, Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, itemName + "-" + verify.msg, Toast.LENGTH_SHORT).show()
             }
         }
 
         mModel.mForm.observe(this, Observer {
-            // 数据变化监听，设置View
+            mAdapter.notifyDataSetChanged()
         })
     }
 

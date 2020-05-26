@@ -16,20 +16,20 @@ class FormItemUserHolder(
 ) : AbsFormItemUserHolder(itemView) {
 
     override fun selectUser(data: FormItemEntity<FormValueOfUser>, listener: OnTListener<Boolean>) {
-        val size = data.formValues!!.size
+        val size = data.formValues.size
         val limitMax = data.limitMax ?: 0
         val value = FormValueEntity(
                 value = FormValueOfUser(userName = "抄送人员${size + 1}", userAvatar = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
         )
         if (limitMax > 0) {
             if (size < limitMax) {
-                data.formValues!!.add(value)
+                data.formValues.add(value)
                 listener.back(true)
             } else {
                 listener.back(false)
             }
         } else {
-            data.formValues!!.add(value)
+            data.formValues.add(value)
             listener.back(true)
         }
     }
