@@ -76,10 +76,3 @@ dependencies {
 repositories {
     mavenCentral()
 }
-
-// 获取编译时间
-static def apkTime() {
-    return new Date().format("yyyy-MM-dd hh:mm:ss", TimeZone.getTimeZone("UTC"))
-}
-
-ext.time = apkTime()
