@@ -43,21 +43,19 @@ class FormItemTimeHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValu
 
     private fun getTime(data: FormItemEntity<FormValueOfTime>): String {
         var time = ""
-        if (data.formValues != null) {
-            if (data.formValues!!.size == 1) {
-                data.formValue?.value?.let {
-                    if (it.time > 0L) {
-                        time = DateUtils.format(millis = it.time, pattern = data.formValue?.limit)
-                    }
+        if (data.formValues.size == 1) {
+            data.formValue?.value?.let {
+                if (it.time > 0L) {
+                    time = DateUtils.format(millis = it.time, pattern = data.formValue?.limit)
                 }
-            } else if (data.formValues!!.size == 2) {
-                val time1 = data.formValues!![0].value
-                val time2 = data.formValues!![1].value
-                if (time1.time > 0L && time2.time > 0L) {
-                    time = DateUtils.format(millis = time1.time, pattern = data.formValues!![0].limit) +
-                            "\t至\t" +
-                            DateUtils.format(millis = time2.time, pattern = data.formValues!![1].limit)
-                }
+            }
+        } else if (data.formValues.size == 2) {
+            val time1 = data.formValues[0].value
+            val time2 = data.formValues[1].value
+            if (time1.time > 0L && time2.time > 0L) {
+                time = DateUtils.format(millis = time1.time, pattern = data.formValues[0].limit) +
+                        "\t至\t" +
+                        DateUtils.format(millis = time2.time, pattern = data.formValues[1].limit)
             }
         }
         return time
