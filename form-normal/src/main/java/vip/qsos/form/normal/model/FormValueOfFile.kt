@@ -27,6 +27,7 @@ data class FormValueOfFile(
         fun getFileTypeByMime(fileType: String?): Type {
             return when (fileType?.toUpperCase(Locale.ENGLISH)) {
                 Type.IMAGE.name -> Type.IMAGE
+                Type.ALBUM.name -> Type.ALBUM
                 Type.VIDEO.name -> Type.VIDEO
                 Type.AUDIO.name -> Type.AUDIO
                 else -> Type.FILE
