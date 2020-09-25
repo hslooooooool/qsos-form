@@ -13,7 +13,7 @@ import java.util.*
  * @param require 表单项是否必填
  * @param limitMin 值的最小数量
  * @param limitMax 值的最大数量
- * @param limit 值限制。如：选用户的时候，可为角色字段;选时间的时候,可为时间格式；多个条件可用";"分割，不传不限制
+ * @param limitFormat 值格式限制。如：选用户的时候，可为角色字段;选时间的时候,可为时间格式；多个条件可用";"分割，不传不限制
  */
 data class FormItemEntity<T : AbsValue> constructor(
         var title: String = "",
@@ -25,7 +25,7 @@ data class FormItemEntity<T : AbsValue> constructor(
         var require: Boolean = false,
         var limitMin: Int = 0,
         var limitMax: Int = 0,
-        var limit: String? = ""
+        var limitFormat: String? = ""
 ) {
 
     /**表单项值第一个*/
@@ -48,7 +48,7 @@ data class FormItemEntity<T : AbsValue> constructor(
     var limitTypeList: List<String>? = null
         get() {
             if (field == null) {
-                field = limit?.toLowerCase(Locale.ENGLISH)?.split(";") ?: arrayListOf()
+                field = limitFormat?.toLowerCase(Locale.ENGLISH)?.split(";") ?: arrayListOf()
             }
             return field
         }

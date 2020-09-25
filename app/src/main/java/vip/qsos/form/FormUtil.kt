@@ -110,7 +110,7 @@ object FormUtil {
             val time1 = FormItemEntity<FormValueOfTime>(title = "时间举例1", notice = "时间举例,必选",
                     valueType = 3, require = true)
             val timeValue1 = FormValueEntity(
-                    position = 1, limit = "yyyy-MM-dd HH:mm",
+                    position = 1, limitFormat = "yyyy-MM-dd HH:mm",
                     value = FormValueOfTime(nowTime, nowTime - limitTime, nowTime + limitTime))
             time1.formValues.add(timeValue1)
             time1.formValues.sortedBy { it.position }
@@ -120,7 +120,7 @@ object FormUtil {
             val time2 = FormItemEntity<FormValueOfTime>(title = "时间举例2", notice = "时间举例,非必选",
                     valueType = 3, editable = false)
             val timeValue2 = FormValueEntity(
-                    position = 1, limit = "yyyy-MM-dd HH:mm",
+                    position = 1, limitFormat = "yyyy-MM-dd HH:mm",
                     value = FormValueOfTime(nowTime, nowTime - limitTime, nowTime + limitTime)
             )
             time2.formValues.add(timeValue2)
@@ -129,7 +129,7 @@ object FormUtil {
 
             /**附件上传*/
             val file = FormItemEntity<FormValueOfFile>(title = "附件举例1", notice = "全是图片",
-                    valueType = 5, limitMin = 0, limitMax = 9, limit = "IMAGE")
+                    valueType = 5, limitMin = 0, limitMax = 9, limitFormat = "IMAGE")
             val fileValue = FormValueEntity(
                     value = FormValueOfFile(fileName = "测试图片", fileUrl = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
             )
@@ -138,7 +138,7 @@ object FormUtil {
 
             /**附件上传*/
             val file2 = FormItemEntity<FormValueOfFile>(title = "附件举例2", notice = "所有文件",
-                    valueType = 5, limitMin = 0, limitMax = 9, limit = "FILE")
+                    valueType = 5, limitMin = 0, limitMax = 9, limitFormat = "FILE")
             for (i in 1..2) {
                 val file2Value = FormValueEntity(
                         value = FormValueOfFile(fileName = "测试文件$i", fileUrl = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")
@@ -150,7 +150,7 @@ object FormUtil {
 
             /**人员举例*/
             val user = FormItemEntity<FormValueOfUser>(title = "人员举例1", notice = "管理员，至少一人",
-                    valueType = 4, limitMin = 1, limit = "ADMIN", require = true)
+                    valueType = 4, limitMin = 1, limitFormat = "ADMIN", require = true)
             for (i in 1..2) {
                 val userValue = FormValueEntity(
                         value = FormValueOfUser(userName = "管理人员$i", userAvatar = "http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png")

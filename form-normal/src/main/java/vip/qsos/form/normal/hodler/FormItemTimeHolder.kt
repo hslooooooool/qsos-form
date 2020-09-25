@@ -46,16 +46,16 @@ class FormItemTimeHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValu
         if (data.formValues.size == 1) {
             data.formValue?.value?.let {
                 if (it.time > 0L) {
-                    time = DateUtils.format(millis = it.time, pattern = data.formValue?.limit)
+                    time = DateUtils.format(millis = it.time, pattern = data.formValue?.limitFormat)
                 }
             }
         } else if (data.formValues.size == 2) {
             val time1 = data.formValues[0].value
             val time2 = data.formValues[1].value
             if (time1.time > 0L && time2.time > 0L) {
-                time = DateUtils.format(millis = time1.time, pattern = data.formValues[0].limit) +
+                time = DateUtils.format(millis = time1.time, pattern = data.formValues[0].limitFormat) +
                         "\t至\t" +
-                        DateUtils.format(millis = time2.time, pattern = data.formValues[1].limit)
+                        DateUtils.format(millis = time2.time, pattern = data.formValues[1].limitFormat)
             }
         }
         return time

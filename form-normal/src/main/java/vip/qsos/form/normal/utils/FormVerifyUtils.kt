@@ -83,7 +83,7 @@ object FormVerifyUtils {
                     var typeRight = true
                     /*已填，判断文字是否符合输入限制*/
                     if (regex) {
-                        formValue.limit?.let {
+                        formValue.limitFormat?.let {
                             typeRight = try {
                                 Regex(it).matches(content!!)
                             } catch (e: Exception) {
