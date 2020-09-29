@@ -1,7 +1,5 @@
 package vip.qsos.form.normal.model
 
-import vip.qsos.form.lib.model.AbsValue
-
 /**表单项值-选项实体类
  * @author : 华清松
  * @param ckId 选项ID
@@ -14,4 +12,6 @@ data class FormValueOfCheck(
         var ckName: String,
         var ckValue: String = ckName,
         var ckChecked: Boolean = false
-) : AbsValue()
+) : AbsValue() {
+    override val valueType: Int = 2
+}

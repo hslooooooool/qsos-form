@@ -16,17 +16,17 @@ import vip.qsos.form.normal.utils.GlideApp
  * @author : 华清松
  */
 class FormUserAdapter(
-        var data: ArrayList<FormValueEntity<FormValueOfUser>>,
+        var data: ArrayList<FormValueEntity>,
         private var mOnItemListener: FormItemUserItemHolder.OnItemListener,
         private var mOnDeleteListener: FormItemUserItemHolder.OnDeleteListener
-) : RecyclerView.Adapter<BaseHolder<FormValueEntity<FormValueOfUser>>>() {
+) : RecyclerView.Adapter<BaseHolder<FormValueEntity>>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormValueEntity<FormValueOfUser>> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormValueEntity> {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.form_item_user_item, parent, false)
         return FormItemUserItemHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BaseHolder<FormValueEntity<FormValueOfUser>>, position: Int) {
+    override fun onBindViewHolder(holder: BaseHolder<FormValueEntity>, position: Int) {
         holder as FormItemUserItemHolder
         holder.setData(position, data[position])
         holder.setDeleteListener(object : FormItemUserItemHolder.OnDeleteListener {
@@ -36,7 +36,7 @@ class FormUserAdapter(
             }
         })
         holder.setOnItemListener(object : FormItemUserItemHolder.OnItemListener {
-            override fun item(position: Int, data: FormValueEntity<FormValueOfUser>) {
+            override fun item(position: Int, data: FormValueEntity) {
                 mOnItemListener.item(position, data)
             }
         })
@@ -52,14 +52,14 @@ class FormUserAdapter(
  * @author : 华清松
  * 用户列表项布局
  */
-class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormValueOfUser>>(itemView) {
+class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity>(itemView) {
 
     interface OnDeleteListener {
         fun delete(position: Int)
     }
 
     interface OnItemListener {
-        fun item(position: Int, data: FormValueEntity<FormValueOfUser>)
+        fun item(position: Int, data: FormValueEntity)
     }
 
     private var mOnItemListener: OnItemListener? = null
@@ -73,8 +73,9 @@ class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormVa
         this.mOnDeleteListener = listenerOn
     }
 
-    override fun setData(position: Int, data: FormValueEntity<FormValueOfUser>) {
-        data.value?.let { user ->
+    override fun setData(position: Int, data: FormValueEntity) {
+        data.value.let { u ->
+            val user = u as FormValueOfUser
             itemView.tv_item_form_user_name.text = user.userName
             GlideApp.with(itemView.context)
                     .load(user.userAvatar)

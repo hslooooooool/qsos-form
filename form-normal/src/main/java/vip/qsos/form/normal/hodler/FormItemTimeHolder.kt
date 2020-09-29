@@ -13,15 +13,16 @@ import java.util.*
 /**时间类型视图
  * @author : 华清松
  */
-class FormItemTimeHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValueOfTime>, FormValueOfTime>(itemView) {
+class FormItemTimeHolder(itemView: View) : AbsFormHolder(itemView) {
 
-    override fun setData(position: Int, data: FormItemEntity<FormValueOfTime>) {
+    override fun setData(position: Int, data: FormItemEntity) {
         super.setData(position, data)
         itemView.item_form_time.hint = data.notice
         itemView.item_form_time.text = getTime(data)
 
         itemView.item_form_time.isEnabled = data.editable
         data.formValue?.value?.let { time ->
+            val v = time as FormValueOfTime
             itemView.item_form_time.setOnClickListener {
                 TimePickHelper.picker(
                         context = itemView.context, timeType = CustomDatePicker.Type.YMDHM,
@@ -31,7 +32,7 @@ class FormItemTimeHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValu
                         onDateListener = object : OnDateListener {
                             override fun setDate(date: Date?) {
                                 date?.let {
-                                    data.formValue!!.value.time = date.time
+                                    v.time = date.time
                                     itemView.item_form_time.text = getTime(data)
                                 }
                             }
@@ -41,17 +42,18 @@ class FormItemTimeHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValu
         }
     }
 
-    private fun getTime(data: FormItemEntity<FormValueOfTime>): String {
+    private fun getTime(data: FormItemEntity): String {
         var time = ""
         if (data.formValues.size == 1) {
             data.formValue?.value?.let {
+                it as FormValueOfTime
                 if (it.time > 0L) {
                     time = DateUtils.format(millis = it.time, pattern = data.formValue?.limitFormat)
                 }
             }
         } else if (data.formValues.size == 2) {
-            val time1 = data.formValues[0].value
-            val time2 = data.formValues[1].value
+            val time1 = data.formValues[0].value as FormValueOfTime
+            val time2 = data.formValues[1].value as FormValueOfTime
             if (time1.time > 0L && time2.time > 0L) {
                 time = DateUtils.format(millis = time1.time, pattern = data.formValues[0].limitFormat) +
                         "\t至\t" +

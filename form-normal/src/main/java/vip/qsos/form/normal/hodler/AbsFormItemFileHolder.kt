@@ -17,15 +17,15 @@ import vip.qsos.lib.select.OnSelectListener
  */
 abstract class AbsFormItemFileHolder(
         itemView: View
-) : AbsFormHolder<FormItemEntity<FormValueOfFile>, FormValueOfFile>(itemView) {
+) : AbsFormHolder(itemView) {
 
     /**点击文件添加后方法调用*/
-    abstract fun takeFile(type: FormValueOfFile.Type, data: FormItemEntity<FormValueOfFile>, listener: OnSelectListener<Boolean>)
+    abstract fun takeFile(type: FormValueOfFile.Type, data: FormItemEntity, listener: OnSelectListener<Boolean>)
 
     /**点击文件封面后方法调用*/
-    abstract fun clickFile(position: Int, data: FormValueEntity<FormValueOfFile>)
+    abstract fun clickFile(position: Int, data: FormValueEntity)
 
-    override fun setData(position: Int, data: FormItemEntity<FormValueOfFile>) {
+    override fun setData(position: Int, data: FormItemEntity) {
         super.setData(position, data)
         itemView.form_item_file_take_camera.visibility = View.GONE
         itemView.form_item_file_take_album.visibility = View.GONE
@@ -55,7 +55,7 @@ abstract class AbsFormItemFileHolder(
         itemView.rv_item_form_files.adapter = FormFileAdapter(
                 data.formValues,
                 object : FormItemFileItemHolder.OnItemListener {
-                    override fun item(position: Int, data: FormValueEntity<FormValueOfFile>) {
+                    override fun item(position: Int, data: FormValueEntity) {
                         clickFile(position, data)
                     }
                 },

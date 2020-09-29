@@ -1,7 +1,5 @@
 package vip.qsos.form.normal.model
 
-import vip.qsos.form.lib.model.AbsValue
-
 /**表单项值-人员实体类
  * @author : 华清松
  * @param userId 用户ID
@@ -14,4 +12,7 @@ data class FormValueOfUser(
         var userName: String,
         var userDesc: String = "",
         var userAvatar: String? = null
-) : AbsValue()
+) : AbsValue() {
+
+    override val valueType: Int = 4
+}

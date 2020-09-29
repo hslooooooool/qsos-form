@@ -7,22 +7,24 @@ import android.view.View
 import kotlinx.android.synthetic.main.form_item_input.view.*
 import vip.qsos.form.lib.model.FormItemEntity
 import vip.qsos.form.lib.model.FormValueEntity
+import vip.qsos.form.normal.model.FormValueOfInput
 import vip.qsos.form.normal.model.FormValueOfText
 
 /**输入文本类型视图
  * @author : 华清松
  */
-class FormItemInputHolder(itemView: View) : AbsFormHolder<FormItemEntity<FormValueOfText>, FormValueOfText>(itemView) {
+class FormItemInputHolder(itemView: View) : AbsFormHolder(itemView) {
 
-    override fun setData(position: Int, data: FormItemEntity<FormValueOfText>) {
+    override fun setData(position: Int, data: FormItemEntity) {
         super.setData(position, data)
-        var text = data.formValue?.value
-        if (text == null) {
-            text = FormValueOfText("")
-            val value = FormValueEntity(
-                    editable = true, position = 1, value = text
-            )
+        val text: FormValueOfInput
+        if (data.formValue == null) {
+            text = FormValueOfInput("")
+            val value = FormValueEntity(1, editable = true, position = 1)
+            value.value = text
             data.formValue = value
+        } else {
+            text = data.formValue!!.value as FormValueOfInput
         }
         itemView.item_form_input.setText(text.content)
 

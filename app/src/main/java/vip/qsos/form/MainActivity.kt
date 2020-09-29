@@ -20,29 +20,23 @@ import vip.qsos.form.normal.utils.FormVerifyUtils
  */
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mAdapter: FormAdapter
+    private var mAdapter: FormAdapter = FormAdapter(arrayListOf())
     private val mModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
+        initView()
+
         initData()
 
-        initView()
-    }
-
-    private fun initData() {
-        if (mModel.mForm.value == null) {
-            mModel.mForm.value = FormUtil.Create.feedbackForm()
-        }
-        mAdapter = FormAdapter(mModel.mForm.value!!.formItems)
     }
 
     private fun initView() {
         form_list.layoutManager = LinearLayoutManager(this)
         form_list.adapter = mAdapter
-        form_title.text = mModel.mForm.value!!.title
+        form_submit.isEnabled = false
 
         form_submit.setOnClickListener {
             val verify = FormVerifyUtils.verify(mModel.mForm.value!!)
@@ -53,9 +47,16 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, itemName + "-" + verify.msg, Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
+    private fun initData() {
         mModel.mForm.observe(this, Observer {
-            mAdapter.notifyDataSetChanged()
+            it?.let {
+                mAdapter.data = it.formItems
+                form_title.text = it.title
+                form_submit.isEnabled = true
+                mAdapter.notifyDataSetChanged()
+            } ?: Toast.makeText(this, "错误", Toast.LENGTH_SHORT).show()
         })
     }
 

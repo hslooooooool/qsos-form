@@ -11,6 +11,7 @@ dependencies {
     api 'com.github.hslooooooool:qsos-timepicker:1.0'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation('com.google.code.gson:gson:2.8.6')
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
 
 }

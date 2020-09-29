@@ -1,6 +1,5 @@
 package vip.qsos.form.normal.model
 
-import vip.qsos.form.lib.model.AbsValue
 import java.util.*
 
 /**表单项值-文件实体类
@@ -20,6 +19,8 @@ data class FormValueOfFile(
         var fileUrl: String? = filePath,
         var fileCover: String? = filePath ?: fileUrl
 ) : AbsValue() {
+
+    override val valueType: Int = 5
 
     enum class Type { IMAGE, ALBUM, VIDEO, AUDIO, FILE }
 

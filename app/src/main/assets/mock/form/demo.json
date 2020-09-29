@@ -1,0 +1,485 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": -1,
+    "title": "表单案例",
+    "notice": "这是一个表单填写案例",
+    "submitter": "单元测试",
+    "sceneType": "单元测试",
+    "editable": true,
+    "formItems": [
+      {
+        "id": -1,
+        "title": "文本举例1",
+        "notice": "文本举例1",
+        "valueType": 0,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 0,
+            "formValue": "{\"valueType\":0,\"content\":\"填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "文本举例2",
+        "notice": "文本举例2",
+        "valueType": 0,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 0,
+            "formValue": "{\"valueType\":0,\"content\":\"填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!填写表单,帮助我们解决问题,您将有机会获得优惠券,感谢支持!\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "内容举例1",
+        "notice": "请填写内容，必填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 5,
+        "limitMax": 100,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "内容举例2",
+        "notice": "请填写内容，非必填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 200,
+        "limitFormat": null,
+        "formValues": []
+      },
+      {
+        "id": -1,
+        "title": "单选举例1",
+        "notice": "单选举例,必选",
+        "valueType": 2,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 1,
+        "limitMax": 1,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"1\",\"ckName\":\"选项1\",\"ckValue\":\"1\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 2,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"2\",\"ckName\":\"选项2\",\"ckValue\":\"2\",\"ckChecked\":false}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "单选举例2",
+        "notice": "单选举例,非必选",
+        "valueType": 2,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 1,
+        "limitMax": 1,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"1\",\"ckName\":\"选项1\",\"ckValue\":\"1\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 2,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"2\",\"ckName\":\"选项2\",\"ckValue\":\"2\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 3,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"3\",\"ckName\":\"选项3\",\"ckValue\":\"3\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 4,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"4\",\"ckName\":\"选项4\",\"ckValue\":\"4\",\"ckChecked\":false}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "位置举例",
+        "notice": "位置举例,必选",
+        "valueType": 6,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 1,
+        "limitMax": 1,
+        "limitFormat": null,
+        "formValues": []
+      },
+      {
+        "id": -1,
+        "title": "多选举例1",
+        "notice": "多选举例,必选",
+        "valueType": 2,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 1,
+        "limitMax": 3,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"1\",\"ckName\":\"选项1\",\"ckValue\":\"1\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 2,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"2\",\"ckName\":\"选项2\",\"ckValue\":\"2\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 3,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"3\",\"ckName\":\"选项3\",\"ckValue\":\"3\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 4,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"4\",\"ckName\":\"选项4\",\"ckValue\":\"4\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 5,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"5\",\"ckName\":\"选项5\",\"ckValue\":\"5\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 6,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"6\",\"ckName\":\"选项6\",\"ckValue\":\"6\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 7,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"7\",\"ckName\":\"选项7\",\"ckValue\":\"7\",\"ckChecked\":false}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "多选举例2",
+        "notice": "多选举例,非必选",
+        "valueType": 2,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"1\",\"ckName\":\"选项1\",\"ckValue\":\"1\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 2,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"2\",\"ckName\":\"选项2\",\"ckValue\":\"2\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 3,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"3\",\"ckName\":\"选项3\",\"ckValue\":\"3\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 4,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"4\",\"ckName\":\"选项4\",\"ckValue\":\"4\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 5,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"5\",\"ckName\":\"选项5\",\"ckValue\":\"5\",\"ckChecked\":false}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "时间举例1",
+        "notice": "时间举例,必选",
+        "valueType": 3,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": "yyyy-MM-dd HH:mm",
+            "editable": true,
+            "position": 1,
+            "valueType": 3,
+            "formValue": "{\"valueType\":3,\"time\":1601370741806,\"timeLimitMin\":1443690741806,\"timeLimitMax\":1759050741806}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "时间举例2",
+        "notice": "时间举例,非必选",
+        "valueType": 3,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": "yyyy-MM-dd HH:mm",
+            "editable": true,
+            "position": 1,
+            "valueType": 3,
+            "formValue": "{\"valueType\":3,\"time\":1601370741806,\"timeLimitMin\":1443690741806,\"timeLimitMax\":1759050741806}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "附件举例1",
+        "notice": "全是图片",
+        "valueType": 5,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 9,
+        "limitFormat": "IMAGE",
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 5,
+            "formValue": "{\"valueType\":5,\"fileName\":\"测试图片\",\"fileType\":\"FILE\",\"fileUrl\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"fileCover\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "附件举例2",
+        "notice": "所有文件",
+        "valueType": 5,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 9,
+        "limitFormat": "FILE",
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 5,
+            "formValue": "{\"valueType\":5,\"fileName\":\"测试文件1\",\"fileType\":\"FILE\",\"fileUrl\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"fileCover\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 5,
+            "formValue": "{\"valueType\":5,\"fileName\":\"测试文件2\",\"fileType\":\"FILE\",\"fileUrl\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"fileCover\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "人员举例1",
+        "notice": "管理员，至少一人",
+        "valueType": 4,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 1,
+        "limitMax": 0,
+        "limitFormat": "ADMIN",
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 4,
+            "formValue": "{\"valueType\":4,\"userName\":\"管理人员1\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 4,
+            "formValue": "{\"valueType\":4,\"userName\":\"管理人员2\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "人员举例2",
+        "notice": "抄送人员，必须抄送给抄送人1",
+        "valueType": 4,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 4,
+            "formValue": "{\"valueType\":4,\"userName\":\"抄送人员1\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 4,
+            "formValue": "{\"valueType\":4,\"userName\":\"抄送人员2\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 4,
+            "formValue": "{\"valueType\":4,\"userName\":\"抄送人员3\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+          }
+        ]
+      }
+    ]
+  }
+}

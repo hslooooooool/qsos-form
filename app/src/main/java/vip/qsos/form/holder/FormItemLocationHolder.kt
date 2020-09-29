@@ -24,13 +24,10 @@ class FormItemLocationHolder(itemView: View) : AbsFormItemLocationHolder(itemVie
         mLocationExpand.setBackgroundColor(Color.LTGRAY)
     }
 
-    override fun selectLocation(position: Int, data: FormItemEntity<FormValueOfLocation>, listener: OnTListener<Boolean>) {
-        val value = FormValueEntity(
-                value = FormValueOfLocation(locName = "测试地址${Random.nextInt(10000)}", locX = 134.00, locY = 32.00)
-        )
+    override fun selectLocation(position: Int, data: FormItemEntity, listener: OnTListener<Boolean>) {
+        val value = FormValueEntity(6)
+        value.value = FormValueOfLocation(locName = "测试地址${Random.nextInt(10000)}", locX = 134.00, locY = 32.00)
         data.formValue = value
         listener.back(true)
-
-
     }
 }

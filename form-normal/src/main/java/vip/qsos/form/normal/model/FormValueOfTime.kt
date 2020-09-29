@@ -1,7 +1,5 @@
 package vip.qsos.form.normal.model
 
-import vip.qsos.form.lib.model.AbsValue
-
 /**表单项值-时间实体类
  * @author : 华清松
  * @param time 设置的时间毫秒数
@@ -12,4 +10,7 @@ data class FormValueOfTime(
         var time: Long = 0L,
         var timeLimitMin: Long = 0L,
         var timeLimitMax: Long = 0L
-) : AbsValue()
+) : AbsValue() {
+
+    override val valueType: Int = 3
+}

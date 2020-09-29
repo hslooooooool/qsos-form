@@ -29,7 +29,7 @@ object FormHelper : FormConfig {
         return helper().getValueType(viewType)
     }
 
-    override fun getHolder(parent: ViewGroup, viewType: Int): BaseFormHolder<*, *> {
+    override fun getHolder(parent: ViewGroup, viewType: Int): BaseFormHolder {
         return helper().getHolder(parent, viewType)
     }
 

@@ -10,14 +10,14 @@ import vip.qsos.form.lib.model.FormItemEntity
  * @author : 华清松
  */
 class FormAdapter constructor(
-        var data: List<FormItemEntity<*>>
-) : RecyclerView.Adapter<BaseFormHolder<FormItemEntity<*>, *>>() {
+        var data: List<FormItemEntity>
+) : RecyclerView.Adapter<BaseFormHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseFormHolder<FormItemEntity<*>, *> {
-        return FormHelper.getHolder(parent, viewType) as BaseFormHolder<FormItemEntity<*>, *>
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseFormHolder {
+        return FormHelper.getHolder(parent, viewType)
     }
 
-    override fun onBindViewHolder(holder: BaseFormHolder<FormItemEntity<*>, *>, position: Int) {
+    override fun onBindViewHolder(holder: BaseFormHolder, position: Int) {
         holder.setData(position, data[position])
     }
 

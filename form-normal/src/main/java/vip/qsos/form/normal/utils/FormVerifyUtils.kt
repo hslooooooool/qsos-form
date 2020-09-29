@@ -3,7 +3,10 @@ package vip.qsos.form.normal.utils
 import android.text.TextUtils
 import vip.qsos.form.lib.model.FormEntity
 import vip.qsos.form.lib.model.FormItemEntity
-import vip.qsos.form.normal.model.*
+import vip.qsos.form.normal.model.FormValueOfCheck
+import vip.qsos.form.normal.model.FormValueOfFile
+import vip.qsos.form.normal.model.FormValueOfInput
+import vip.qsos.form.normal.model.FormValueOfTime
 
 /**表单填写结果校验 工具类
  * @author : 华清松
@@ -55,12 +58,12 @@ object FormVerifyUtils {
             } else {
                 /*表单项值类型，0：文本展示；1：输入；2：选项；3：时间；4：人员；5：附件；6：位置*/
                 when (formItem.valueType) {
-                    1 -> input(verify, formItem as FormItemEntity<FormValueOfText>)
-                    2 -> chose(verify, formItem as FormItemEntity<FormValueOfCheck>)
-                    3 -> time(verify, formItem as FormItemEntity<FormValueOfTime>)
-                    4 -> user(verify, formItem as FormItemEntity<FormValueOfUser>)
-                    5 -> file(verify, formItem as FormItemEntity<FormValueOfFile>)
-                    6 -> location(verify, formItem as FormItemEntity<FormValueOfLocation>)
+                    1 -> input(verify, formItem)
+                    2 -> chose(verify, formItem)
+                    3 -> time(verify, formItem)
+                    4 -> user(verify, formItem)
+                    5 -> file(verify, formItem)
+                    6 -> location(verify, formItem)
                 }
             }
 
@@ -69,11 +72,12 @@ object FormVerifyUtils {
     }
 
     /**输入校验*/
-    private fun input(verify: Verify, formItem: FormItemEntity<FormValueOfText>, regex: Boolean = true) {
+    private fun input(verify: Verify, formItem: FormItemEntity, regex: Boolean = true) {
         formItem.formValues.forEachIndexed { index, formValue ->
+            val v = formValue.value as FormValueOfInput
             if (verify.pass) {
                 verify.info.valueIndex = index
-                val content = formValue.value.content?.trim()
+                val content = v.content?.trim()
                 /*判断文字是否为空*/
                 if (formItem.require && TextUtils.isEmpty(content)) {
                     verify.pass = false
@@ -97,14 +101,14 @@ object FormVerifyUtils {
                     }
                 }
                 if (verify.pass) {
-                    if (formItem.limitMin > 0 && formValue.value.content!!.length < formItem.limitMin) {
+                    if (formItem.limitMin > 0 && v.content!!.length < formItem.limitMin) {
                         /*已填，判断最小输入字数是否满足*/
                         verify.pass = false
                         verify.type = 4
                     }
                 }
                 if (verify.pass) {
-                    if (formItem.limitMax > 0 && formValue.value.content!!.length > formItem.limitMax) {
+                    if (formItem.limitMax > 0 && v.content!!.length > formItem.limitMax) {
                         /*已填，判断最小输入字数是否满足*/
                         verify.pass = false
                         verify.type = 5
@@ -115,12 +119,13 @@ object FormVerifyUtils {
     }
 
     /**选项校验*/
-    private fun chose(verify: Verify, formItem: FormItemEntity<FormValueOfCheck>) {
+    private fun chose(verify: Verify, formItem: FormItemEntity) {
         if (formItem.limitMax == 1) {
             /*单选*/
             var chose = 0
             formItem.formValues.forEach {
-                if (it.value.ckChecked) {
+                val v = it.value as FormValueOfCheck
+                if (v.ckChecked) {
                     chose++
                 }
             }
@@ -140,7 +145,8 @@ object FormVerifyUtils {
             /*多选*/
             var chose = 0
             formItem.formValues.forEach {
-                if (it.value.ckChecked) {
+                val v = it.value as FormValueOfCheck
+                if (v.ckChecked) {
                     chose++
                 }
             }
@@ -160,22 +166,23 @@ object FormVerifyUtils {
     }
 
     /**时间校验*/
-    private fun time(verify: Verify, formItem: FormItemEntity<FormValueOfTime>) {
+    private fun time(verify: Verify, formItem: FormItemEntity) {
         formItem.formValues.forEachIndexed { index, formValue ->
             if (verify.pass) {
                 verify.info.valueIndex = index
-                val time = formValue.value.time
+                val v = formValue.value as FormValueOfTime
+                val time = v.time
                 if (formItem.require && time <= 0L) {
                     verify.pass = false
                     verify.type = 2
                 }
                 if (verify.pass && time > 0L) {
-                    if (formValue.value.timeLimitMin > 0 && formValue.value.timeLimitMin > time) {
+                    if (v.timeLimitMin > 0 && v.timeLimitMin > time) {
                         verify.pass = false
                         verify.type = 4
                     }
                     if (verify.pass) {
-                        if (formValue.value.timeLimitMax in 1 until time) {
+                        if (v.timeLimitMax in 1 until time) {
                             verify.pass = false
                             verify.type = 5
                         }
@@ -186,7 +193,7 @@ object FormVerifyUtils {
     }
 
     /**人员校验*/
-    private fun user(verify: Verify, formItem: FormItemEntity<FormValueOfUser>) {
+    private fun user(verify: Verify, formItem: FormItemEntity) {
         val size = formItem.formValues.size
         if (size > 0) {
             /*不为空*/
@@ -204,13 +211,14 @@ object FormVerifyUtils {
     }
 
     /**文件校验*/
-    private fun file(verify: Verify, formItem: FormItemEntity<FormValueOfFile>) {
+    private fun file(verify: Verify, formItem: FormItemEntity) {
         val size = formItem.formValues.size
         if (size > 0) {
             formItem.formValues.forEachIndexed { index, formValueEntity ->
+                val v = formValueEntity.value as FormValueOfFile
                 if (verify.pass) {
                     verify.info.valueIndex = index
-                    if (TextUtils.isEmpty(formValueEntity.value.fileUrl)) {
+                    if (TextUtils.isEmpty(v.fileUrl)) {
                         verify.pass = false
                         verify.type = 2
                     }
@@ -234,7 +242,7 @@ object FormVerifyUtils {
     }
 
     /**位置校验*/
-    private fun location(verify: Verify, formItem: FormItemEntity<FormValueOfLocation>) {
+    private fun location(verify: Verify, formItem: FormItemEntity) {
         val size = formItem.formValues.size
         if (size > 0) {
             /*不为空*/

@@ -20,21 +20,21 @@ class FormItemFileHolder(
         itemView: View
 ) : AbsFormItemFileHolder(itemView) {
 
-    override fun takeFile(type: FormValueOfFile.Type, data: FormItemEntity<FormValueOfFile>, listener: OnSelectListener<Boolean>) {
+    override fun takeFile(type: FormValueOfFile.Type, data: FormItemEntity, listener: OnSelectListener<Boolean>) {
         val size = data.formValues.size
         val limitMax = data.limitMax
         val activity = itemView.context as AppCompatActivity
-        val value = FormValueEntity(
-                value = FormValueOfFile(fileName = "", fileUrl = "")
-        )
+        val value = FormValueEntity(5)
+        value.value = FormValueOfFile(fileName = "", fileUrl = "")
         if (limitMax > 0 && size < limitMax) {
             when (type) {
                 FormValueOfFile.Type.IMAGE -> {
                     FilePicker.with(activity.supportFragmentManager).takeImage(Sources.DEVICE, listener = object : OnTListener<Uri> {
                         override fun back(t: Uri) {
-                            value.value.fileName = t.path ?: ""
-                            value.value.fileUrl = t.toString()
-                            value.value.fileCover = t.toString()
+                            val v = value.value as FormValueOfFile
+                            v.fileName = t.path ?: ""
+                            v.fileUrl = t.toString()
+                            v.fileCover = t.toString()
                             data.formValues.add(value)
                             listener.select(true)
                         }
@@ -43,9 +43,10 @@ class FormItemFileHolder(
                 FormValueOfFile.Type.ALBUM -> {
                     FilePicker.with(activity.supportFragmentManager).takeImage(Sources.ONE, listener = object : OnTListener<Uri> {
                         override fun back(t: Uri) {
-                            value.value.fileName = t.path ?: ""
-                            value.value.fileUrl = t.toString()
-                            value.value.fileCover = t.toString()
+                            val v = value.value as FormValueOfFile
+                            v.fileName = t.path ?: ""
+                            v.fileUrl = t.toString()
+                            v.fileCover = t.toString()
                             data.formValues.add(value)
                             listener.select(true)
                         }
@@ -54,8 +55,9 @@ class FormItemFileHolder(
                 FormValueOfFile.Type.AUDIO -> {
                     FilePicker.with(activity.supportFragmentManager).takeAudio(listener = object : OnTListener<Uri> {
                         override fun back(t: Uri) {
-                            value.value.fileName = t.path ?: ""
-                            value.value.fileUrl = t.toString()
+                            val v = value.value as FormValueOfFile
+                            v.fileName = t.path ?: ""
+                            v.fileUrl = t.toString()
                             data.formValues.add(value)
                             listener.select(true)
                         }
@@ -64,9 +66,10 @@ class FormItemFileHolder(
                 FormValueOfFile.Type.VIDEO -> {
                     FilePicker.with(activity.supportFragmentManager).takeVideo(listener = object : OnTListener<Uri> {
                         override fun back(t: Uri) {
-                            value.value.fileName = t.path ?: ""
-                            value.value.fileUrl = t.toString()
-                            value.value.fileCover = t.toString()
+                            val v = value.value as FormValueOfFile
+                            v.fileName = t.path ?: ""
+                            v.fileUrl = t.toString()
+                            v.fileCover = t.toString()
                             data.formValues.add(value)
                             listener.select(true)
                         }
@@ -75,8 +78,9 @@ class FormItemFileHolder(
                 FormValueOfFile.Type.FILE -> {
                     FilePicker.with(activity.supportFragmentManager).takeFile(listener = object : OnTListener<Uri> {
                         override fun back(t: Uri) {
-                            value.value.fileName = t.path ?: ""
-                            value.value.fileUrl = t.toString()
+                            val v = value.value as FormValueOfFile
+                            v.fileName = t.path ?: ""
+                            v.fileUrl = t.toString()
                             data.formValues.add(value)
                             listener.select(true)
                         }
@@ -88,8 +92,9 @@ class FormItemFileHolder(
         }
     }
 
-    override fun clickFile(position: Int, data: FormValueEntity<FormValueOfFile>) {
-        Toast.makeText(itemView.context, data.value.fileName, Toast.LENGTH_SHORT).show()
+    override fun clickFile(position: Int, data: FormValueEntity) {
+        val v = data.value as FormValueOfFile
+        Toast.makeText(itemView.context, v.fileName, Toast.LENGTH_SHORT).show()
     }
 
 }

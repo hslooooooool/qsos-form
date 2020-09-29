@@ -16,17 +16,17 @@ import vip.qsos.form.normal.utils.GlideApp
  * @author : 华清松
  */
 class FormFileAdapter(
-        var data: ArrayList<FormValueEntity<FormValueOfFile>>,
+        var data: ArrayList<FormValueEntity>,
         private var mOnItemListener: FormItemFileItemHolder.OnItemListener,
         private var mOnDeleteListener: FormItemFileItemHolder.OnDeleteListener
-) : RecyclerView.Adapter<BaseHolder<FormValueEntity<FormValueOfFile>>>() {
+) : RecyclerView.Adapter<BaseHolder<FormValueEntity>>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormValueEntity<FormValueOfFile>> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormValueEntity> {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.form_item_file_item, parent, false)
         return FormItemFileItemHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BaseHolder<FormValueEntity<FormValueOfFile>>, position: Int) {
+    override fun onBindViewHolder(holder: BaseHolder<FormValueEntity>, position: Int) {
         holder as FormItemFileItemHolder
         holder.setData(position, data[position])
         holder.setDeleteListener(object : FormItemFileItemHolder.OnDeleteListener {
@@ -36,7 +36,7 @@ class FormFileAdapter(
             }
         })
         holder.setOnItemListener(object : FormItemFileItemHolder.OnItemListener {
-            override fun item(position: Int, data: FormValueEntity<FormValueOfFile>) {
+            override fun item(position: Int, data: FormValueEntity) {
                 mOnItemListener.item(position, data)
             }
         })
@@ -51,14 +51,14 @@ class FormFileAdapter(
 /**文件布局
  * @author : 华清松
  */
-class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormValueOfFile>>(itemView) {
+class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity>(itemView) {
 
     interface OnDeleteListener {
         fun delete(position: Int)
     }
 
     interface OnItemListener {
-        fun item(position: Int, data: FormValueEntity<FormValueOfFile>)
+        fun item(position: Int, data: FormValueEntity)
     }
 
     private var mOnItemListener: OnItemListener? = null
@@ -72,8 +72,9 @@ class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormVa
         this.mOnDeleteListener = listenerOn
     }
 
-    override fun setData(position: Int, data: FormValueEntity<FormValueOfFile>) {
-        data.value.let { file ->
+    override fun setData(position: Int, data: FormValueEntity) {
+        data.value.let { f ->
+            val file = f as FormValueOfFile
             itemView.tv_item_form_file_name.text = file.fileName
             GlideApp.with(itemView.context)
                     .load(file.fileCover)

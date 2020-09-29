@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
-        tools:replace="android:label,android:icon,android:theme">
+        tools:replace="android:label,android:icon,android:theme"
+        tools:targetApi="m">
 
         <activity
             android:name=".MainActivity"

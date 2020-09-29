@@ -21,7 +21,7 @@ class FormConfigImpl : FormConfig {
         return viewType
     }
 
-    override fun getHolder(parent: ViewGroup, viewType: Int): AbsFormHolder<*, *> {
+    override fun getHolder(parent: ViewGroup, viewType: Int): AbsFormHolder {
         val layoutId = getLayoutId(getValueType(viewType))
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return when (viewType) {
