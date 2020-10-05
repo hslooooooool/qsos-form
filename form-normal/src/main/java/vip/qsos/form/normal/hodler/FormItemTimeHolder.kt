@@ -3,7 +3,6 @@ package vip.qsos.form.normal.hodler
 import android.view.View
 import kotlinx.android.synthetic.main.form_item_time.view.*
 import vip.qsos.form.lib.model.FormItemEntity
-import vip.qsos.form.normal.model.FormValueOfTime
 import vip.qsos.form.normal.utils.DateUtils
 import vip.qsos.timepicker.CustomDatePicker
 import vip.qsos.timepicker.OnDateListener
@@ -22,7 +21,6 @@ class FormItemTimeHolder(itemView: View) : AbsFormHolder(itemView) {
 
         itemView.item_form_time.isEnabled = data.editable
         data.formValue?.value?.let { time ->
-            val v = time as FormValueOfTime
             itemView.item_form_time.setOnClickListener {
                 TimePickHelper.picker(
                         context = itemView.context, timeType = CustomDatePicker.Type.YMDHM,
@@ -32,7 +30,7 @@ class FormItemTimeHolder(itemView: View) : AbsFormHolder(itemView) {
                         onDateListener = object : OnDateListener {
                             override fun setDate(date: Date?) {
                                 date?.let {
-                                    v.time = date.time
+                                    time.time = date.time
                                     itemView.item_form_time.text = getTime(data)
                                 }
                             }
@@ -46,14 +44,13 @@ class FormItemTimeHolder(itemView: View) : AbsFormHolder(itemView) {
         var time = ""
         if (data.formValues.size == 1) {
             data.formValue?.value?.let {
-                it as FormValueOfTime
                 if (it.time > 0L) {
                     time = DateUtils.format(millis = it.time, pattern = data.formValue?.limitFormat)
                 }
             }
         } else if (data.formValues.size == 2) {
-            val time1 = data.formValues[0].value as FormValueOfTime
-            val time2 = data.formValues[1].value as FormValueOfTime
+            val time1 = data.formValues[0].value!!
+            val time2 = data.formValues[1].value!!
             if (time1.time > 0L && time2.time > 0L) {
                 time = DateUtils.format(millis = time1.time, pattern = data.formValues[0].limitFormat) +
                         "\t至\t" +

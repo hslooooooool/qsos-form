@@ -3,9 +3,11 @@ package vip.qsos.form
 import android.app.Application
 import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
-import vip.qsos.form.lib.FormTransHelper
 import vip.qsos.form.lib.config.FormHelper
+import vip.qsos.form.lib.helper.FormTransHelper
+import vip.qsos.form.lib.helper.FormVerifyHelper
 import vip.qsos.form.normal.utils.FormTransUtils
+import vip.qsos.form.normal.utils.FormVerifyUtils
 import vip.qsos.utils_net.lib.APIServer
 import vip.qsos.utils_net.lib.mock.IMockData
 
@@ -19,9 +21,10 @@ class MainApplication : Application() {
         /**配置表单*/
         FormHelper.init(FormConfigImpl())
         FormTransHelper.init(FormTransUtils())
+        FormVerifyHelper.init(FormVerifyUtils())
 
         // 开启网络请求Mock数据
-        IMockData.openMockData = true
+        IMockData.openMockData = false
         IMockData.dataBySdCard = false
         IMockData.requestTime = 0L
 
@@ -31,7 +34,7 @@ class MainApplication : Application() {
         interceptors.add(loggingInterceptor)
         // 初始化网络请求
         APIServer.init(
-                APIServer.Config(this, "http://192.168.2.207:8085/", interceptor = interceptors)
+                APIServer.Config(this, "http://192.168.3.8:8085/", interceptor = interceptors)
         )
     }
 

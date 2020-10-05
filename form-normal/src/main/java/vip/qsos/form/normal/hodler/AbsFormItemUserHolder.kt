@@ -2,7 +2,8 @@ package vip.qsos.form.normal.hodler
 
 import android.annotation.SuppressLint
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.form_item_user.view.*
 import vip.qsos.form.lib.callback.OnTListener
 import vip.qsos.form.lib.model.FormItemEntity
@@ -26,7 +27,8 @@ abstract class AbsFormItemUserHolder(
     @SuppressLint("SetTextI18n")
     override fun setData(position: Int, data: FormItemEntity) {
         super.setData(position, data)
-        itemView.rv_item_form_users.layoutManager = GridLayoutManager(itemView.context, 5)
+
+        itemView.rv_item_form_users.layoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
         itemView.rv_item_form_users.adapter = FormUserAdapter(
                 data.formValues,
                 object : FormItemUserItemHolder.OnItemListener {

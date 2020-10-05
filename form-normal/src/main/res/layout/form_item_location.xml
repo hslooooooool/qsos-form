@@ -5,26 +5,14 @@
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <LinearLayout
+    <include layout="@layout/form_normal_title" />
+
+    <TextView
+        android:id="@+id/item_form_location"
+        style="@style/FormItemValueNameStyle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <include layout="@layout/form_normal_title" />
-
-        <TextView
-            android:id="@+id/item_form_location"
-            style="@style/FormItemValueNameStyle"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            tools:hint="请设置位置" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/item_form_location_expand"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        tools:hint="请设置位置" />
 </LinearLayout>

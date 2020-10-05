@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import kotlinx.android.synthetic.main.form_item_user_item.view.*
 import vip.qsos.form.lib.base.BaseHolder
 import vip.qsos.form.lib.model.FormValueEntity
 import vip.qsos.form.normal.R
-import vip.qsos.form.normal.model.FormValueOfUser
 import vip.qsos.form.normal.utils.GlideApp
 
 /**用户列表容器
@@ -74,11 +74,11 @@ class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity>(itemV
     }
 
     override fun setData(position: Int, data: FormValueEntity) {
-        data.value.let { u ->
-            val user = u as FormValueOfUser
-            itemView.tv_item_form_user_name.text = user.userName
+        data.value.let { user ->
+            itemView.tv_item_form_user_name.text = user!!.userName
             GlideApp.with(itemView.context)
                     .load(user.userAvatar)
+                    .transform(CircleCrop())
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .skipMemoryCache(false)
                     .into(itemView.iv_item_form_user_icon)

@@ -1,54 +1,23 @@
 package vip.qsos.form.normal.utils
 
 import android.text.TextUtils
+import vip.qsos.form.lib.helper.FormVerify
+import vip.qsos.form.lib.helper.IFormVerify
 import vip.qsos.form.lib.model.FormEntity
 import vip.qsos.form.lib.model.FormItemEntity
-import vip.qsos.form.normal.model.FormValueOfCheck
-import vip.qsos.form.normal.model.FormValueOfFile
-import vip.qsos.form.normal.model.FormValueOfInput
-import vip.qsos.form.normal.model.FormValueOfTime
 
 /**表单填写结果校验 工具类
  * @author : 华清松
  */
-object FormVerifyUtils {
-    /**校验信息*/
-    class Verify {
-        var pass = true
+class FormVerifyUtils : IFormVerify {
 
-        /**错误类型：0 无错 1必填未填 2已填为空 3已填格式错误 4已填数量不够 5已填数量多于*/
-        var type: Int = 0
-        var info: Info = Info(0)
-
-        val msg: String
-            get() {
-                val info = "[Item]${info.itemIndex}[Value]${info.valueIndex}-"
-                return when (type) {
-                    0 -> "较验通过"
-                    1 -> info + "没有设置"
-                    2 -> info + "没有值"
-                    3 -> info + "格式错误"
-                    4 -> info + "大小不足"
-                    5 -> info + "大小超标"
-                    else -> info + "较验失败"
-                }
-            }
-
-        data class Info(
-                val itemIndex: Int,
-                var valueIndex: Int = -1
-        )
-
-    }
-
-    /**校验方法*/
-    fun verify(form: FormEntity): Verify {
-        val verify = Verify()
+    override fun verify(form: FormEntity): FormVerify {
+        val verify = FormVerify()
         form.formItems.forEachIndexed { index, formItem ->
             if (!verify.pass) {
                 return verify
             }
-            verify.info = Verify.Info(index)
+            verify.info = FormVerify.Info(index)
             val required = formItem.require
             val nullValue = formItem.formValues.isNullOrEmpty()
             if (required && nullValue) {
@@ -71,13 +40,12 @@ object FormVerifyUtils {
         return verify
     }
 
-    /**输入校验*/
-    private fun input(verify: Verify, formItem: FormItemEntity, regex: Boolean = true) {
+    override fun input(verify: FormVerify, formItem: FormItemEntity, regex: Boolean) {
         formItem.formValues.forEachIndexed { index, formValue ->
-            val v = formValue.value as FormValueOfInput
+            val v = formValue.value
             if (verify.pass) {
                 verify.info.valueIndex = index
-                val content = v.content?.trim()
+                val content = v?.content?.trim()
                 /*判断文字是否为空*/
                 if (formItem.require && TextUtils.isEmpty(content)) {
                     verify.pass = false
@@ -101,14 +69,14 @@ object FormVerifyUtils {
                     }
                 }
                 if (verify.pass) {
-                    if (formItem.limitMin > 0 && v.content!!.length < formItem.limitMin) {
+                    if (formItem.limitMin > 0 && v!!.content!!.length < formItem.limitMin) {
                         /*已填，判断最小输入字数是否满足*/
                         verify.pass = false
                         verify.type = 4
                     }
                 }
                 if (verify.pass) {
-                    if (formItem.limitMax > 0 && v.content!!.length > formItem.limitMax) {
+                    if (formItem.limitMax > 0 && v!!.content!!.length > formItem.limitMax) {
                         /*已填，判断最小输入字数是否满足*/
                         verify.pass = false
                         verify.type = 5
@@ -118,14 +86,13 @@ object FormVerifyUtils {
         }
     }
 
-    /**选项校验*/
-    private fun chose(verify: Verify, formItem: FormItemEntity) {
+    override fun chose(verify: FormVerify, formItem: FormItemEntity) {
         if (formItem.limitMax == 1) {
             /*单选*/
             var chose = 0
             formItem.formValues.forEach {
-                val v = it.value as FormValueOfCheck
-                if (v.ckChecked) {
+                val v = it.value
+                if (v!!.ckChecked) {
                     chose++
                 }
             }
@@ -145,8 +112,8 @@ object FormVerifyUtils {
             /*多选*/
             var chose = 0
             formItem.formValues.forEach {
-                val v = it.value as FormValueOfCheck
-                if (v.ckChecked) {
+                val v = it.value
+                if (v!!.ckChecked) {
                     chose++
                 }
             }
@@ -165,12 +132,11 @@ object FormVerifyUtils {
         }
     }
 
-    /**时间校验*/
-    private fun time(verify: Verify, formItem: FormItemEntity) {
+    override fun time(verify: FormVerify, formItem: FormItemEntity) {
         formItem.formValues.forEachIndexed { index, formValue ->
             if (verify.pass) {
                 verify.info.valueIndex = index
-                val v = formValue.value as FormValueOfTime
+                val v = formValue.value!!
                 val time = v.time
                 if (formItem.require && time <= 0L) {
                     verify.pass = false
@@ -192,8 +158,7 @@ object FormVerifyUtils {
         }
     }
 
-    /**人员校验*/
-    private fun user(verify: Verify, formItem: FormItemEntity) {
+    override fun user(verify: FormVerify, formItem: FormItemEntity) {
         val size = formItem.formValues.size
         if (size > 0) {
             /*不为空*/
@@ -210,12 +175,11 @@ object FormVerifyUtils {
         }
     }
 
-    /**文件校验*/
-    private fun file(verify: Verify, formItem: FormItemEntity) {
+    override fun file(verify: FormVerify, formItem: FormItemEntity) {
         val size = formItem.formValues.size
         if (size > 0) {
             formItem.formValues.forEachIndexed { index, formValueEntity ->
-                val v = formValueEntity.value as FormValueOfFile
+                val v = formValueEntity.value!!
                 if (verify.pass) {
                     verify.info.valueIndex = index
                     if (TextUtils.isEmpty(v.fileUrl)) {
@@ -241,8 +205,7 @@ object FormVerifyUtils {
         }
     }
 
-    /**位置校验*/
-    private fun location(verify: Verify, formItem: FormItemEntity) {
+    override fun location(verify: FormVerify, formItem: FormItemEntity) {
         val size = formItem.formValues.size
         if (size > 0) {
             /*不为空*/

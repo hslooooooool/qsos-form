@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.form_item_file_item.view.*
 import vip.qsos.form.lib.base.BaseHolder
 import vip.qsos.form.lib.model.FormValueEntity
 import vip.qsos.form.normal.R
-import vip.qsos.form.normal.model.FormValueOfFile
 import vip.qsos.form.normal.utils.GlideApp
 
 /**文件列表容器
@@ -74,7 +73,7 @@ class FormItemFileItemHolder(itemView: View) : BaseHolder<FormValueEntity>(itemV
 
     override fun setData(position: Int, data: FormValueEntity) {
         data.value.let { f ->
-            val file = f as FormValueOfFile
+            val file = f!!
             itemView.tv_item_form_file_name.text = file.fileName
             GlideApp.with(itemView.context)
                     .load(file.fileCover)

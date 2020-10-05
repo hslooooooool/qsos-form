@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_activity.*
 import vip.qsos.form.lib.FormAdapter
-import vip.qsos.form.normal.utils.FormVerifyUtils
+import vip.qsos.form.lib.helper.FormVerifyHelper
 
 /**
  * @author : 华清松
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         form_submit.isEnabled = false
 
         form_submit.setOnClickListener {
-            val verify = FormVerifyUtils.verify(mModel.mForm.value!!)
+            val verify = FormVerifyHelper.verify(mModel.mForm.value!!)
             val itemName = mModel.mForm.value!!.formItems[verify.info.itemIndex].title
             if (verify.pass) {
                 Toast.makeText(this, verify.msg, Toast.LENGTH_LONG).show()

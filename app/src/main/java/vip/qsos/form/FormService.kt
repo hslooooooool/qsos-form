@@ -12,7 +12,7 @@ interface FormService {
             APIServer.api(
                     cls = FormService::class.java,
                     config = APIServer.APIConfig(
-                            baseUrl = "http://192.168.2.207:8085/",
+                            baseUrl = "http://192.168.3.8:8085/",
                             timeout = 3000L,
                             mockDataList = arrayListOf(FormMockData())
                     )
