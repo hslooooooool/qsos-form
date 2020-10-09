@@ -8,6 +8,17 @@
     android:orientation="horizontal">
 
     <TextView
+        android:id="@+id/form_item_require"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:text="*"
+        android:textColor="#FF5722"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        tools:visibility="visible" />
+
+    <TextView
         android:id="@+id/form_item_title"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -23,5 +34,5 @@
         android:layout_height="20dp"
         android:visibility="gone"
         app:srcCompat="@drawable/form_ask_gray"
-		tools:visibility="visible" />
+        tools:visibility="visible" />
 </LinearLayout>

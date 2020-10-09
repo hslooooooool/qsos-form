@@ -12,6 +12,7 @@ import vip.qsos.utils_net.lib.retrofit.retrofitWithBaseResult
  */
 class MainViewModel : ViewModel() {
     private val mFormData: HttpLiveData<FormEntity?> = HttpLiveData()
+    var sceneType: String? = null
 
     val mForm: HttpLiveData<FormEntity?>
         get() {
@@ -23,7 +24,7 @@ class MainViewModel : ViewModel() {
 
     private fun loadFormDemo() = viewModelScope.launch {
         retrofitWithBaseResult<FormEntity> {
-            request { FormService.INSTANCE.demo() }
+            request { FormService.INSTANCE.demo(sceneType) }
             onFailed { _, _, e ->
                 e?.printStackTrace()
             }

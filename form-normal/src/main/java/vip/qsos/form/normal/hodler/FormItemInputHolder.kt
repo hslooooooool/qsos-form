@@ -35,7 +35,6 @@ class FormItemInputHolder(itemView: View) : AbsFormHolder(itemView) {
         } else {
             itemView.item_form_input.filters = arrayOf()
         }
-
         itemView.item_form_input.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(p0: Editable) {

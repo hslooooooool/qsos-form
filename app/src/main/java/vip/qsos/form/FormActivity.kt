@@ -18,7 +18,7 @@ import vip.qsos.form.lib.helper.FormVerifyHelper
 /**
  * @author : 华清松
  */
-class MainActivity : AppCompatActivity() {
+class FormActivity : AppCompatActivity() {
 
     private var mAdapter: FormAdapter = FormAdapter(arrayListOf())
     private val mModel: MainViewModel by viewModels()
@@ -50,10 +50,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
+        mModel.sceneType = intent.getStringExtra("sceneType")
         mModel.mForm.observe(this, Observer {
             it?.let {
                 mAdapter.data = it.formItems
                 form_title.text = it.title
+                form_notice.text = it.notice
                 form_submit.isEnabled = true
                 mAdapter.notifyDataSetChanged()
             } ?: Toast.makeText(this, "错误", Toast.LENGTH_SHORT).show()
