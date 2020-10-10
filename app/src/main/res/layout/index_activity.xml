@@ -5,6 +5,12 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/form_item_0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="表单案例" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/form_item_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

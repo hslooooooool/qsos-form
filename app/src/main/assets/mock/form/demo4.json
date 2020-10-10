@@ -1,0 +1,221 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": -1,
+    "title": "每周工作信息填报",
+    "notice": "各指挥中心主任要严格审核把关，报送内容要简明扼要、突出重点，经常性工作无需上报，每个部分不超过100字，如无可不填，突出情况可单独上报",
+    "submitter": "单元测试",
+    "sceneType": "4",
+    "editable": true,
+    "formItems": [
+      {
+        "id": -1,
+        "title": "上报单位",
+        "notice": null,
+        "valueType": 0,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 0,
+            "formValue": "{\"valueType\":0,\"content\":\"单元测试单位\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "信息标题",
+        "notice": null,
+        "valueType": 0,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 0,
+            "formValue": "{\"valueType\":0,\"content\":\"测试单位每周工作信息（2020-10-10）\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "应急值守",
+        "notice": "请填写应急值守内容（分析预警、舆情监控、信息报送、态势标绘、视频督导、重大活动安保等），选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 100,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "调度指挥",
+        "notice": "请填写调度指挥（重要灾情、调度指挥、接警调度、辅助决策、跨区域增援调度等），选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 100,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "岗位练兵",
+        "notice": "请填写岗位练兵（岗位练兵开展情况，包括业务培训、大讲堂、比武、复盘演练等），选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 100,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "制度规范",
+        "notice": "请填写制度规范（制定标准规范、印发文件规定、应急联动、值班值守等机制），选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 100,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "业务研究",
+        "notice": "请填写业务研究（“十四五”规划、调研座谈、智能接处警系统、信息报送系统、正规化建设、改造扩建、亮点创新等），选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 100,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "其他事项",
+        "notice": "请填写其他事项（领导视察慰问、重要批示、重大事项报告、上级交办等），选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 100,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "其他事项",
+        "notice": "请填写其他事项（领导视察慰问、重要批示、重大事项报告、上级交办等），选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 100,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      }
+    ]
+  }
+}

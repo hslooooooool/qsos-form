@@ -1,0 +1,105 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": -1,
+    "title": "每日平安信息填报",
+    "notice": null,
+    "submitter": "单元测试",
+    "sceneType": "2",
+    "editable": true,
+    "formItems": [
+      {
+        "id": -1,
+        "title": "上报单位",
+        "notice": null,
+        "valueType": 0,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 0,
+            "formValue": "{\"valueType\":0,\"content\":\"单元测试单位\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "是否安全",
+        "notice": "是否安全选择,必选",
+        "valueType": 2,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 1,
+        "limitMax": 1,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 0,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"0\",\"ckName\":\"是\",\"ckValue\":\"是\",\"ckChecked\":true}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"1\",\"ckName\":\"否\",\"ckValue\":\"否\",\"ckChecked\":false}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "上报内容",
+        "notice": "请填写上报内容，必填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 3,
+        "limitMax": 30,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "附件上传",
+        "notice": "所有文件",
+        "valueType": 5,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 9,
+        "limitFormat": "FILE",
+        "formValues": []
+      }
+    ]
+  }
+}

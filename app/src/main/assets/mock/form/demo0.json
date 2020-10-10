@@ -3,7 +3,7 @@
   "msg": "success",
   "data": {
     "id": -1,
-    "title": "表单案例",
+    "title": "表单案例DEMO",
     "notice": "这是一个表单填写案例",
     "submitter": "单元测试",
     "sceneType": "单元测试",
@@ -329,7 +329,7 @@
             "editable": true,
             "position": 1,
             "valueType": 3,
-            "formValue": "{\"time\":1601521801802,\"timeLimitMin\":1443841801802,\"timeLimitMax\":1759201801802,\"valueType\":3}"
+            "formValue": "{\"time\":1602312367028,\"timeLimitMin\":1444632367028,\"timeLimitMax\":1759992367028,\"valueType\":3}"
           }
         ]
       },
@@ -352,7 +352,7 @@
             "editable": true,
             "position": 1,
             "valueType": 3,
-            "formValue": "{\"time\":1601521801802,\"timeLimitMin\":1443841801802,\"timeLimitMax\":1759201801802,\"valueType\":3}"
+            "formValue": "{\"time\":1602312367028,\"timeLimitMin\":1444632367028,\"timeLimitMax\":1759992367028,\"valueType\":3}"
           }
         ]
       },
@@ -375,7 +375,7 @@
             "editable": true,
             "position": 1,
             "valueType": 5,
-            "formValue": "{\"valueType\":5,\"fileName\":\"测试图片\",\"fileType\":\"FILE\",\"fileUrl\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"fileCover\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+            "formValue": "{\"valueType\":5,\"fileName\":\"测试图片\",\"fileType\":\"FILE\",\"fileUrl\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
           }
         ]
       },
@@ -398,7 +398,7 @@
             "editable": false,
             "position": 1,
             "valueType": 5,
-            "formValue": "{\"valueType\":5,\"fileName\":\"测试文件1\",\"fileType\":\"FILE\",\"fileUrl\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"fileCover\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+            "formValue": "{\"valueType\":5,\"fileName\":\"测试文件1\",\"fileType\":\"FILE\",\"fileUrl\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
           },
           {
             "id": -1,
@@ -406,7 +406,7 @@
             "editable": true,
             "position": 1,
             "valueType": 5,
-            "formValue": "{\"valueType\":5,\"fileName\":\"测试文件2\",\"fileType\":\"FILE\",\"fileUrl\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"fileCover\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+            "formValue": "{\"valueType\":5,\"fileName\":\"测试文件2\",\"fileType\":\"FILE\",\"fileUrl\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
           }
         ]
       },
@@ -429,7 +429,7 @@
             "editable": true,
             "position": 1,
             "valueType": 4,
-            "formValue": "{\"valueType\":4,\"userName\":\"管理人员1\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+            "formValue": "{\"userName\":\"管理人员1\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"valueType\":4}"
           },
           {
             "id": -1,
@@ -437,7 +437,7 @@
             "editable": true,
             "position": 1,
             "valueType": 4,
-            "formValue": "{\"valueType\":4,\"userName\":\"管理人员2\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+            "formValue": "{\"userName\":\"管理人员2\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"valueType\":4}"
           }
         ]
       },
@@ -460,7 +460,7 @@
             "editable": false,
             "position": 1,
             "valueType": 4,
-            "formValue": "{\"valueType\":4,\"userName\":\"抄送人员1\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+            "formValue": "{\"userName\":\"抄送人员1\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"valueType\":4}"
           },
           {
             "id": -1,
@@ -468,7 +468,7 @@
             "editable": true,
             "position": 1,
             "valueType": 4,
-            "formValue": "{\"valueType\":4,\"userName\":\"抄送人员2\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+            "formValue": "{\"userName\":\"抄送人员2\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"valueType\":4}"
           },
           {
             "id": -1,
@@ -476,7 +476,7 @@
             "editable": true,
             "position": 1,
             "valueType": 4,
-            "formValue": "{\"valueType\":4,\"userName\":\"抄送人员3\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\"}"
+            "formValue": "{\"userName\":\"抄送人员3\",\"userDesc\":\"\",\"userAvatar\":\"http://www.qsos.vip/upload/2018/11/ic_launcher20181225044818498.png\",\"valueType\":4}"
           }
         ]
       }

@@ -1,0 +1,143 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": -1,
+    "title": "每日消防信息填报",
+    "notice": null,
+    "submitter": "单元测试",
+    "sceneType": "3",
+    "editable": true,
+    "formItems": [
+      {
+        "id": -1,
+        "title": "上报单位",
+        "notice": null,
+        "valueType": 0,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 0,
+            "formValue": "{\"valueType\":0,\"content\":\"单元测试单位\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "信息标题",
+        "notice": null,
+        "valueType": 0,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 0,
+            "formValue": "{\"valueType\":0,\"content\":\"测试单位每日消防信息（2020-10-10）\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "消防要情",
+        "notice": "请填写消防要情，选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 300,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "工作动态",
+        "notice": "请填写工作动态，选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 300,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "节日（安保）综合情况",
+        "notice": "请填写节日（安保）综合情况，选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 300,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "附件上传",
+        "notice": "所有文件",
+        "valueType": 5,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 9,
+        "limitFormat": "FILE",
+        "formValues": []
+      }
+    ]
+  }
+}

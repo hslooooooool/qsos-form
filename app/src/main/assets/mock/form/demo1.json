@@ -1,0 +1,135 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": -1,
+    "title": "常规信息填报",
+    "notice": "您可以通过常规信息上报其它信息",
+    "submitter": "单元测试",
+    "sceneType": "1",
+    "editable": true,
+    "formItems": [
+      {
+        "id": -1,
+        "title": "上报单位",
+        "notice": "单元测试",
+        "valueType": 0,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 0,
+            "formValue": "{\"valueType\":0,\"content\":\"单元测试单位\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "信息标题",
+        "notice": "请填写内容，必填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 3,
+        "limitMax": 30,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "信息等级",
+        "notice": "信息等级选择,必选",
+        "valueType": 2,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 1,
+        "limitMax": 1,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 0,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"0\",\"ckName\":\"一般\",\"ckValue\":\"一般\",\"ckChecked\":true}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"1\",\"ckName\":\"重要\",\"ckValue\":\"重要\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 2,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"2\",\"ckName\":\"紧急\",\"ckValue\":\"紧急\",\"ckChecked\":false}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 3,
+            "valueType": 2,
+            "formValue": "{\"valueType\":2,\"ckId\":\"3\",\"ckName\":\"特急\",\"ckValue\":\"特急\",\"ckChecked\":false}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "上报内容",
+        "notice": "请填写内容，必填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": true,
+        "limitMin": 3,
+        "limitMax": 200,
+        "limitFormat": null,
+        "formValues": []
+      },
+      {
+        "id": -1,
+        "title": "附件上传",
+        "notice": "所有文件",
+        "valueType": 5,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 9,
+        "limitFormat": "FILE",
+        "formValues": []
+      }
+    ]
+  }
+}

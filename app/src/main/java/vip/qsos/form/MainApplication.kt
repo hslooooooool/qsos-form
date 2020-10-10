@@ -24,7 +24,7 @@ class MainApplication : Application() {
         FormVerifyHelper.init(FormVerifyUtils())
 
         // 开启网络请求Mock数据
-        IMockData.openMockData = false
+        IMockData.openMockData = true
         IMockData.dataBySdCard = false
         IMockData.requestTime = 0L
 
@@ -34,7 +34,7 @@ class MainApplication : Application() {
         interceptors.add(loggingInterceptor)
         // 初始化网络请求
         APIServer.init(
-                APIServer.Config(this, "http://192.168.3.8:8085/", interceptor = interceptors)
+                APIServer.Config(this, "http://192.168.3.131:8085/", interceptor = interceptors)
         )
     }
 

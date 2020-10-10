@@ -24,7 +24,15 @@ class MainViewModel : ViewModel() {
 
     private fun loadFormDemo() = viewModelScope.launch {
         retrofitWithBaseResult<FormEntity> {
-            request { FormService.INSTANCE.demo(sceneType) }
+            request {
+                when (sceneType) {
+                    "1" -> FormService.INSTANCE.demo1(sceneType)
+                    "2" -> FormService.INSTANCE.demo2(sceneType)
+                    "3" -> FormService.INSTANCE.demo3(sceneType)
+                    "4" -> FormService.INSTANCE.demo4(sceneType)
+                    else -> FormService.INSTANCE.demo0(sceneType)
+                }
+            }
             onFailed { _, _, e ->
                 e?.printStackTrace()
             }

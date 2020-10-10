@@ -14,6 +14,9 @@ class IndexActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.index_activity)
 
+        form_item_0.setOnClickListener {
+            start("0")
+        }
         form_item_1.setOnClickListener {
             start("1")
         }
