@@ -31,7 +31,6 @@ class SheetView @JvmOverloads constructor(
             var value: String,
             val position: String,
             var notice: String = value,
-            var deep: Float = 1f,
             val child: ArrayList<Sheet> = arrayListOf()
     )
 
@@ -47,9 +46,6 @@ class SheetView @JvmOverloads constructor(
         mData.clear()
         data.forEach {
             addSheet(it)
-        }
-        mData.forEach {
-            setDeep(it)
         }
         flush()
     }
@@ -83,27 +79,6 @@ class SheetView @JvmOverloads constructor(
 
     }
 
-    private fun setDeep(sheet: Sheet, level: Float = 0f) {
-        var l = level
-        sheet.child.forEach { s1 ->
-            l++
-            setDeep(s1, level)
-            s1.child.forEach { s2 ->
-                l++
-                setDeep(s2, level)
-                s2.child.forEach { s3 ->
-                    l++
-                    setDeep(s3, level)
-                    s3.child.forEach { s4 ->
-                        l++
-                        setDeep(s4, level)
-                    }
-                }
-            }
-        }
-        sheet.deep = l
-    }
-
     private fun flush() {
         removeAllViews()
         mData.forEach {
@@ -123,8 +98,7 @@ class SheetView @JvmOverloads constructor(
             val l = LinearLayout(context)
             l.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
             l.orientation = VERTICAL
-            val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, sheet.deep)
-            println("表格：${sheet.title}，设置权重:${sheet.deep}")
+            val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, getWight(sheet))
             l.layoutParams = params
             l.minimumHeight = 200
             val title = getTitleView(level, sheet)
@@ -158,8 +132,7 @@ class SheetView @JvmOverloads constructor(
         val container = LinearLayout(context)
         container.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
         container.orientation = VERTICAL
-        val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, sheet.deep)
-        println("表格：${sheet.title}，设置权重:${sheet.deep}")
+        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1F)
         container.layoutParams = params
         val title = getTitleView(level, sheet)
         container.addView(title)
@@ -171,7 +144,7 @@ class SheetView @JvmOverloads constructor(
     private fun getContainer(level: Int, parent: Sheet, child: List<Sheet>): LinearLayout {
         val container = LinearLayout(context)
         container.orientation = HORIZONTAL
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, parent.deep)
+        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1F)
         container.layoutParams = params
         container.minimumHeight = 200
         child.forEach {
@@ -198,7 +171,7 @@ class SheetView @JvmOverloads constructor(
         val input = EditText(context)
         input.id = sheet.position.hashCode()
         input.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, 100, 1f)
+        val params = LayoutParams(LayoutParams.MATCH_PARENT, 100, 1F)
         input.layoutParams = params
         input.hint = sheet.title
         input.setText(sheet.value)
@@ -215,5 +188,9 @@ class SheetView @JvmOverloads constructor(
             2 -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title3)!!
             else -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title4)!!
         }
+    }
+
+    private fun getWight(sheet: Sheet): Float {
+        return if (sheet.child.isEmpty()) 2F else 1F
     }
 }
