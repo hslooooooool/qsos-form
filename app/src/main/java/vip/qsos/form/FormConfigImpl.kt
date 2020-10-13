@@ -32,6 +32,7 @@ class FormConfigImpl : FormConfig {
             4 -> FormItemUserHolder(view)
             5 -> FormItemFileHolder(view)
             6 -> FormItemLocationHolder(view)
+            7 -> FormItemSheetHolder(view)
             else -> FormItemTextHolder(view)
         }
     }
@@ -46,6 +47,7 @@ class FormConfigImpl : FormConfig {
             4 -> R.layout.form_item_user
             5 -> R.layout.form_item_file
             6 -> R.layout.form_item_location
+            7 -> R.layout.form_item_sheet
             else -> R.layout.form_item_text
         }
     }

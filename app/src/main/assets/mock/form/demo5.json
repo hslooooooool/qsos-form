@@ -1,0 +1,170 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": -1,
+    "title": "表格信息填报",
+    "notice": "具备表格形式填写的表单",
+    "submitter": "单元测试",
+    "sceneType": "5",
+    "editable": true,
+    "formItems": [
+      {
+        "id": -1,
+        "title": "上报单位",
+        "notice": null,
+        "valueType": 0,
+        "position": 0,
+        "editable": false,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": false,
+            "position": 1,
+            "valueType": 0,
+            "formValue": "{\"valueType\":0,\"content\":\"单元测试单位\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "1级表格填写",
+        "notice": "1级组合填写",
+        "valueType": 7,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1\",\"sheetPosition\":\"1\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头11\",\"sheetPosition\":\"1-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头12\",\"sheetPosition\":\"1-2\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头13\",\"sheetPosition\":\"1-3\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头14\",\"sheetPosition\":\"1-4\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "2级表格填写",
+        "notice": "2级组合填写",
+        "valueType": 7,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1\",\"sheetPosition\":\"1\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头11\",\"sheetPosition\":\"1-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头12\",\"sheetPosition\":\"1-2\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头121\",\"sheetPosition\":\"1-2-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头122\",\"sheetPosition\":\"1-2-2\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "测试文本",
+        "notice": "测试文本，选填",
+        "valueType": 1,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 100,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 1,
+            "formValue": "{\"valueType\":1,\"content\":\"\"}"
+          }
+        ]
+      }
+    ]
+  }
+}

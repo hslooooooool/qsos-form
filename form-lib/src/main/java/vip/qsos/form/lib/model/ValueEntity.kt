@@ -57,6 +57,15 @@ class ValueEntity {
     var locX: Double = 0.0
     var locY: Double = 0.0
 
+    /*7表格*/
+
+    var sheetTitle: String = ""
+    var sheetPosition: String = ""
+    var sheetType: Int = 0
+    var sheetFormat: String = "NORMAL"
+    var sheetContent: String = ""
+    var sheetNotice: String = ""
+
     constructor()
 
     /**

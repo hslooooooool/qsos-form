@@ -42,3 +42,11 @@ class FormMockData4 : AbstractMockData() {
     )
 
 }
+
+class FormMockData5 : AbstractMockData() {
+
+    override val config: MockData = MockData(
+            "form", "GET", "/api/form/demo5", "demo5.json", 100L
+    )
+
+}

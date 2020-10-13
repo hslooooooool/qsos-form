@@ -30,6 +30,7 @@ class MainViewModel : ViewModel() {
                     "2" -> FormService.INSTANCE.demo2(sceneType)
                     "3" -> FormService.INSTANCE.demo3(sceneType)
                     "4" -> FormService.INSTANCE.demo4(sceneType)
+                    "5" -> FormService.INSTANCE.demo5(sceneType)
                     else -> FormService.INSTANCE.demo0(sceneType)
                 }
             }

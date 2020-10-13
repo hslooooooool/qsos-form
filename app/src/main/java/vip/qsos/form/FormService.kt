@@ -20,7 +20,8 @@ interface FormService {
                                     FormMockData1(),
                                     FormMockData2(),
                                     FormMockData3(),
-                                    FormMockData4()
+                                    FormMockData4(),
+                                    FormMockData5()
                             )
                     )
             )
@@ -49,6 +50,11 @@ interface FormService {
 
     @GET("/api/form/demo4")
     suspend fun demo4(
+            @Query("sceneType") sceneType: String? = null
+    ): HttpResult<FormEntity>
+
+    @GET("/api/form/demo5")
+    suspend fun demo5(
             @Query("sceneType") sceneType: String? = null
     ): HttpResult<FormEntity>
 

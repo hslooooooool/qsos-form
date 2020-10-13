@@ -29,6 +29,9 @@ class IndexActivity : AppCompatActivity() {
         form_item_4.setOnClickListener {
             start("4")
         }
+        form_item_5.setOnClickListener {
+            start("5")
+        }
 
     }
 
