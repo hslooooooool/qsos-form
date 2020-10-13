@@ -2,6 +2,7 @@ package vip.qsos.form.normal.widgets
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.inputmethod.EditorInfo
@@ -9,8 +10,6 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.setMargins
-import androidx.core.view.setPadding
 import vip.qsos.form.lib.callback.OnTListener
 import vip.qsos.form.normal.R
 
@@ -32,6 +31,7 @@ class SheetView @JvmOverloads constructor(
             var value: String,
             val position: String,
             var notice: String = value,
+            var deep: Float = 1f,
             val child: ArrayList<Sheet> = arrayListOf()
     )
 
@@ -47,6 +47,9 @@ class SheetView @JvmOverloads constructor(
         mData.clear()
         data.forEach {
             addSheet(it)
+        }
+        mData.forEach {
+            setDeep(it)
         }
         flush()
     }
@@ -77,6 +80,28 @@ class SheetView @JvmOverloads constructor(
                 mData[p1 - 1].child[p2 - 1].child[p3 - 1].child.add(p4 - 1, sheet)
             }
         }
+
+    }
+
+    private fun setDeep(sheet: Sheet, level: Float = 0f) {
+        var l = level
+        sheet.child.forEach { s1 ->
+            l++
+            setDeep(s1, level)
+            s1.child.forEach { s2 ->
+                l++
+                setDeep(s2, level)
+                s2.child.forEach { s3 ->
+                    l++
+                    setDeep(s3, level)
+                    s3.child.forEach { s4 ->
+                        l++
+                        setDeep(s4, level)
+                    }
+                }
+            }
+        }
+        sheet.deep = l
     }
 
     private fun flush() {
@@ -98,9 +123,10 @@ class SheetView @JvmOverloads constructor(
             val l = LinearLayout(context)
             l.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
             l.orientation = VERTICAL
-            val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f)
+            val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, sheet.deep)
+            println("表格：${sheet.title}，设置权重:${sheet.deep}")
             l.layoutParams = params
-            l.minimumHeight = 100
+            l.minimumHeight = 200
             val title = getTitleView(level, sheet)
             l.addView(title)
 
@@ -121,7 +147,7 @@ class SheetView @JvmOverloads constructor(
                         arrayListOf(sheet.child[i * 2 - 2])
                     }
                 }
-                val child = getContainer(level, s)
+                val child = getContainer(level, sheet, s)
                 l.addView(child)
             }
             container.addView(l)
@@ -132,9 +158,9 @@ class SheetView @JvmOverloads constructor(
         val container = LinearLayout(context)
         container.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
         container.orientation = VERTICAL
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f)
+        val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, sheet.deep)
+        println("表格：${sheet.title}，设置权重:${sheet.deep}")
         container.layoutParams = params
-        container.minimumHeight = 50
         val title = getTitleView(level, sheet)
         container.addView(title)
         val input = getSheetInput(sheet)
@@ -142,15 +168,14 @@ class SheetView @JvmOverloads constructor(
         return container
     }
 
-    private fun getContainer(level: Int, child: List<Sheet>): LinearLayout {
+    private fun getContainer(level: Int, parent: Sheet, child: List<Sheet>): LinearLayout {
         val container = LinearLayout(context)
-        container.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
         container.orientation = HORIZONTAL
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f)
+        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, parent.deep)
         container.layoutParams = params
-        container.minimumHeight = 100
+        container.minimumHeight = 200
         child.forEach {
-            addSheetView(level, it, container)
+            addSheetView(level + 1, it, container)
         }
         return container
     }
@@ -159,10 +184,9 @@ class SheetView @JvmOverloads constructor(
         val title = TextView(context)
         title.text = sheet.title
         title.setTextColor(Color.BLACK)
-        title.setBackgroundColor(Color.argb(255 - level * 50, 220, 220, 220))
-        title.setPadding(5)
+        title.background = getTitleBackground(level)
         title.gravity = Gravity.CENTER
-        title.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 100, 1f)
+        title.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 100)
         title.textSize = 10f
         title.setOnClickListener {
             mClickListener?.back(sheet)
@@ -174,10 +198,8 @@ class SheetView @JvmOverloads constructor(
         val input = EditText(context)
         input.id = sheet.position.hashCode()
         input.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 3f)
-        params.setMargins(5)
+        val params = LayoutParams(LayoutParams.MATCH_PARENT, 100, 1f)
         input.layoutParams = params
-        input.minimumHeight = 50
         input.hint = sheet.title
         input.setText(sheet.value)
         input.textSize = 10f
@@ -186,4 +208,12 @@ class SheetView @JvmOverloads constructor(
         return input
     }
 
+    private fun getTitleBackground(level: Int): Drawable {
+        return when (level) {
+            0 -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title1)!!
+            1 -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title2)!!
+            2 -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title3)!!
+            else -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title4)!!
+        }
+    }
 }

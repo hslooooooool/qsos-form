@@ -12,7 +12,6 @@
 		android:id="@+id/item_form_sheet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@drawable/form_sheet_bg"
 		android:minHeight="100dp"
 		android:orientation="vertical" />
 </LinearLayout>
