@@ -2,6 +2,7 @@ package vip.qsos.form.normal.hodler
 
 import android.view.View
 import kotlinx.android.synthetic.main.form_item_sheet.view.*
+import vip.qsos.form.lib.callback.OnTListener
 import vip.qsos.form.lib.model.FormItemEntity
 import vip.qsos.form.normal.widgets.SheetView
 
@@ -23,5 +24,14 @@ class FormItemSheetHolder(itemView: View) : AbsFormHolder(itemView) {
             )
         }
         itemView.item_form_sheet.setData(sheet)
+        itemView.item_form_sheet.addValueListener(object : OnTListener<SheetView.Sheet> {
+            override fun back(t: SheetView.Sheet) {
+                data.formValues.find {
+                    it.value?.sheetPosition == t.position
+                }?.let {
+                    it.value?.sheetContent = t.value
+                }
+            }
+        })
     }
 }

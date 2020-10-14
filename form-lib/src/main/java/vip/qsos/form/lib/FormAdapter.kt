@@ -3,7 +3,7 @@ package vip.qsos.form.lib
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vip.qsos.form.lib.base.BaseFormHolder
-import vip.qsos.form.lib.config.FormHelper
+import vip.qsos.form.lib.config.FormViewHelper
 import vip.qsos.form.lib.model.FormItemEntity
 
 /**表单列表项容器
@@ -14,7 +14,7 @@ class FormAdapter constructor(
 ) : RecyclerView.Adapter<BaseFormHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseFormHolder {
-        return FormHelper.getHolder(parent, viewType)
+        return FormViewHelper.getHolder(parent, viewType)
     }
 
     override fun onBindViewHolder(holder: BaseFormHolder, position: Int) {
@@ -22,7 +22,7 @@ class FormAdapter constructor(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return FormHelper.getViewType(data[position].valueType)
+        return FormViewHelper.getViewType(data[position].valueType)
     }
 
     override fun getItemCount(): Int {

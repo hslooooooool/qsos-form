@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import vip.qsos.form.holder.FormItemFileHolder
 import vip.qsos.form.holder.FormItemLocationHolder
 import vip.qsos.form.holder.FormItemUserHolder
-import vip.qsos.form.lib.config.FormConfig
+import vip.qsos.form.lib.config.FormViewConfig
 import vip.qsos.form.normal.hodler.*
 
 /**表单配置
  * @author : 华清松
  */
-class FormConfigImpl : FormConfig {
+class FormViewConfigImpl : FormViewConfig {
 
     override fun getViewType(valueType: Int): Int {
         return valueType

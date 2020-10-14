@@ -3,6 +3,8 @@ package vip.qsos.form.normal.widgets
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.inputmethod.EditorInfo
@@ -12,7 +14,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import vip.qsos.form.lib.callback.OnTListener
 import vip.qsos.form.normal.R
-
 
 /**支持4级表格样式
  * @author : 华清松
@@ -36,10 +37,10 @@ class SheetView @JvmOverloads constructor(
 
     private val mData: ArrayList<Sheet> = arrayListOf()
 
-    private var mClickListener: OnTListener<Sheet>? = null
+    private var mValueListener: OnTListener<Sheet>? = null
 
-    fun setClickListener(listener: OnTListener<Sheet>) {
-        this.mClickListener = listener
+    fun addValueListener(listener: OnTListener<Sheet>) {
+        this.mValueListener = listener
     }
 
     fun setData(data: List<Sheet>) {
@@ -98,9 +99,8 @@ class SheetView @JvmOverloads constructor(
             val l = LinearLayout(context)
             l.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
             l.orientation = VERTICAL
-            val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, getWight(sheet))
+            val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, getWeight(sheet))
             l.layoutParams = params
-            l.minimumHeight = 200
             val title = getTitleView(level, sheet)
             l.addView(title)
 
@@ -132,7 +132,7 @@ class SheetView @JvmOverloads constructor(
         val container = LinearLayout(context)
         container.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
         container.orientation = VERTICAL
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1F)
+        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         container.layoutParams = params
         val title = getTitleView(level, sheet)
         container.addView(title)
@@ -143,10 +143,9 @@ class SheetView @JvmOverloads constructor(
 
     private fun getContainer(level: Int, parent: Sheet, child: List<Sheet>): LinearLayout {
         val container = LinearLayout(context)
-        container.orientation = HORIZONTAL
+        container.orientation = VERTICAL
         val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1F)
         container.layoutParams = params
-        container.minimumHeight = 200
         child.forEach {
             addSheetView(level + 1, it, container)
         }
@@ -159,18 +158,15 @@ class SheetView @JvmOverloads constructor(
         title.setTextColor(Color.BLACK)
         title.background = getTitleBackground(level)
         title.gravity = Gravity.CENTER
-        title.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 100)
+        title.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 100, 3F)
         title.textSize = 10f
-        title.setOnClickListener {
-            mClickListener?.back(sheet)
-        }
         return title
     }
 
     private fun getSheetInput(sheet: Sheet): EditText {
         val input = EditText(context)
         input.id = sheet.position.hashCode()
-        input.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
+        input.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_input_bg)
         val params = LayoutParams(LayoutParams.MATCH_PARENT, 100, 1F)
         input.layoutParams = params
         input.hint = sheet.title
@@ -178,6 +174,23 @@ class SheetView @JvmOverloads constructor(
         input.textSize = 10f
         input.gravity = Gravity.CENTER
         input.inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+        input.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                p0?.let {
+                    sheet.value = it.toString().trim()
+                    mValueListener?.back(sheet)
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+        })
         return input
     }
 
@@ -190,7 +203,7 @@ class SheetView @JvmOverloads constructor(
         }
     }
 
-    private fun getWight(sheet: Sheet): Float {
+    private fun getWeight(sheet: Sheet): Float {
         return if (sheet.child.isEmpty()) 2F else 1F
     }
 }

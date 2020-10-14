@@ -43,9 +43,16 @@ class FormActivity : AppCompatActivity() {
             val itemName = mModel.mForm.value!!.formItems[verify.info.itemIndex].title
             if (verify.pass) {
                 Toast.makeText(this, verify.msg, Toast.LENGTH_LONG).show()
+                mModel.mForm.value!!.formItems.forEach {
+                    it.formValues.forEach { v ->
+                        v.transValue()
+                    }
+                }
             } else {
                 Toast.makeText(this, itemName + "-" + verify.msg, Toast.LENGTH_SHORT).show()
             }
+            // FIXME
+            println(mModel.mForm.value)
         }
     }
 

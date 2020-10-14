@@ -3,7 +3,7 @@ package vip.qsos.form
 import android.app.Application
 import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
-import vip.qsos.form.lib.config.FormHelper
+import vip.qsos.form.lib.config.FormViewHelper
 import vip.qsos.form.lib.helper.FormTransHelper
 import vip.qsos.form.lib.helper.FormVerifyHelper
 import vip.qsos.form.normal.utils.FormTransUtils
@@ -19,7 +19,7 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         /**配置表单*/
-        FormHelper.init(FormConfigImpl())
+        FormViewHelper.init(FormViewConfigImpl())
         FormTransHelper.init(FormTransUtils())
         FormVerifyHelper.init(FormVerifyUtils())
 

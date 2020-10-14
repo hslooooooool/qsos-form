@@ -139,6 +139,85 @@
             "position": 1,
             "valueType": 7,
             "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头122\",\"sheetPosition\":\"1-2-2\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头123\",\"sheetPosition\":\"1-2-3\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          }
+        ]
+      },
+      {
+        "id": -1,
+        "title": "3级表格填写",
+        "notice": "3级组合填写",
+        "valueType": 7,
+        "position": 0,
+        "editable": true,
+        "visible": true,
+        "require": false,
+        "limitMin": 0,
+        "limitMax": 0,
+        "limitFormat": null,
+        "formValues": [
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1\",\"sheetPosition\":\"1\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头11\",\"sheetPosition\":\"1-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头12\",\"sheetPosition\":\"1-2\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头121\",\"sheetPosition\":\"1-2-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头122\",\"sheetPosition\":\"1-2-2\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1221\",\"sheetPosition\":\"1-2-2-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+          },
+          {
+            "id": -1,
+            "limitFormat": null,
+            "editable": true,
+            "position": 1,
+            "valueType": 7,
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1222\",\"sheetPosition\":\"1-2-2-2\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           }
         ]
       },

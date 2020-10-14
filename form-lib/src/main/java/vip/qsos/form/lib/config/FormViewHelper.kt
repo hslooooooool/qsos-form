@@ -6,19 +6,19 @@ import vip.qsos.form.lib.base.BaseFormHolder
 /**表单帮助类
  * @author : 华清松
  */
-object FormHelper : FormConfig {
+object FormViewHelper : FormViewConfig {
 
-    private var formConfig: FormConfig? = null
+    private var formViewConfig: FormViewConfig? = null
 
     /**初始化*/
-    fun init(config: FormConfig) {
-        this.formConfig = config
+    fun init(viewConfig: FormViewConfig) {
+        this.formViewConfig = viewConfig
     }
 
     /**获取代理对象*/
-    private fun helper(): FormConfig {
-        return formConfig
-                ?: throw NullPointerException("请调用 FormHelper.init(config: FormConfig) 进行初始化!")
+    private fun helper(): FormViewConfig {
+        return formViewConfig
+                ?: throw NullPointerException("请调用 FormViewHelper.init(config: FormConfig) 进行初始化!")
     }
 
     override fun getViewType(valueType: Int): Int {

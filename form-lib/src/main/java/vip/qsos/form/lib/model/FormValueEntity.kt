@@ -52,4 +52,8 @@ class FormValueEntity {
                 else -> null
             }
         }
+
+    fun transValue() {
+        this.formValue = FormTransHelper.transValue(value)
+    }
 }
