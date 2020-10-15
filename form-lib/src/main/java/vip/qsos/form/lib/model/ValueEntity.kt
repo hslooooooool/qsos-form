@@ -8,6 +8,7 @@ import java.util.*
 class ValueEntity {
 
     enum class Type { IMAGE, ALBUM, VIDEO, AUDIO, FILE }
+    enum class SheetType { TEXT, NUMBER, NUMBER_DECIMAL, CONTAINER }
 
     var valueType: Int = -1
 
@@ -62,7 +63,6 @@ class ValueEntity {
     var sheetTitle: String = ""
     var sheetPosition: String = ""
     var sheetType: Int = 0
-    var sheetFormat: String = "NORMAL"
     var sheetContent: String = ""
     var sheetNotice: String = ""
 

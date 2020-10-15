@@ -32,6 +32,7 @@ class SheetView @JvmOverloads constructor(
             var value: String,
             val position: String,
             var notice: String = value,
+            var level: Int = 1,
             val child: ArrayList<Sheet> = arrayListOf()
     )
 
@@ -49,54 +50,65 @@ class SheetView @JvmOverloads constructor(
     fun setData(data: List<Sheet>) {
         mData.clear()
         data.forEach {
-            addSheet(it)
+            setLevel(it)
         }
+        for (l in 1..mDeep) {
+            data.filter { it.level == l }.forEach {
+                addSheet(l, it)
+            }
+        }
+
         flush()
+    }
+
+    private fun setLevel(sheet: Sheet) {
+        val p = sheet.position.split("-")
+        // 当前表格项的层级
+        val s = p.size
+        sheet.level = s
+        if (s > mDeep) {
+            // 记录当前表格最深的层级
+            mDeep = s
+        }
     }
 
     private fun getPosition(index: Int, data: Sheet): Sheet {
         return data.child[index]
     }
 
-    private fun addSheet(sheet: Sheet) {
+    private fun addSheet(level: Int, sheet: Sheet) {
         val p = sheet.position.split("-")
+        val ps = arrayListOf<Int>()
+        p.forEach {
+            ps.add(it.toInt())
+        }
         // 当前表格项的层级
-        val s = p.size
-        if (s < 1) {
+        if (level < 1) {
             // 编号不存在
             return
         }
-        if (s == 1) {
-            mData.add(p[0].toInt(), sheet)
+        if (level == 1) {
+            // 第一级表格，直接加入列表
+            mData.add(sheet)
+            mData.sortedBy { it.position }
             return
         }
-        val ps = arrayOf<Int>()
-        for (i in 1..s) {
-            ps[i - 1] = p[i - 1].toInt()
-        }
-        if (s > 1) {
-            var next: Sheet? = null
-            ps.forEachIndexed { index, i ->
-                when {
-                    index < 1 -> {
-                        // 第一位，从表格一级列表中进行值获取
-                        next = mData[index]
-                    }
-                    index in 1 until s -> {
-                        // 中间位置，进行循环取值，获取最后一位值
-                        next = getPosition(i, next!!)
-                    }
-                    index == s - 1 -> {
-                        // 最后一位，直接进行插值操作
-                        next!!.child.add(i, sheet)
-                    }
-                }
+        // 非一级列表，加入其上级表格的子列表中
+        var next: Sheet? = null
+        when {
+            sheet.level < 1 -> {
+                // 第一位，从表格一级列表中进行值获取
+                next = mData[ps[0]]
             }
-        }
-
-        if (s > mDeep) {
-            // 记录当前表格最深的层级
-            mDeep = s
+            sheet.level in 1 until sheet.level -> {
+                // 中间位置，进行循环取值，获取最后一位值
+                next = getPosition(i!!, next!!)
+            }
+            sheet.level == sheet.level - 1 -> {
+                // 最后一位，直接进行插值操作
+                next!!.child.add(i!!, sheet)
+                next.child.sortedBy { it.position }
+            }
         }
     }
 
