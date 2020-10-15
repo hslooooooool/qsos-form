@@ -39,6 +39,9 @@ class SheetView @JvmOverloads constructor(
 
     private var mValueListener: OnTListener<Sheet>? = null
 
+    /**当前表格最深的层级*/
+    private var mDeep: Int = 0
+
     fun addValueListener(listener: OnTListener<Sheet>) {
         this.mValueListener = listener
     }
@@ -51,33 +54,50 @@ class SheetView @JvmOverloads constructor(
         flush()
     }
 
+    private fun getPosition(index: Int, data: Sheet): Sheet {
+        return data.child[index]
+    }
+
     private fun addSheet(sheet: Sheet) {
         val p = sheet.position.split("-")
-        when (p.size) {
-            1 -> {
-                val p1 = p[0].toInt()
-                mData.add(p1 - 1, sheet)
-            }
-            2 -> {
-                val p1 = p[0].toInt()
-                val p2 = p[1].toInt()
-                mData[p1 - 1].child.add(p2 - 1, sheet)
-            }
-            3 -> {
-                val p1 = p[0].toInt()
-                val p2 = p[1].toInt()
-                val p3 = p[2].toInt()
-                mData[p1 - 1].child[p2 - 1].child.add(p3 - 1, sheet)
-            }
-            4 -> {
-                val p1 = p[0].toInt()
-                val p2 = p[1].toInt()
-                val p3 = p[2].toInt()
-                val p4 = p[3].toInt()
-                mData[p1 - 1].child[p2 - 1].child[p3 - 1].child.add(p4 - 1, sheet)
+        // 当前表格项的层级
+        val s = p.size
+        if (s < 1) {
+            // 编号不存在
+            return
+        }
+        if (s == 1) {
+            mData.add(p[0].toInt(), sheet)
+            return
+        }
+        val ps = arrayOf<Int>()
+        for (i in 1..s) {
+            ps[i - 1] = p[i - 1].toInt()
+        }
+        if (s > 1) {
+            var next: Sheet? = null
+            ps.forEachIndexed { index, i ->
+                when {
+                    index < 1 -> {
+                        // 第一位，从表格一级列表中进行值获取
+                        next = mData[index]
+                    }
+                    index in 1 until s -> {
+                        // 中间位置，进行循环取值，获取最后一位值
+                        next = getPosition(i, next!!)
+                    }
+                    index == s - 1 -> {
+                        // 最后一位，直接进行插值操作
+                        next!!.child.add(i, sheet)
+                    }
+                }
             }
         }
 
+        if (s > mDeep) {
+            // 记录当前表格最深的层级
+            mDeep = s
+        }
     }
 
     private fun flush() {
