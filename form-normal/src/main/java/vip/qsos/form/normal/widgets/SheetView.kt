@@ -1,38 +1,36 @@
 package vip.qsos.form.normal.widgets
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.Drawable
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.AttributeSet
-import android.view.Gravity
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import vip.qsos.form.lib.callback.OnTListener
+import vip.qsos.form.lib.model.ValueEntity
 import vip.qsos.form.normal.R
 
-/**支持4级表格样式
+/**支持 5 级表格样式
  * @author : 华清松
  */
 class SheetView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
+    private val itemHeight = 200
+
     init {
         orientation = VERTICAL
     }
 
     data class Sheet(
-            val type: Int = 0,
+            val type: ValueEntity.SheetFormat = ValueEntity.SheetFormat.TEXT,
             val title: String,
             var value: String,
             val position: String,
             var notice: String = value,
             var level: Int = 1,
+            var height: Int = 1,
+            var deep: Int = 1,
             val child: ArrayList<Sheet> = arrayListOf()
     )
 
@@ -49,31 +47,64 @@ class SheetView @JvmOverloads constructor(
 
     fun setData(data: List<Sheet>) {
         mData.clear()
-        data.forEach {
-            setLevel(it)
+        // 计算每个表格的层级
+        data.sortedBy {
+            it.position
+        }.forEach {
+            val p = it.position.split("-")
+            // 当前表格项的层级
+            val s = p.size
+            it.level = s
+            if (s > mDeep) {
+                // 记录当前表格最深的层级
+                mDeep = s
+            }
         }
+
+        // 计算表格高度占比
+        for (l in mDeep downTo 1) {
+            if (l == 1) break
+
+            // 高度占比
+            val pp = HashMap<String, Int>()
+            // 宽度占比
+            val pd = HashMap<String, Int>()
+            data.filter {
+                it.level == l
+            }.sortedBy {
+                it.position
+            }.forEach {
+                val i = it.position.lastIndexOf("-")
+                val p = it.position.substring(0, i)
+                val s = pp[p] ?: 0
+                pp[p] = s + it.height
+                val d = pd[p] ?: 1
+                if (d > it.deep) {
+                    pd[p] = d
+                }
+            }
+            pp.forEach { p ->
+                data.find {
+                    it.position == p.key
+                }?.let {
+                    it.height = p.value
+                    it.deep = pd[p.key] ?: 1
+                }
+            }
+        }
+
+        // 表格平级转层级关系
         for (l in 1..mDeep) {
-            data.filter { it.level == l }.forEach {
+            data.filter {
+                it.level == l
+            }.sortedBy {
+                it.position
+            }.forEach {
                 addSheet(l, it)
             }
         }
 
         flush()
-    }
-
-    private fun setLevel(sheet: Sheet) {
-        val p = sheet.position.split("-")
-        // 当前表格项的层级
-        val s = p.size
-        sheet.level = s
-        if (s > mDeep) {
-            // 记录当前表格最深的层级
-            mDeep = s
-        }
-    }
-
-    private fun getPosition(index: Int, data: Sheet): Sheet {
-        return data.child[index]
     }
 
     private fun addSheet(level: Int, sheet: Sheet) {
@@ -82,32 +113,33 @@ class SheetView @JvmOverloads constructor(
         p.forEach {
             ps.add(it.toInt())
         }
-        // 当前表格项的层级
-        if (level < 1) {
-            // 编号不存在
-            return
-        }
-        if (level == 1) {
-            // 第一级表格，直接加入列表
-            mData.add(sheet)
-            mData.sortedBy { it.position }
-            return
-        }
-        // 非一级列表，加入其上级表格的子列表中
-        var next: Sheet? = null
         when {
-            sheet.level < 1 -> {
-                // 第一位，从表格一级列表中进行值获取
-                next = mData[ps[0]]
+            // 编号不存在
+            level < 1 -> return
+            // 第1级表格
+            level == 1 -> {
+                mData.add(sheet)
+                mData.sortedBy { it.position }
             }
-            sheet.level in 1 until sheet.level -> {
-                // 中间位置，进行循环取值，获取最后一位值
-                next = getPosition(i!!, next!!)
+            // 第2级表格
+            level == 2 -> {
+                mData[ps[level - 2] - 1].child.add(sheet)
+                mData[ps[level - 2] - 1].child.sortedBy { it.position }
             }
-            sheet.level == sheet.level - 1 -> {
-                // 最后一位，直接进行插值操作
-                next!!.child.add(i!!, sheet)
-                next.child.sortedBy { it.position }
+            // 第3级表格
+            level == 3 -> {
+                mData[ps[level - 3] - 1].child[ps[level - 2] - 1].child.add(sheet)
+                mData[ps[level - 3] - 1].child[ps[level - 2] - 1].child.sortedBy { it.position }
+            }
+            // 第4级表格
+            level == 4 -> {
+                mData[ps[level - 4] - 1].child[ps[level - 3] - 1].child[ps[level - 2] - 1].child.add(sheet)
+                mData[ps[level - 4] - 1].child[ps[level - 3] - 1].child[ps[level - 2] - 1].child.sortedBy { it.position }
+            }
+            // 第5级表格
+            level == 5 -> {
+                mData[ps[level - 5] - 1].child[ps[level - 4] - 1].child[ps[level - 3] - 1].child[ps[level - 2] - 1].child.add(sheet)
+                mData[ps[level - 5] - 1].child[ps[level - 4] - 1].child[ps[level - 3] - 1].child[ps[level - 2] - 1].child.sortedBy { it.position }
             }
         }
     }
@@ -121,109 +153,34 @@ class SheetView @JvmOverloads constructor(
     }
 
     private fun addSheetView(level: Int, sheet: Sheet, container: LinearLayout) {
-        val isInput = sheet.type == 0
+        val isInput = sheet.type == ValueEntity.SheetFormat.TEXT
         if (isInput) {
             // 输入类型，添加输入控件
-            val input = getInput(level, sheet)
+            val input = SheetInputView(
+                    context,
+                    sheet.title, sheet.notice, sheet.value, sheet.type, sheet.deep,
+                    getTitleBackground(level),
+                    object : OnTListener<String> {
+                        override fun back(t: String) {
+                            sheet.value = t
+                            mValueListener?.back(sheet)
+                        }
+                    })
+            input.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, itemHeight)
             container.addView(input)
         } else {
             // 容器类型，添加容器控件
-            val l = LinearLayout(context)
-            l.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
-            l.orientation = VERTICAL
-            val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, getWeight(sheet))
-            l.layoutParams = params
-            val title = getTitleView(level, sheet)
-            l.addView(title)
-
-            val size = sheet.child.size
-            val a = size / 2
-            val b = size % 2
-            val c = when (b) {
-                1 -> a + 1
-                else -> a
+            val c = SheetContainerView(
+                    context,
+                    sheet.title, sheet.deep,
+                    getTitleBackground(level)
+            )
+            c.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, itemHeight * sheet.height)
+            container.addView(c)
+            sheet.child.forEach {
+                addSheetView(level + 1, it, c.mContainer)
             }
-            for (i in 1..c) {
-                val s = if (b == 0) {
-                    arrayListOf(sheet.child[i * 2 - 2], sheet.child[i * 2 - 1])
-                } else {
-                    if (i * 2 < size) {
-                        arrayListOf(sheet.child[i * 2 - 2], sheet.child[i * 2 - 1])
-                    } else {
-                        arrayListOf(sheet.child[i * 2 - 2])
-                    }
-                }
-                val child = getContainer(level, sheet, s)
-                l.addView(child)
-            }
-            container.addView(l)
         }
-    }
-
-    private fun getInput(level: Int, sheet: Sheet): LinearLayout {
-        val container = LinearLayout(context)
-        container.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_bg)
-        container.orientation = VERTICAL
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-        container.layoutParams = params
-        val title = getTitleView(level, sheet)
-        container.addView(title)
-        val input = getSheetInput(sheet)
-        container.addView(input)
-        return container
-    }
-
-    private fun getContainer(level: Int, parent: Sheet, child: List<Sheet>): LinearLayout {
-        val container = LinearLayout(context)
-        container.orientation = VERTICAL
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1F)
-        container.layoutParams = params
-        child.forEach {
-            addSheetView(level + 1, it, container)
-        }
-        return container
-    }
-
-    private fun getTitleView(level: Int, sheet: Sheet): TextView {
-        val title = TextView(context)
-        title.text = sheet.title
-        title.setTextColor(Color.BLACK)
-        title.background = getTitleBackground(level)
-        title.gravity = Gravity.CENTER
-        title.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 100, 3F)
-        title.textSize = 10f
-        return title
-    }
-
-    private fun getSheetInput(sheet: Sheet): EditText {
-        val input = EditText(context)
-        input.id = sheet.position.hashCode()
-        input.background = ContextCompat.getDrawable(context, R.drawable.form_sheet_input_bg)
-        val params = LayoutParams(LayoutParams.MATCH_PARENT, 100, 1F)
-        input.layoutParams = params
-        input.hint = sheet.title
-        input.setText(sheet.value)
-        input.textSize = 10f
-        input.gravity = Gravity.CENTER
-        input.inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
-        input.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                p0?.let {
-                    sheet.value = it.toString().trim()
-                    mValueListener?.back(sheet)
-                }
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-        })
-        return input
     }
 
     private fun getTitleBackground(level: Int): Drawable {
@@ -231,11 +188,9 @@ class SheetView @JvmOverloads constructor(
             0 -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title1)!!
             1 -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title2)!!
             2 -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title3)!!
-            else -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title4)!!
+            3 -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title4)!!
+            else -> ContextCompat.getDrawable(context, R.drawable.form_sheet_title5)!!
         }
     }
 
-    private fun getWeight(sheet: Sheet): Float {
-        return if (sheet.child.isEmpty()) 2F else 1F
-    }
 }

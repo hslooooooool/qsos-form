@@ -4,6 +4,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.form_item_sheet.view.*
 import vip.qsos.form.lib.callback.OnTListener
 import vip.qsos.form.lib.model.FormItemEntity
+import vip.qsos.form.lib.model.ValueEntity
 import vip.qsos.form.normal.widgets.SheetView
 
 /**表格类型视图
@@ -15,8 +16,17 @@ class FormItemSheetHolder(itemView: View) : AbsFormHolder(itemView) {
         super.setData(position, data)
 
         val sheet = data.formValues.map {
+            val type: ValueEntity.SheetFormat = if (it.value!!.sheetType == -1) {
+                ValueEntity.SheetFormat.CONTAINER
+            } else {
+                when (it.value!!.sheetFormat) {
+                    "NUMBER" -> ValueEntity.SheetFormat.NUMBER
+                    "NUMBER_DECIMAL" -> ValueEntity.SheetFormat.NUMBER_DECIMAL
+                    else -> ValueEntity.SheetFormat.TEXT
+                }
+            }
             SheetView.Sheet(
-                    type = it.value!!.sheetType,
+                    type = type,
                     title = it.value!!.sheetTitle,
                     value = it.value!!.sheetContent,
                     notice = it.value!!.sheetNotice,

@@ -8,7 +8,9 @@ import java.util.*
 class ValueEntity {
 
     enum class Type { IMAGE, ALBUM, VIDEO, AUDIO, FILE }
-    enum class SheetType { TEXT, NUMBER, NUMBER_DECIMAL, CONTAINER }
+
+    /**暂定表格可录入的值类型：文本、正整数、正小数*/
+    enum class SheetFormat { TEXT, NUMBER, NUMBER_DECIMAL, CONTAINER }
 
     var valueType: Int = -1
 
@@ -63,6 +65,7 @@ class ValueEntity {
     var sheetTitle: String = ""
     var sheetPosition: String = ""
     var sheetType: Int = 0
+    var sheetFormat: String = "TEXT"
     var sheetContent: String = ""
     var sheetNotice: String = ""
 
@@ -169,6 +172,30 @@ class ValueEntity {
         this.locName = locName
         this.locX = locX
         this.locY = locY
+    }
+
+    /**
+     * @param sheetTitle 表格名称
+     * @param sheetPosition 表格位置
+     * @param sheetContent 表格内容
+     * @param sheetNotice 表格提示
+     * @param sheetType 表格类型
+     * */
+    constructor(
+            sheetTitle: String,
+            sheetPosition: String,
+            sheetContent: String,
+            sheetNotice: String,
+            sheetType: Int = 0,
+            sheetFormat: String = "TEXT"
+    ) {
+        this.valueType = 7
+        this.sheetTitle = sheetTitle
+        this.sheetPosition = sheetPosition
+        this.sheetType = sheetType
+        this.sheetContent = sheetContent
+        this.sheetNotice = sheetNotice
+        this.sheetFormat = sheetFormat
     }
 
     companion object {
