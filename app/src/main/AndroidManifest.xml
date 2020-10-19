@@ -10,10 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
-        tools:replace="android:label,android:icon,android:theme">
+        tools:replace="android:label,android:icon,android:theme"
+        tools:targetApi="m">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".IndexActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +24,17 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".FormActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

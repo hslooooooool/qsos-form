@@ -17,6 +17,6 @@ data class FormEntity(
 ) {
 
     /**表单列表项*/
-    var formItems: List<FormItemEntity<*>> = arrayListOf()
+    var formItems: List<FormItemEntity> = arrayListOf()
 
 }

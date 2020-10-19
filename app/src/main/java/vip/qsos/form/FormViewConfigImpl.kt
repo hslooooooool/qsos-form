@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import vip.qsos.form.holder.FormItemFileHolder
 import vip.qsos.form.holder.FormItemLocationHolder
 import vip.qsos.form.holder.FormItemUserHolder
-import vip.qsos.form.lib.config.FormConfig
+import vip.qsos.form.lib.config.FormViewConfig
 import vip.qsos.form.normal.hodler.*
 
 /**表单配置
  * @author : 华清松
  */
-class FormConfigImpl : FormConfig {
+class FormViewConfigImpl : FormViewConfig {
 
     override fun getViewType(valueType: Int): Int {
         return valueType
@@ -21,7 +21,7 @@ class FormConfigImpl : FormConfig {
         return viewType
     }
 
-    override fun getHolder(parent: ViewGroup, viewType: Int): AbsFormHolder<*, *> {
+    override fun getHolder(parent: ViewGroup, viewType: Int): AbsFormHolder {
         val layoutId = getLayoutId(getValueType(viewType))
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return when (viewType) {
@@ -32,6 +32,7 @@ class FormConfigImpl : FormConfig {
             4 -> FormItemUserHolder(view)
             5 -> FormItemFileHolder(view)
             6 -> FormItemLocationHolder(view)
+            7 -> FormItemSheetHolder(view)
             else -> FormItemTextHolder(view)
         }
     }
@@ -46,6 +47,7 @@ class FormConfigImpl : FormConfig {
             4 -> R.layout.form_item_user
             5 -> R.layout.form_item_file
             6 -> R.layout.form_item_location
+            7 -> R.layout.form_item_sheet
             else -> R.layout.form_item_text
         }
     }

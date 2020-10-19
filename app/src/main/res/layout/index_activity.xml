@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<androidx.appcompat.widget.AppCompatButton
+		android:id="@+id/form_item_0"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="表单案例" />
+	
+	<androidx.appcompat.widget.AppCompatButton
+		android:id="@+id/form_item_1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="常规信息" />
+	
+	<androidx.appcompat.widget.AppCompatButton
+		android:id="@+id/form_item_2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="每日平安信息" />
+	
+	<androidx.appcompat.widget.AppCompatButton
+		android:id="@+id/form_item_3"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="每日消防信息" />
+	
+	<androidx.appcompat.widget.AppCompatButton
+		android:id="@+id/form_item_4"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="每周工作信息" />
+	
+	<androidx.appcompat.widget.AppCompatButton
+		android:id="@+id/form_item_5"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+        android:text="表格案例" />
+
+</LinearLayout>

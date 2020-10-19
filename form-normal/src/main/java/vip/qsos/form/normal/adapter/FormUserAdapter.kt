@@ -5,28 +5,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import kotlinx.android.synthetic.main.form_item_user_item.view.*
 import vip.qsos.form.lib.base.BaseHolder
 import vip.qsos.form.lib.model.FormValueEntity
 import vip.qsos.form.normal.R
-import vip.qsos.form.normal.model.FormValueOfUser
 import vip.qsos.form.normal.utils.GlideApp
 
 /**用户列表容器
  * @author : 华清松
  */
 class FormUserAdapter(
-        var data: ArrayList<FormValueEntity<FormValueOfUser>>,
+        var data: ArrayList<FormValueEntity>,
         private var mOnItemListener: FormItemUserItemHolder.OnItemListener,
         private var mOnDeleteListener: FormItemUserItemHolder.OnDeleteListener
-) : RecyclerView.Adapter<BaseHolder<FormValueEntity<FormValueOfUser>>>() {
+) : RecyclerView.Adapter<BaseHolder<FormValueEntity>>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormValueEntity<FormValueOfUser>> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FormValueEntity> {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.form_item_user_item, parent, false)
         return FormItemUserItemHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BaseHolder<FormValueEntity<FormValueOfUser>>, position: Int) {
+    override fun onBindViewHolder(holder: BaseHolder<FormValueEntity>, position: Int) {
         holder as FormItemUserItemHolder
         holder.setData(position, data[position])
         holder.setDeleteListener(object : FormItemUserItemHolder.OnDeleteListener {
@@ -36,7 +36,7 @@ class FormUserAdapter(
             }
         })
         holder.setOnItemListener(object : FormItemUserItemHolder.OnItemListener {
-            override fun item(position: Int, data: FormValueEntity<FormValueOfUser>) {
+            override fun item(position: Int, data: FormValueEntity) {
                 mOnItemListener.item(position, data)
             }
         })
@@ -52,14 +52,14 @@ class FormUserAdapter(
  * @author : 华清松
  * 用户列表项布局
  */
-class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormValueOfUser>>(itemView) {
+class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity>(itemView) {
 
     interface OnDeleteListener {
         fun delete(position: Int)
     }
 
     interface OnItemListener {
-        fun item(position: Int, data: FormValueEntity<FormValueOfUser>)
+        fun item(position: Int, data: FormValueEntity)
     }
 
     private var mOnItemListener: OnItemListener? = null
@@ -73,11 +73,12 @@ class FormItemUserItemHolder(itemView: View) : BaseHolder<FormValueEntity<FormVa
         this.mOnDeleteListener = listenerOn
     }
 
-    override fun setData(position: Int, data: FormValueEntity<FormValueOfUser>) {
-        data.value?.let { user ->
-            itemView.tv_item_form_user_name.text = user.userName
+    override fun setData(position: Int, data: FormValueEntity) {
+        data.value.let { user ->
+            itemView.tv_item_form_user_name.text = user!!.userName
             GlideApp.with(itemView.context)
                     .load(user.userAvatar)
+                    .transform(CircleCrop())
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .skipMemoryCache(false)
                     .into(itemView.iv_item_form_user_icon)

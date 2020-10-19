@@ -7,7 +7,7 @@ import vip.qsos.form.lib.base.BaseFormHolder
 /**表单功能配置接口
  * @author : 华清松
  */
-interface FormConfig {
+interface FormViewConfig {
 
     /**获取ViewType
      * @param valueType 表单值类型->FormItemEntity.valueType
@@ -26,7 +26,7 @@ interface FormConfig {
      * @param parent ViewGroup
      * @param viewType viewType
      * @return Any extends BaseHolder*/
-    fun getHolder(parent: ViewGroup, viewType: Int): BaseFormHolder<*, *>
+    fun getHolder(parent: ViewGroup, viewType: Int): BaseFormHolder
 
     /**获取列表项布局文件
      * @param valueType 表单值类型

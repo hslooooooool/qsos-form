@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="form_item_file_delete_layout_width">16dp</dimen>
+    <dimen name="form_item_file_layout_margin">10dp</dimen>
+    <dimen name="form_item_file_layout_width">64dp</dimen>
+    <dimen name="form_item_file_padding">4dp</dimen>
+    <dimen name="form_item_file_name_size">12sp</dimen>
+    <color name="form_item_file_name_color">#47535F</color>
+
+    <dimen name="form_item_user_delete_layout_width">16dp</dimen>
+    <dimen name="form_item_user_layout_margin">10dp</dimen>
+    <dimen name="form_item_user_layout_width">64dp</dimen>
+    <dimen name="form_item_user_padding">4dp</dimen>
+    <dimen name="form_item_user_name_size">12sp</dimen>
+    <color name="form_item_user_name_color">#47535F</color>
+
+</resources>

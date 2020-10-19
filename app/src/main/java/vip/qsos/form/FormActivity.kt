@@ -13,49 +13,59 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_activity.*
 import vip.qsos.form.lib.FormAdapter
-import vip.qsos.form.normal.utils.FormVerifyUtils
+import vip.qsos.form.lib.helper.FormVerifyHelper
 
 /**
  * @author : 华清松
  */
-class MainActivity : AppCompatActivity() {
+class FormActivity : AppCompatActivity() {
 
-    private lateinit var mAdapter: FormAdapter
+    private var mAdapter: FormAdapter = FormAdapter(arrayListOf())
     private val mModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
+        initView()
+
         initData()
 
-        initView()
-    }
-
-    private fun initData() {
-        if (mModel.mForm.value == null) {
-            mModel.mForm.value = FormUtil.Create.feedbackForm()
-        }
-        mAdapter = FormAdapter(mModel.mForm.value!!.formItems)
     }
 
     private fun initView() {
         form_list.layoutManager = LinearLayoutManager(this)
         form_list.adapter = mAdapter
-        form_title.text = mModel.mForm.value!!.title
+        form_submit.isEnabled = false
 
         form_submit.setOnClickListener {
-            val verify = FormVerifyUtils.verify(mModel.mForm.value!!)
+            val verify = FormVerifyHelper.verify(mModel.mForm.value!!)
             val itemName = mModel.mForm.value!!.formItems[verify.info.itemIndex].title
             if (verify.pass) {
                 Toast.makeText(this, verify.msg, Toast.LENGTH_LONG).show()
+                mModel.mForm.value!!.formItems.forEach {
+                    it.formValues.forEach { v ->
+                        v.transValue()
+                    }
+                }
             } else {
                 Toast.makeText(this, itemName + "-" + verify.msg, Toast.LENGTH_SHORT).show()
             }
+            // FIXME
+            println(mModel.mForm.value)
         }
+    }
 
+    private fun initData() {
+        mModel.sceneType = intent.getStringExtra("sceneType")
         mModel.mForm.observe(this, Observer {
-            mAdapter.notifyDataSetChanged()
+            it?.let {
+                mAdapter.data = it.formItems
+                form_title.text = it.title
+                form_notice.text = it.notice
+                form_submit.isEnabled = true
+                mAdapter.notifyDataSetChanged()
+            } ?: Toast.makeText(this, "错误", Toast.LENGTH_SHORT).show()
         })
     }
 

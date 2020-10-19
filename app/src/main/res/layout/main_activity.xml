@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DFE1E6"
@@ -8,11 +9,25 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/form_title"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="20dp"
         android:text="@string/app"
         android:textColor="#333A41"
         android:textSize="18sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/form_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="20dp"
+        android:textColor="#A0A0A0"
+        android:textSize="14sp"
+        tools:text="notice" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/form_list"
