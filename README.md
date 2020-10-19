@@ -1,7 +1,7 @@
 # 表单组件说明文档
 
 当前版本 `lib-version`
- 
+
 [![lib-version](https://www.jitpack.io/v/hslooooooool/qsos-form.svg)](https://www.jitpack.io/#hslooooooool/qsos-form)
 
 引用:
@@ -24,6 +24,8 @@ dependencies {
 - LiveData
 
 ## 前言
+[表单演示视频](http://resource.qsos.vip/form-demo.mp4)
+
 在我们开展的各种业务中，表单的填写和提交都是非常常见的场景之一。
 
 为整合相同功能性需求，我开发了此款表单组件。
