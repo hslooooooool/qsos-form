@@ -16,7 +16,7 @@ class SheetView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val itemHeight = 200
+    private val itemHeight = 120
 
     init {
         orientation = VERTICAL
@@ -153,8 +153,8 @@ class SheetView @JvmOverloads constructor(
     }
 
     private fun addSheetView(level: Int, sheet: Sheet, container: LinearLayout) {
-        val isInput = sheet.type == ValueEntity.SheetFormat.TEXT
-        if (isInput) {
+        val isContainer = sheet.type == ValueEntity.SheetFormat.CONTAINER
+        if (!isContainer) {
             // 输入类型，添加输入控件
             val input = SheetInputView(
                     context,

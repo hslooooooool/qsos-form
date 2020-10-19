@@ -51,7 +51,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1\",\"sheetPosition\":\"1\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1\",\"sheetPosition\":\"1\",\"sheetType\":-1,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -59,7 +59,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头11\",\"sheetPosition\":\"1-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"文本\",\"sheetPosition\":\"1-1\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -67,7 +67,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头12\",\"sheetPosition\":\"1-2\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"整数\",\"sheetPosition\":\"1-2\",\"sheetType\":0,\"sheetFormat\":\"NUMBER\",\"sheetContent\":\"\",\"sheetNotice\":\"请输入整数\"}"
           },
           {
             "id": -1,
@@ -75,7 +75,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头13\",\"sheetPosition\":\"1-3\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"小数\",\"sheetPosition\":\"1-3\",\"sheetType\":0,\"sheetFormat\":\"NUMBER_DECIMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"请输入小数\"}"
           },
           {
             "id": -1,
@@ -83,7 +83,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头14\",\"sheetPosition\":\"1-4\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"文本2\",\"sheetPosition\":\"1-4\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           }
         ]
       },
@@ -106,7 +106,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1\",\"sheetPosition\":\"1\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1\",\"sheetPosition\":\"1\",\"sheetType\":-1,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -114,7 +114,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头11\",\"sheetPosition\":\"1-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头11\",\"sheetPosition\":\"1-1\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -122,7 +122,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头12\",\"sheetPosition\":\"1-2\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头12\",\"sheetPosition\":\"1-2\",\"sheetType\":-1,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -130,7 +130,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头121\",\"sheetPosition\":\"1-2-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头121\",\"sheetPosition\":\"1-2-1\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -138,7 +138,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头122\",\"sheetPosition\":\"1-2-2\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头122\",\"sheetPosition\":\"1-2-2\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -146,7 +146,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头123\",\"sheetPosition\":\"1-2-3\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头123\",\"sheetPosition\":\"1-2-3\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           }
         ]
       },
@@ -169,7 +169,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1\",\"sheetPosition\":\"1\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1\",\"sheetPosition\":\"1\",\"sheetType\":-1,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -177,7 +177,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头11\",\"sheetPosition\":\"1-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头11\",\"sheetPosition\":\"1-1\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -185,7 +185,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头12\",\"sheetPosition\":\"1-2\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头12\",\"sheetPosition\":\"1-2\",\"sheetType\":-1,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -193,7 +193,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头121\",\"sheetPosition\":\"1-2-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头121\",\"sheetPosition\":\"1-2-1\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -201,7 +201,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头122\",\"sheetPosition\":\"1-2-2\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头122\",\"sheetPosition\":\"1-2-2\",\"sheetType\":-1,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -209,7 +209,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1221\",\"sheetPosition\":\"1-2-2-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1221\",\"sheetPosition\":\"1-2-2-1\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -217,7 +217,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1222\",\"sheetPosition\":\"1-2-2-2\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头1222\",\"sheetPosition\":\"1-2-2-2\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -225,7 +225,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头2\",\"sheetPosition\":\"2\",\"sheetType\":-1,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头2\",\"sheetPosition\":\"2\",\"sheetType\":-1,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -233,7 +233,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头21\",\"sheetPosition\":\"2-1\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头21\",\"sheetPosition\":\"2-1\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           },
           {
             "id": -1,
@@ -241,7 +241,7 @@
             "editable": true,
             "position": 1,
             "valueType": 7,
-            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头22\",\"sheetPosition\":\"2-2\",\"sheetType\":0,\"sheetFormat\":\"NORMAL\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
+            "formValue": "{\"valueType\":7,\"sheetTitle\":\"标头22\",\"sheetPosition\":\"2-2\",\"sheetType\":0,\"sheetFormat\":\"TEXT\",\"sheetContent\":\"\",\"sheetNotice\":\"\"}"
           }
         ]
       },

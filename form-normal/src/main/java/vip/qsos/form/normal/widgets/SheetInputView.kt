@@ -34,7 +34,7 @@ class SheetInputView @JvmOverloads constructor(
         val p = LayoutInflater.from(context).inflate(R.layout.form_sheet_input_view, this, true)
         mTitle = p.findViewById(R.id.form_sheet_title)
         mInput = p.findViewById(R.id.form_sheet_input)
-        mTitle.layoutParams = LinearLayout.LayoutParams(deep * 50, LayoutParams.MATCH_PARENT)
+        mTitle.layoutParams = LinearLayout.LayoutParams(deep * 80, LayoutParams.MATCH_PARENT)
         mTitle.text = title
         mInput.hint = if (TextUtils.isEmpty(hint)) {
             "请输入$title"
