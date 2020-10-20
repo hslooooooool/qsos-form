@@ -22,6 +22,17 @@ class SheetView @JvmOverloads constructor(
         orientation = VERTICAL
     }
 
+    /**
+     * @param type 表格类型
+     * @param title 表格标题
+     * @param value 表格值
+     * @param position 表格位置，用于描述表格的层级、顺序和深度
+     * @param notice 表格提示，用于输入框提示文本
+     * @param level 表格所在级别
+     * @param height 表格高度占比，一格为 1 ，若有 2 个子项表格，则高度为2
+     * @param deep 表格深度，比如在 2 级表格中，当前表格位置为 2-1-3 ，则当前表格深度为 3 ，位置最后一位所代表的值
+     * @param child 表格下的子表格列表
+     * */
     data class Sheet(
             val type: ValueEntity.SheetFormat = ValueEntity.SheetFormat.TEXT,
             val title: String,
@@ -59,6 +70,7 @@ class SheetView @JvmOverloads constructor(
                 // 记录当前表格最深的层级
                 mDeep = s
             }
+            it.deep = p.last().toInt()
         }
 
         // 计算表格高度占比
@@ -79,8 +91,8 @@ class SheetView @JvmOverloads constructor(
                 val s = pp[p] ?: 0
                 pp[p] = s + it.height
                 val d = pd[p] ?: 1
-                if (d > it.deep) {
-                    pd[p] = d
+                if (d < it.deep) {
+                    pd[p] = it.deep
                 }
             }
             pp.forEach { p ->

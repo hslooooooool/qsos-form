@@ -179,7 +179,8 @@ class ValueEntity {
      * @param sheetPosition 表格位置
      * @param sheetContent 表格内容
      * @param sheetNotice 表格提示
-     * @param sheetType 表格类型
+     * @param sheetType 表格类型 -1 容器，0 输入
+     * @param sheetFormat 表格内容格式
      * */
     constructor(
             sheetTitle: String,

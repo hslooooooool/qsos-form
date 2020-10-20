@@ -26,7 +26,7 @@ class SheetContainerView @JvmOverloads constructor(
     init {
         val p = LayoutInflater.from(context).inflate(R.layout.form_sheet_container_view, this, true)
         mTitle = p.findViewById(R.id.form_sheet_container_title)
-        mTitle.layoutParams = LinearLayout.LayoutParams(deep * 80, LayoutParams.MATCH_PARENT)
+        mTitle.layoutParams = LinearLayout.LayoutParams(80, LayoutParams.MATCH_PARENT)
         mContainer = p.findViewById(R.id.form_sheet_container)
 
         mTitle.text = title
